@@ -13,7 +13,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/andre101011/plataforma_adopcion">
-    <img src="src/public/img/isotipo.png" alt="Logo" width="80" height="80">
+    <img src="/src/public/img/isotipo.png" alt="Logo" width="160" height="160">
   </a>
 
   <h3 align="center">Plataforma de adopción</h3>
@@ -50,7 +50,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com)-->
 
 Esta plataforma tiene como proposito mejorar el proceso de adopciones y almacenamiento de informacion de los animales en custodia de la fundacion Fundamor
 

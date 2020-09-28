@@ -93,7 +93,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 Andrés Felipe Llinás - andreslli1707@gmail.com
 
-Neyder Figueroa - email@example.com
+Neyder Figueroa - nfigueroasan@gmail.com
 
 Project Link: [https://github.com/andre101011/plataforma_adopcion](https://github.com/andre101011/plataforma_adopcion)
 

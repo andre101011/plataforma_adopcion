@@ -111,7 +111,7 @@ Project Link: [https://github.com/andre101011/plataforma_adopcion](https://githu
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-shield]: https://img.shields.io/github/contributors/andre101011/plataforma_adopcion.svg?style=flat-square
 [contributors-url]: https://github.com/andre101011/plataforma_adopcion/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/andre101011/plataforma_adopcion.svg?style=flat-square
 [forks-url]: https://img.shields.io/github/forks/andre101011/plataforma_adopcion/network/members

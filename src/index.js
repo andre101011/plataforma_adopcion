@@ -1,10 +1,13 @@
+
+// Inicializaciones
+
 const express = require('express');
 const app = express();
 
 const path = require("path");
 const exphbs = require("express-handlebars");
 
-// Inicializaciones
+
 
 // Configuraciones
 
@@ -24,6 +27,7 @@ app.set('view engine', 'hbs');
 // Middelewares
 
 //app.use(morgan('debug'));
+
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
 
@@ -37,6 +41,7 @@ app.use((req,res,next)=>{
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/productos',require('./routes/productos'));
+app.use('/empleados',require('./routes/empleados'));
 
 // Publico
 

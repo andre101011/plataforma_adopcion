@@ -4,7 +4,7 @@ const router= express.Router();
  * Pagina Inicial de la aplicacion
  */
 router.get('/',(req,res)=>{
-    res.send('page in process of develop');
+    res.render('index');
 })
 
 

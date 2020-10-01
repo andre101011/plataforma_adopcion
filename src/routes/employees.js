@@ -4,30 +4,29 @@ const router= express.Router();
 const pool= require('../database');
 
 router.get('/add',(req,res)=>{
-    res.render('productos/add');
+    res.render('employees/add');
 })
 
 router.post('/add', async (req,res)=>{
-
    
     const {email, password}= req.body;
 
-    const nuevaPersona={
+    const newPerson={
         email,
         password
     };
 
     console.log(nuevaPersona);
-    await pool.query('INSERT into persona set ?',[nuevaPersona]); 
-    res.redirect('/personas')
+    await pool.query('INSERT into persona set ?',[newPerson]); 
+    res.redirect('/employees')
 })
 
 router.get('/', async (req,res)=>{
 
    
-    const personas= await pool.query('SELECT * FROM persona'); 
-    console.log(personas)
-    res.send('listas');
+    const persons= await pool.query('SELECT * FROM persona'); 
+    console.log(persons)
+    res.send('list');
 
 })
 module.exports=router;

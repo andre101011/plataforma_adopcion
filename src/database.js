@@ -12,13 +12,16 @@ pool.getConnection((err,connection)=>{
         }else if(err.code==='ER_CON_COUNT_ERROR'){
             console.log('la bd cuenta con demasiadas conexiones')
         }else if(err.code==='ECONNREFUSED'){
-            console.log('la bd cuenta fue rechazada')
+            console.log('la bd fue rechazada')
 
         }
-    }
+    }else{
 
-    if(connection) connection.release();
-    console.log('conexion a la base de datos exitosa');
+        if(connection){
+            connection.release();
+            console.log('conexion a la base de datos exitosa');
+        }      
+    } 
 
     return;
 }) 

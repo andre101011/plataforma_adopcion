@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=h<">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Subir imagen</h1>
-    <form action="/animals/add" method="post" enctype="multipart/form-data"> 
-        <input type="file" name="image">
-        <button type="submit">Subir imagen</button>
-    </form>
+    <div class="main-wrapper">
+        <div class="container animal add">
+            <h1>Subir imagen</h1>
+            <div class="imageUpload-container">
+                <form action="/animals/add"method="post" enctype="multipart/form-data">
+                    <input type="file"  class="image-selector-button" name="image">
+                    <button type="submit"  class="btn btn-primary">Subir imagen</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

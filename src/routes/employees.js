@@ -8,6 +8,15 @@ const helpers=require('../lib/helpers');
 const {isLoggedIn}= require('../lib/auth')
 
 
+router.get('/', async (req,res)=>{
+
+    const empleados = await pool.query('SELECT * FROM Empleado'); 
+    
+    res.render('employees/list',{empleados:empleados});
+
+})
+
+
 router.get('/add',(req,res)=>{
 
     res.render('employees/add');
@@ -41,24 +50,6 @@ router.post('/add', async (req,res)=>{
    
 })
 
-router.get('/', async (req,res)=>{
-
-    const empleados = await pool.query('SELECT * FROM Empleado'); 
-    
-    res.render('employees/list',{empleados:empleados});
-
-})
-
-
-router.get('/delete/:id', async (req,res)=>{
-
-    const {id}=req.params;
-    pool.query('DELETE FROM Empleado WHERE cedula=?',[id]); 
-    req.flash('success','El empleado fue removido exitosamente') ;
-    res.redirect('/employees');
-
-})
-
 
 router.get('/update/:id', async (req,res)=>{
 
@@ -76,6 +67,16 @@ router.post('/update/:id', async (req,res)=>{
     const {id}=req.params;
     await pool.query('UPDATE FROM Empleado WHERE cedula=?',[id]); 
     
+    res.redirect('/employees');
+
+})
+
+
+router.get('/delete/:id', async (req,res)=>{
+
+    const {id}=req.params;
+    pool.query('DELETE FROM Empleado WHERE cedula=?',[id]); 
+    req.flash('success','El empleado fue removido exitosamente') ;
     res.redirect('/employees');
 
 })

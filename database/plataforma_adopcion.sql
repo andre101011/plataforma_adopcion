@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 01-10-2020 a las 17:52:17
+-- Tiempo de generación: 03-10-2020 a las 18:44:02
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -83,7 +83,8 @@ CREATE TABLE `Animal` (
   `esterilizado` tinyint(1) NOT NULL,
   `desparasitado` tinyint(1) NOT NULL,
   `tamaño` varchar(45) NOT NULL,
-  `ruta_imagen` varchar(45) DEFAULT NULL
+  `ruta_imagen` varchar(45) DEFAULT NULL,
+  `custodia` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -96,7 +97,8 @@ CREATE TABLE `Empleado` (
   `cedula` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  `nombre` varchar(45) NOT NULL
+  `nombre` varchar(45) NOT NULL,
+  `fundacion` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

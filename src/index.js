@@ -7,6 +7,14 @@ const app = express();
 const path = require("path");
 const exphbs = require("express-handlebars");
 const multer = require('multer');
+const flash = require('connect-flash');
+const session=require('express-session');
+
+const passport = require('passport');
+const MySQLStore = require('express-mysql-session');
+const {database}=require('./keys');
+
+require('./lib/passport');
 
 
 // Configuraciones
@@ -53,14 +61,35 @@ app.use(multer({
 
 //app.use(morgan('debug'));
 
+app.use(session({
+    secret:'secureSessionPAF',
+    resave:false,
+    saveUninitialized:false,
+    store: new MySQLStore(database),
+    
+
+
+}));
+
 app.use(express.urlencoded({extended : false}));
 app.use(express.json());
+app.use(flash())
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Variables globales
 
 app.use((req,res,next)=>{
+  app.locals.success=req.flash('success');
+  app.locals.info=req.flash('info');
+  app.locals.error=req.flash('error');
+  app.locals.user=req.user;
   next();
 })
+
+
 
 
 // Rutas

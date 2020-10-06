@@ -129,7 +129,7 @@ h2 {
 
 .form-main-wrapper {
   padding: 150px 0;
-  height: calc(100vh - 56px);
+  min-height: min-content;
   background: linear-gradient(45deg, #da4453, #89216b);
 }
 

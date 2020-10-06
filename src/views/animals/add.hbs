@@ -3,72 +3,101 @@
     <div class="form-container">
         <div class="form-content">
 
-            <form action="/employees/add" method="POST" class="signup-form">
-                <h2 class="form-title">Subir Animal</h2>
+            <form action="/animals/add" method="POST" class="signup-form" enctype="multipart/form-data">
+                <h2 class="form-title">Registrar Animal</h2>
+
+                <div >
+                    <label>Especie</label>
+                    <select class="custom-select mr-sm-2" name="comboEspecie" id="inlineFormCustomSelect">
+                        <option selected>Seleccione</option>
+                        <option value="perro">Perro</option>
+                        <option value="gato">Gato</option>
+                      
+                    </select>
+                </div>
 
                 <div class="form-group">
-                    <label>Nombre Completo</label>
+                    <label>Nombre</label>
                     <input type="text" name="nombre" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Especie</label>
-                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
-                        placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" name="cedula" class="form-control">
-                </div>
-                <div class="form-group">
                     <label>Edad</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password">
+                    <input type="text" name="edad" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Sexo</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="sexo" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Caracteristicas</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="caracteristicas" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Sitio de rescate</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="sitio_rescate" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Fecha de rescate</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="fecha_rescate" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Raza</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="raza" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Color</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="color" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Vacunas</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="vacunas" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>Esterilizado</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioEsterilizado" id="exampleRadios1"
+                            value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Si
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioEsterilizado" id="exampleRadios2"
+                            value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            No
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Desparasitado</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDesparasitado" id="exampleRadios1"
+                            value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Si
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioDesparasitado" id="exampleRadios2"
+                            value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                            No
+                        </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Tamaño</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="passwordConfirm" class="form-control" placeholder="">
                 </div>
 
 
                 <div class="container animal add">
                     <h1>Subir imagen</h1>
                     <div class="imageUpload-container">
-                        <form action="/animals/add" method="post" enctype="multipart/form-data">
+                        <form >
                             <input type="file" class="image-selector-button" name="image">
                             <button type="submit" class="btn btn-primary">Subir imagen</button>
                         </form>
@@ -78,12 +107,9 @@
 
                 <div class="form-group">
                     <label>Custodia</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
+                    <input type="text" name="custodia" class="form-control" placeholder="">
                 </div>
-                <div class="form-textbox">
-                    <button type="submit" name="submit" id="submit" class="submit" class="btn btn-primary">Registrar
-                        Empleado</button>
-                </div>
+               
             </form>
 
 

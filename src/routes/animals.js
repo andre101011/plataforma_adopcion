@@ -16,8 +16,9 @@ router.get('/add',(req,res)=>{
 
 router.post('/add',(req,res)=>{
     res.send('ok');
+    
     console.log(req.file)
-    redirect('/animals');
+    
 
 })
 

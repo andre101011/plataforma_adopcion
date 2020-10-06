@@ -37,6 +37,7 @@ const storage = multer.diskStorage({
   filename:(req, file,cb)=>{
    
     cb(null,file.originalname);
+    
   }
 
 });
@@ -48,6 +49,7 @@ app.use(multer({
   dest:  path.join(__dirname, "public/uploaded_images"),
   limits: {fileSize: 5000000},
   fileFilter:(req,file,cb)=>{
+
     const fileTypes=/jpeg|jpg|png/;
     const mimetype= fileTypes.test(file.mimetype);
     const extname= fileTypes.test(path.extname(file.originalname));

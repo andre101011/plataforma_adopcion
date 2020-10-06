@@ -3,11 +3,10 @@ const router = express.Router();
 
 const pool = require("../database");
 
-
 router.get("/", async (req, res) => {
   const { id } = req.params;
   const animales = await pool.query("SELECT * FROM Animal");
-  res.render("animals/list", { animales: animales});
+  res.render("animals/list", { animales: animales });
 });
 
 router.get("/add", (req, res) => {
@@ -15,8 +14,7 @@ router.get("/add", (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
- 
-  const {
+  var {
     nombre,
     edad,
     sexo,
@@ -33,9 +31,16 @@ router.post("/add", async (req, res) => {
     custodia,
   } = req.body;
 
+  if (esterilizado == null) {
+    esterilizado = 0;
+  }
+  if (desparasitado == null) {
+    desparasitado = 0;
+  }
+
   console.log(req.file.originalname);
-  
-  const ruta_imagen="uploaded_images/"+req.file.originalname;
+
+  const ruta_imagen = "uploaded_images/" + req.file.originalname;
 
   const newAnimal = {
     especie,
@@ -53,7 +58,7 @@ router.post("/add", async (req, res) => {
     tamanio,
     ruta_imagen,
     custodia,
-    estado:'sin adoptar'
+    estado: "sin adoptar",
   };
 
   await pool.query("INSERT into Animal set ?", [newAnimal]);

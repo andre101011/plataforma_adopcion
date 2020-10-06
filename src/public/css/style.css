@@ -117,28 +117,15 @@ h2 {
 }
 
 /*-------------------------------Animal--------------------------*/
-.container.animal.add {
-  display: flex;
-  flex-direction: column;
+
+.animal-add .image-selector-button {
+  width: 80%;
+  background-color: black;
 }
 
-.imageUpload-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-radius: 5px;
-  padding: 1rem;
-  border: 2px solid gray;
-}
-
-.image-selector-button {
-  background-color: gray;
-  border-radius: 5px;
-  padding: 0.5rem;
-}
-
-.imageUpload-container button {
-  margin-left: 1rem;
+.animal-add .imageUpload-container button {
+  display: inline-block;
+  width: 20%;
 }
 
 /*-------------------------------form---------------------------------*/

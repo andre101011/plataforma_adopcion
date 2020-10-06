@@ -1,32 +1,29 @@
-<body>
+<div class="form-main-wrapper">
+    <img src="/img/silueta_logo.svg" alt="" class="silhouette">
+    <div class="form-container">
+        <div class="form-content">
+            <form action="/employees/login" method="POST" class="signup-form">
+                <h2 class="form-title">LogIn Empleados</h2>
 
-    <div class="login-main-wrapper">
-        <img src="/img/silueta_logo.svg" alt="" class="silhouette">
-        <div class="login-container">
-            <div class="sign-up-content">
-                <form action="/employees/login" method="POST" class="signup-form"> 
-                    <h2 class="form-title">LogIn Empleados</h2>
+                <div class="form-textbox">
+                    <label>Correo Electronico</label>
+                    <input type="email" name="email" />
+                </div>
 
-                    <div class="form-textbox">
-                        <label >Email</label>
-                        <input type="email" name="email"  />
-                    </div>
+                <div class="form-textbox">
+                    <label>Contraseña</label>
+                    <input type="password" name="password" />
+                </div>
 
-                    <div class="form-textbox">
-                        <label>Contraseña</label>
-                        <input type="password" name="password"  />
-                    </div>
+                <div class="form-textbox">
+                    <button type="submit" name="submit" id="submit" class="submit" value="Login" /> Login</button>
+                </div>
+            </form>
 
-                    <div class="form-textbox">
-                        <input type="submit" name="submit" id="submit" class="submit" value="Login" />
-                    </div>
-                </form>
-
-                <p class="register">
-                    No tienes una cuenta?<a href="#" class="register-link">
-                        Registrarse</a>
-                </p>
-            </div>
+            <p class="register">
+                No tienes una cuenta?<a href="#" class="register-link">
+                    Registrarse</a>
+            </p>
         </div>
     </div>
-</body>
+</div>

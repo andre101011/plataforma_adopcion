@@ -47,7 +47,7 @@ h2 {
   margin: 0;
   padding: 5vw;
   height: min-content;
-  background: linear-gradient(45deg, #ff5f56 , #ff9b4a);
+  background: linear-gradient(45deg, #ff5f56, #ff9b4a);
 }
 
 .text {
@@ -96,8 +96,6 @@ h2 {
   left: 25%;
 }
 
-
-
 .social-container .fa {
   color: white;
   padding: 1em;
@@ -143,9 +141,9 @@ h2 {
   margin-left: 1rem;
 }
 
-/*-------------------------------LogIn---------------------------------*/
+/*-------------------------------form---------------------------------*/
 
-.login-main-wrapper {
+.form-main-wrapper {
   padding: 150px 0;
   height: calc(100vh - 56px);
   background: linear-gradient(45deg, #da4453, #89216b);
@@ -157,8 +155,8 @@ h2 {
   position: fixed;
 }
 
-.login-main-wrapper a:focus,
-.login-main-wrapper a:active {
+.form-main-wrapper a:focus,
+.form-main-wrapper a:active {
   text-decoration: none;
   outline: none;
   transition: all 300ms ease 0s;
@@ -168,7 +166,7 @@ h2 {
   -ms-transition: all 300ms ease 0s;
 }
 
-.login-main-wrapper .login-container {
+.form-main-wrapper .form-container {
   width: 720px;
   background: #fff;
   margin: 0 auto;
@@ -184,53 +182,46 @@ h2 {
   -ms-border-radius: 10px;
 }
 
-.login-main-wrapper .sign-up-content {
+.form-main-wrapper .form-content {
   padding: 40px 60px 32px 60px;
   position: relative;
 }
 
-.login-main-wrapper input {
+.form-main-wrapper input {
   border: solid 2px #ebebeb;
   box-sizing: border-box;
   width: 100%;
-  padding: 16px 30px 16px 140px;
+  padding: 0.5em;
   font-size: 1.2em;
 }
 
-.login-main-wrapper .form-title {
+.form-main-wrapper .form-title {
   font-size: 2.5rem;
 }
 
-.login-main-wrapper .form-textbox {
+.form-main-wrapper .form-textbox {
   position: relative;
 }
-.login-main-wrapper .form-textbox label {
-  position: absolute;
-  left: 28px;
-  top: 50%;
-  transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
+.form-main-wrapper .form-textbox label {
   color: #888;
 }
 
-.login-main-wrapper #pass {
+.form-main-wrapper #pass {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   margin-top: 1px;
 }
 
-.login-main-wrapper #email {
+.form-main-wrapper #email {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom: 1px;
 }
 
-.login-main-wrapper .submit {
+.form-main-wrapper .submit {
   background: #1da0f2;
   color: #fff;
+  width: 100%;
   border: none;
   margin-top: 40px;
   padding: 15px 20px;
@@ -241,26 +232,35 @@ h2 {
   -ms-border-radius: 5px;
   font-size: 1.2em;
 }
-.login-main-wrapper .submit:hover {
+.form-main-wrapper .submit:hover {
   background: #0c85d0;
 }
 
-.login-main-wrapper .register {
+.form-main-wrapper .register {
   text-align: center;
   color: #888;
   margin-top: 63px;
 }
 
-.login-main-wrapper .register-link {
+.form-main-wrapper .register-link {
   color: #1da0f2;
   text-decoration: none;
 }
-.login-main-wrapper .register-link:hover {
+.form-main-wrapper .register-link:hover {
   text-decoration: underline;
 }
 
-.login-main-wrapper input:-webkit-autofill {
+.form-main-wrapper input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+/*-------------------------------Employees add---------------------------------*/
+
+/*-----------------------------------------List employees----------------------------------------*/
+
+.table-employees a {
+  text-align: center;
+  width: 100px;
 }
 
 /*------------------------------------Media Queries------------------------------------------*/
@@ -283,14 +283,14 @@ h2 {
   .silhouette {
     visibility: hidden;
   }
-  .login-main-wrapper .login-container {
+  .form-main-wrapper .form-container {
     width: calc(100% - 30px);
     max-width: 100%;
   }
-  .login-main-wrapper .sign-up-content {
+  .form-main-wrapper .sign-up-content {
     padding: 40px 20px 32px 20px;
   }
-  .login-main-wrapper .form-textbox input {
+  .form-main-wrapper .form-textbox input {
     left: 0 px;
     width: 100%;
   }
@@ -316,7 +316,7 @@ h2 {
   .silhouette {
     visibility: hidden;
   }
-  .login-main-wrapper .login-container {
+  .form-main-wrapper .form-container {
     width: calc(100% - 30px);
     max-width: 100%;
   }
@@ -333,7 +333,7 @@ h2 {
   .imagotipo {
     min-width: 50%;
   }
-  .login-main-wrapper .login-container {
+  .form-main-wrapper .form-container {
     width: calc(100% - 30px);
     max-width: 100%;
   }

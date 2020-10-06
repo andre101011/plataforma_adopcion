@@ -119,13 +119,10 @@ h2 {
 /*-------------------------------Animal--------------------------*/
 
 .animal-add .image-selector-button {
-  width: 80%;
-  background-color: black;
 }
 
 .animal-add .imageUpload-container button {
-  display: inline-block;
-  width: 20%;
+
 }
 
 /*-------------------------------form---------------------------------*/

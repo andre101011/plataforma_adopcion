@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-10-2020 a las 18:44:02
+-- Tiempo de generación: 06-10-2020 a las 21:02:24
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -82,10 +82,18 @@ CREATE TABLE `Animal` (
   `vacunas` varchar(100) NOT NULL,
   `esterilizado` tinyint(1) NOT NULL,
   `desparasitado` tinyint(1) NOT NULL,
-  `tamaño` varchar(45) NOT NULL,
-  `ruta_imagen` varchar(45) DEFAULT NULL,
-  `custodia` varchar(30) NOT NULL
+  `tamanio` varchar(45) NOT NULL,
+  `ruta_imagen` varchar(200) DEFAULT NULL,
+  `custodia` varchar(30) NOT NULL,
+  `estado` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `Animal`
+--
+
+INSERT INTO `Animal` (`id_animal`, `especie`, `nombre`, `edad`, `sexo`, `caracteristicas`, `sitio_rescate`, `fecha_rescate`, `raza`, `color`, `vacunas`, `esterilizado`, `desparasitado`, `tamanio`, `ruta_imagen`, `custodia`, `estado`) VALUES
+(2, 'gato', 'mishi', '2', 'macho', 'mimoso', 'la fachada', '2020-10-07', 'no aplica', 'negro', 'sisas', 1, 1, '2', 'uploaded_images/deepin4.png', 'fundamor', 'sin adoptar');
 
 -- --------------------------------------------------------
 
@@ -96,10 +104,20 @@ CREATE TABLE `Animal` (
 CREATE TABLE `Empleado` (
   `cedula` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `fundacion` varchar(30) NOT NULL
+  `fundacion` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `Empleado`
+--
+
+INSERT INTO `Empleado` (`cedula`, `email`, `password`, `nombre`, `fundacion`) VALUES
+('123', 'lucas@gmail.com', '$2a$10$veGAUkU/zQrTm2DS07F8keFudddKIU4jQcnLgBBmtSnQN9oRUCyOe', 'lucas', 'fundamor'),
+('123145', 'Juan@gmail.com', '$2a$10$hMVmW5LgcPFTrVnpmfEdP.BnJLXhYFmEzbBv6pQu8C3opgtZ2B58O', 'Juan', 'fundamor'),
+('123457', 'nfs@gmail.com', '$2a$10$oNfHQyJXGXLVBl1XE/7vOeqZcuUhYBrZkBb2vnxjf6SgZDw0GM7te', 'nfs', 'fundamor'),
+('456788', 'pedro@gmail.com', '$2a$10$RNrvjjT26Vo32GsSTYZdYuh/rzhyEumdXcnUP8Rxrr52gxK5832dK', 'pedro', 'fundamor');
 
 -- --------------------------------------------------------
 
@@ -175,7 +193,7 @@ ALTER TABLE `Adopcion`
 -- AUTO_INCREMENT de la tabla `Animal`
 --
 ALTER TABLE `Animal`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

@@ -122,7 +122,6 @@ h2 {
 }
 
 .animal-add .imageUpload-container button {
-
 }
 
 /*-------------------------------form---------------------------------*/
@@ -343,4 +342,21 @@ h2 {
   .imagotipo {
     max-width: 40%;
   }
+}
+
+.header {
+  background: url(/img/cat_3.jpg) no-repeat center;
+  background-size: cover;
+  min-height: 100vh;
+  
+}
+
+.navbar-nav {
+  /*
+  float: right;
+  margin: 0;
+  left: 80%;
+  transform: translatex(-50%);
+  position: relative;
+*/
 }

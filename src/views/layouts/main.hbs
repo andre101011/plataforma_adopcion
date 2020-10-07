@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Adopciones Fundamor</title>
-
+    <link rel="shortcut icon" href="img/logo1.ico" />
     {{!--BootStrap --}}
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <script src="/js/bootstrap.min.js"></script>
@@ -22,11 +22,34 @@
 
 
 <body>
-    {{>navigation}}
+
+    <header class="header">
+        {{>navigation}}
+
+
+        <!--<img src="/img/imagotipo.png" alt="" class="imagotipo">-->
+        <div class="social-container">
+            <a href="https://es-la.facebook.com/fundamorcalarca/" target="_blanc" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-linkedin"></a>
+            <a href="https://www.youtube.com/channel/UCNkfxop_V7eirZh_qmgdWfA" target="_blanc"
+                class="fa fa-youtube"></a>
+            <a href="https://www.instagram.com/fundamorcalarca/" target="_blanc" class="fa fa-instagram"></a>
+        </div>
+
+    </header>
+
+
 
     {{>message}}
-    
+
     {{{ body }}}
+
+    {{>footer}}
+
+
+
+
+
 
 
     <!-- Optional JavaScript -->

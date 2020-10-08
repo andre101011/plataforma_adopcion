@@ -118,6 +118,27 @@ h2 {
   transform: rotate(360deg);
   box-shadow: 2px 2px 24px #fff;
 }
+.carrousel-wrapper{
+  background-color: #000;
+}
+
+.slider {
+  height: 60vh;
+  margin: 0 10%;
+}
+
+.slider img {
+  height: 60vh;
+}
+
+.slick-prev:before {
+  color: #FFF !important;
+  background-color: none;
+}
+.slick-next:before {
+  color: #FFF !important;
+  background-color: none;
+}
 
 /*-------------------------------Animal--------------------------*/
 
@@ -280,6 +301,7 @@ h2 {
     left: 0 px;
     width: 100%;
   }
+  
 }
 /*Small devices (landscape phones, less than 768px)*/
 @media (min-width: 576px) and (max-width: 767.98px) {

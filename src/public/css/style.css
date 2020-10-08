@@ -42,37 +42,27 @@ h2 {
 .heroSection {
   position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: wrap; /*
+  justify-content: center;*/
   margin: 0;
   padding: 5vw;
   height: min-content;
-  background: linear-gradient(45deg, #ff5f56, #ff9b4a);
+  background: url(/img/cat_3.jpg) no-repeat center;
+  background-size: cover;
+  min-height: 100vh;
 }
 
 .text {
   font-size: 1vw;
-  flex: 1 1 150px; /*  Stretching: */
   margin: 5px;
+  width: 750px;
   color: white;
 }
-
-.vector1,
-.paws {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  width: 25%;
-}
-
-.paws {
-  width: 18%;
-}
-
+/*
 .imagotipo {
   width: 100%;
   height: auto;
-  flex: 1 1 150px; /*  Stretching: */
+  flex: 1 1 150px;
   background-image: radial-gradient(
     circle at 50% 50%,
     rgba(255, 255, 255, 0.8),
@@ -80,6 +70,19 @@ h2 {
     rgba(0, 0, 0, 0) calc(67.5% + 1px),
     rgba(0, 0, 0, 0) 90%
   );
+}
+*/
+
+.btn-adoptar {
+  background-color: #f00;
+  margin-top: 2em;
+  width: 50%;
+  font-size: 1.1em;
+  color: #fff;
+  padding: 0.5em;
+  -webkit-box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
 }
 
 .carousel-item > img {
@@ -91,7 +94,7 @@ h2 {
   border-radius: 20px;
   text-align: center;
   padding: 0.5em;
-  position: fixed;
+  position: absolute;
   bottom: 7%;
   left: 25%;
 }
@@ -99,7 +102,7 @@ h2 {
 .social-container .fa {
   color: white;
   padding: 1em;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   text-decoration: none;
   margin: 0.5em;
   border-radius: 50%;
@@ -342,13 +345,6 @@ h2 {
   .imagotipo {
     max-width: 40%;
   }
-}
-
-.header {
-  background: url(/img/cat_3.jpg) no-repeat center;
-  background-size: cover;
-  min-height: 100vh;
-  
 }
 
 .navbar-nav {

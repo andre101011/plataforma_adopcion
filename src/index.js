@@ -100,6 +100,8 @@ app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/employees',require('./routes/employees'));
 app.use('/animals',require('./routes/animals'));
+app.use('/statistics',require('./routes/statistics'));
+
 
 // Publico
 

@@ -1,39 +1,37 @@
+<div class="card" style="padding-top: 5%;">
+    <table id="example" class="cell-border">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cedula</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contraseña</th>
+                <th scope="col">Opciones</th>
 
 
-    <div class="card" style="padding-top: 5%;">
-        <table id="example" class="cell-border">
-            <thead>
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Cedula</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contraseña</th>
-                    <th scope="col">Opciones</th>
-
-
-                </tr>
-            </thead>
-            <tbody>
-                {{#each empleados}}
-                <tr>
-                    <td>{{nombre}}</td>
-                    <td>{{cedula}}</td>
-                    <td>{{email}}</td>
-                    <td>{{password}}</td>
-                    <td>
-                        <div class="form-group">
-                            <a class="btn btn-info" href="/employees/update/{{cedula}}"><i class="fas fa-edit"></i></a>
-                        </div>
-                        <div class="form-group">
-                            <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
-                                    class="far fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each empleados}}
+            <tr>
+                <td>{{nombre}}</td>
+                <td>{{cedula}}</td>
+                <td>{{email}}</td>
+                <td>{{password}}</td>
+                <td>
+                    <div class="form-group">
+                        <a class="btn btn-info" href="/employees/update/{{cedula}}"><i class="fas fa-edit"></i></a>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
+                                class="far fa-trash-alt"></i></a>
+                    </div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
 
 
 <script>$(document).ready(function () {

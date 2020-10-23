@@ -26,7 +26,7 @@
   function init() {
     mobBtn = document.getElementById("mobile-btn");
   topMenu = document.getElementById("top-menu");
-    mobBtn.addEventListener("click",mobileMenu,false);
+    //mobBtn.addEventListener("click",mobileMenu,false);
   }
   
   function mobileMenu() {

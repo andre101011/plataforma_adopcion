@@ -1,9 +1,14 @@
 <canvas id="testGrafica" width="400" height="600"></canvas>
 
 
-</body>
+<input type="text" hidden disabled id="i1" value="{{data}}">
+
 <script>
-    var miCanvas = document.getElementById("testGrafica").getContext("2d")
+    
+    var miCanvas = document.getElementById("testGrafica").getContext("2d");
+    var text=document.getElementById("i1").value;
+    var da=JSON.parse(`[${text}]`);
+    console.log(da)
     var chart = new Chart(miCanvas, {
         type: "bar",
         data: {
@@ -11,12 +16,15 @@
             datasets: [
                 {
                     label: "prueba de grafica",
-                    backgroundColor:"rgb(0,0,0)",
-                    borderColor:"rgb(0,255,0)",
-                    data:[12,39,5]
+                    backgroundColor: "rgb(0,0,0)",
+                    borderColor: "rgb(0,255,0)",
+                    data: da
                     
-            }]
-        }
-    })
+                },
+            ],
+        },
+    });
+
+
 
 </script>

@@ -28,10 +28,13 @@ input {
   z-index: 3;
   height: 60px;
   width: 100%;
+  background:linear-gradient(rgba(43, 42, 59, 0.705),rgb(87, 75, 74));
   -webkit-transition: 300ms ease;
   transition: 300ms ease;
-  
+  font-family: 'Lemonada', serif;
+  font-size: 15px;
 }
+
 
 .brand {
   float: left;
@@ -216,7 +219,7 @@ h2 {
 }
 
 a {
-  color: #e14;
+  color: white;
   text-decoration: none;
 }
 a:hover {
@@ -284,7 +287,7 @@ a:hover {
 }
 
 .footer {
-  background: #75889b;
+  background: #9b8375;
   color: #ddd;
   padding: 2rem;
 }
@@ -343,3 +346,12 @@ button.cta:hover {
   color: #e14;
   box-shadow: 0 0.25em 10px rgba(0, 0, 0, 0.2);
 }
+
+.toggler{
+  
+  color: #000;
+  border-color: white;
+
+}
+
+

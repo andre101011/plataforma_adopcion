@@ -1,25 +1,29 @@
-<div class="container employee add">
-    <div class="card mx-auto" style="width: 30rem;">
-        <div class="card-body">
-            <h5 class="card-title">Actualizacion De Datos</h5>
+<div class="form-main-wrapper">
+    <img src="/img/silueta_logo.svg" alt="" class="silhouette">
+    <div class="form-container" style="width: 40rem;">
+        <div class="form-content">
             <form action="/employees/update" method="POST">
+                <h2 class="form-title">Actualizar Datos</h2>
 
                 <div class="form-group">
                     <label>Nombre Completo</label>
                     <input type="text" name="nombre" value="{{empleado.nombre}}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label >Correo Electronico</label>
-                    <input type="email" class="form-control" name="email" 
-                        aria-describedby="emailHelp" value="{{empleado.email}}" placeholder="Enter email">
+                    <label>Correo Electronico</label>
+                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
+                        value="{{empleado.email}}" placeholder="Enter email">
                 </div>
-               
+
                 <div class="form-group">
-                    <label >Contraseña</label>
-                    <input type="text" name="password" value="{{empleado.password}}"  class="form-control" 
+                    <label>Contraseña</label>
+                    <input type="text" name="password" value="{{empleado.password}}" class="form-control"
                         placeholder="Password">
-            
-                <button type="submit" class="btn btn-primary">Actualizar Datos Del Empleado</button>
+
+                </div>
+                <div class="form-textbox">
+                    <button type="submit" name="submit" id="submit" class="btn btn-primary submit">Actualizar Datos Del Empleado</button>
+                </div>
             </form>
         </div>
     </div>

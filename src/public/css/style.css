@@ -96,9 +96,12 @@ h2 {
   border-radius: 20px;
   text-align: center;
   padding: 0.5em;
+  padding-left: 5%;
+  padding-top: 7%;
   position: absolute;
   bottom: 7%;
-  left: 25%;
+  left: 0%;
+  top: 100%;
 }
 
 .social-container .fa {
@@ -107,7 +110,7 @@ h2 {
   font-size: 1.2rem;
   text-decoration: none;
   margin: 0.5em;
-  border-radius: 50%;
+  border-radius: 55%;
   border: 2px solid white;
   transition: all 0.4s;
 }
@@ -210,6 +213,7 @@ h2 {
 
 .form-main-wrapper .form-textbox {
   position: relative;
+ 
 }
 .form-main-wrapper .form-textbox label {
   color: #888;
@@ -302,6 +306,7 @@ h2 {
   .form-main-wrapper .form-textbox input {
     left: 0 px;
     width: 100%;
+   
   }
   
 }
@@ -370,7 +375,30 @@ h2 {
     max-width: 40%;
   }
 }
+.bg-orange {
+  
+  background-color: #7e5e4b !important;
+  
+}
+a.bg-orange:focus,
+a.bg-orange:hover,
+button.bg-orange:focus,
+button.bg-orange:hover {
+  background-color: #472616 !important;
+  color: grey;
+}
 
+.button-message{
+  font-family: 'Lemonada', serif;
+  font-size: 15px;
+  
+
+}
+.button-message:hover{
+  
+  background: #d85b08;
+  color: white;
+}
 
 
 

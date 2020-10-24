@@ -4,8 +4,8 @@
 html,
 body {
   margin: 0;
-  height: 100%;
   padding: 0;
+  height: 100%;
   font-size: 100%;
 }
 
@@ -30,61 +30,67 @@ h2 {
 }
 
 h1 {
-  font-size: 5em;
+  font-size: 5rem;
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 /*------------------------------index----------------------------*/
 
 .heroSection {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap; /*
-  justify-content: center;*/
-  margin: 0;
-  padding: 5vw;
-  height: min-content;
-  /*
-  background: url(/img/cat_3.jpg) no-repeat center;
+  background-image: url("../img/cat_3.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100vh;
-  */
+  position: relative;
+}
+
+.heroContent {
+  box-sizing: border-box;
+  padding: 10rem 5%;
+  position: relative;
 }
 
 .text {
-  font-size: 1vw;
-  margin: 5px;
-  width: 750px;
+  font-size: 8rem;
+  display: inline-block;
+  max-width: 50%;
   color: white;
 }
-/*
-.imagotipo {
-  width: 100%;
-  height: auto;
-  flex: 1 1 150px;
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.8) 67.5%,
-    rgba(0, 0, 0, 0) calc(67.5% + 1px),
-    rgba(0, 0, 0, 0) 90%
-  );
-}
-*/
 
 .btn-adoptar {
   background-color: #f00;
-  margin-top: 2em;
+  margin-top: 2rem;
   width: 50%;
-  font-size: 1.1em;
+  font-size: 1.1rem;
   color: #fff;
-  padding: 0.5em;
+  padding: 0.5rem;
   -webkit-box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
+}
+
+.bg-orange {
+  background-color: #7e5e4b !important;
+}
+a.bg-orange:focus,
+a.bg-orange:hover,
+button.bg-orange:focus,
+button.bg-orange:hover {
+  background-color: #472616 !important;
+  color: grey;
+}
+
+.button-message {
+  font-family: "Lemonada", serif;
+  font-size: 15px;
+}
+.button-message:hover {
+  background: #d85b08;
+  color: white;
 }
 
 .carousel-item > img {
@@ -92,24 +98,21 @@ h2 {
 }
 
 .social-container {
-  background: rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   text-align: center;
-  padding: 0.5em;
-  padding-left: 5%;
-  padding-top: 7%;
-  position: absolute;
-  bottom: 7%;
-  left: 0%;
-  top: 100%;
+  padding: 0.5rem;
+  width: min-content;
 }
 
 .social-container .fa {
   color: white;
-  padding: 1em;
+  padding: 1rem;
   font-size: 1.2rem;
   text-decoration: none;
-  margin: 0.5em;
+  margin: 0.5rem;
   border-radius: 55%;
   border: 2px solid white;
   transition: all 0.4s;
@@ -123,7 +126,7 @@ h2 {
   transform: rotate(360deg);
   box-shadow: 2px 2px 24px #fff;
 }
-.carrousel-wrapper{
+.carrousel-wrapper {
   background-color: #000;
 }
 
@@ -137,11 +140,11 @@ h2 {
 }
 
 .slick-prev:before {
-  color: #FFF !important;
+  color: #fff !important;
   background-color: none;
 }
 .slick-next:before {
-  color: #FFF !important;
+  color: #fff !important;
   background-color: none;
 }
 
@@ -151,7 +154,6 @@ h2 {
 }
 
 .animal-add .imageUpload-container button {
-  
 }
 
 /*-------------------------------form---------------------------------*/
@@ -204,8 +206,8 @@ h2 {
   border: solid 2px #ebebeb;
   box-sizing: border-box;
   width: 100%;
-  padding: 0.5em;
-  font-size: 1.2em;
+  padding: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .form-main-wrapper .form-title {
@@ -214,7 +216,6 @@ h2 {
 
 .form-main-wrapper .form-textbox {
   position: relative;
- 
 }
 .form-main-wrapper .form-textbox label {
   color: #888;
@@ -244,7 +245,7 @@ h2 {
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
   -ms-border-radius: 5px;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 .form-main-wrapper .submit:hover {
   background: #0c85d0;
@@ -280,20 +281,45 @@ h2 {
 /*------------------------------------Media Queries------------------------------------------*/
 
 /*Extra small devices (portrait phones, less than 576px)*/
-@media (max-width: 575.98px) {
+/*max-width: 575.98px*/
+@media (max-width: 767.98px) {
   .heroSection {
-    background: black;
+    height: auto;
+    min-height: 90% !important;
+    background-color: #f85b33;
+    background-image: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0.1)
+      ),
+      url("../img/cat_3.jpg");
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+    background-size: cover;
+    background-position: 65% 50%;
   }
+
   .text {
-    font-size: 2vw;
+    width: 90%;
   }
+
+  .text h1 {
+    font-size: 3rem;
+  }
+  .text h2 {
+    font-size: 1.4rem;
+  }
+
+  .btn-adoptar {
+    background-color: #f00;
+    margin-top: 2rem;
+    width: 90%;
+  }
+
   .imagotipo {
     min-width: 80%;
   }
-  .paws,
-  .vector1 {
-    visibility: hidden;
-  }
+
   .silhouette {
     visibility: hidden;
   }
@@ -307,21 +333,17 @@ h2 {
   .form-main-wrapper .form-textbox input {
     left: 0 px;
     width: 100%;
-   
   }
-  
 }
-/*Small devices (landscape phones, less than 768px)*/
+/*Small devices (landscape phones, less than 768px)
 @media (min-width: 576px) and (max-width: 767.98px) {
-  .heroSection {
-    background: blue;
+
+  .heroSection{
+    height: 100vh;
   }
-  .paws,
-  .vector1 {
-    visibility: hidden;
-  }
+
   .text {
-    font-size: 2vw;
+    font-size: 1.5vw;
   }
   .imagotipo {
     min-width: 85%;
@@ -337,12 +359,9 @@ h2 {
     max-width: 100%;
   }
 }
-
+*/
 /* Medium devices (tablets, less than 992px)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .heroSection {
-    background: red;
-  }
   .silhouette {
     visibility: hidden;
   }
@@ -357,51 +376,61 @@ h2 {
 
 /*Large devices (desktops, less than 1200px)*/
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .heroSection {
-    background: green;
-  }
   .imagotipo {
     width: 30%;
   }
 }
 
 @media (min-width: 1200px) {
-  .heroSection {
-    background-image: rgba(255, 255, 0, 1),
-      linear-gradient(45deg, #da4453, #89216b);
-
-    max-height: 90%;
-  }
   .imagotipo {
     max-width: 40%;
   }
 }
-.bg-orange {
-  
-  background-color: #7e5e4b !important;
-  
-}
-a.bg-orange:focus,
-a.bg-orange:hover,
-button.bg-orange:focus,
-button.bg-orange:hover {
-  background-color: #472616 !important;
-  color: grey;
-}
 
-.button-message{
-  font-family: 'Lemonada', serif;
+/*-------------------------------------------- pa organizar ---------------------------*/
+.nav {
+  position: fixed;
+  z-index: 3;
+  height: 60px;
+  width: 100%;
+  background: linear-gradient(rgba(43, 42, 59, 0.705), rgb(87, 75, 74));
+  -webkit-transition: 300ms ease;
+  transition: 300ms ease;
+  font-family: "Lemonada", serif;
   font-size: 15px;
-  
-
-}
-.button-message:hover{
-  
-  background: #d85b08;
-  color: white;
 }
 
+footer {
+  font-family: "Nunito Sans", sans-serif;
+  background: #9b8375;
+  color: #ddd;
+  padding: 2rem;
+}
 
+footer p {
+  margin: 1em 0;
+  max-width: 50em;
+}
 
+footer .row {
+  margin: 0 auto;
+  max-width: 1000px;
+  display: block;
+}
 
+footer .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
+footer .col-6,
+.col-12 {
+  width: 100%;
+}
+@media screen and (min-width: 640px) {
+  footer .col-6,
+  .col-12 {
+    float: left;
+  }
+}

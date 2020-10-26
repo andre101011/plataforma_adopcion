@@ -162,6 +162,7 @@ button.bg-orange:hover {
   padding: 150px 0;
   min-height: min-content;
   background: linear-gradient(45deg, #da4453, #89216b);
+  
 }
 
 .silhouette {
@@ -203,11 +204,13 @@ button.bg-orange:hover {
 }
 
 .form-main-wrapper input {
+  /**
   border: solid 2px #ebebeb;
   box-sizing: border-box;
   width: 100%;
   padding: 0.5rem;
   font-size: 1.2rem;
+  **/
 }
 
 .form-main-wrapper .form-title {

@@ -1,29 +1,38 @@
 <div class="form-main-wrapper">
     <img src="/img/silueta_logo.svg" alt="" class="silhouette">
-    <div class="form-container" style="width: 40rem;">
-        <div class="form-content" >
-            <form action="/employees/login" method="POST" class="signup-form">
-                <h2 class="form-title">LogIn Empleados</h2>
+    <div class="form-container" style="width: 30rem;">
+        <div class="form-content">
+            <form class="login-form"  action="/employees/login" method="POST">
+                <h2 class="form-title">LogIn </h2>
 
-                <div class="form-textbox">
-                    <label>Correo Electronico</label>
-                    <input type="email" name="email" />
+                <div class="wrap-input m-b-23" >
+                    <span class="label-input">Correo electronico</span>
+                    <input class="input"required type="email" name="email">
+                    <span class="focus-input" data-symbol="&#xf007"></span>
                 </div>
 
-                <div class="form-textbox">
-                    <label>Contraseña</label>
-                    <input type="password" name="password" />
+                <div class="wrap-input">
+                    <span class="label-input">Contraseña</span>
+                    <input class="input" required type="password" name="password">
+                    <span class="focus-input" data-symbol="&#xf023"></span>
                 </div>
 
-                <div class="form-textbox">
-                    <button type="submit" name="submit" id="submit" class="submit" value="Login" /> Login</button>
+                <div class="text-right p-t-8 p-b-31" style="padding-top: 1rem; padding-bottom: 1rem;">
+                    <a href="#">
+                        ¿Olvidó su contraseña?
+                    </a>
                 </div>
+
+
+                <div class="wrap-login-form-btn">
+                    <div class="login-form-bgbtn"></div>
+                    <button  type="submit" class="login-form-btn">
+                        Ingresar
+                    </button>
+                </div>
+
             </form>
 
-            <p class="register">
-                <a href="#" class="register-link">
-                    Olvidaste tu contraseña</a>
-            </p>
         </div>
     </div>
 </div>

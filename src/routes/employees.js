@@ -5,10 +5,10 @@ const pool= require('../database');
 
 const helpers=require('../lib/helpers');
 
-const {isLoggedIn}= require('../lib/auth')
+const {isLoggedIn,isAdmin}= require('../lib/auth')
 
 
-router.get('/', async (req,res)=>{
+router.get('/', isLoggedIn, isAdmin, async (req,res)=>{
 
     const empleados = await pool.query('SELECT * FROM Empleado'); 
     
@@ -17,13 +17,13 @@ router.get('/', async (req,res)=>{
 })
 
 
-router.get('/add',(req,res)=>{
+router.get('/add', isLoggedIn,isAdmin,(req,res)=>{
 
     res.render('employees/add');
     
 })
 
-router.post('/add', async (req,res)=>{
+router.post('/add',isLoggedIn, isAdmin,async (req,res)=>{
    
     const {email, password,passwordConfirm,cedula,nombre}= req.body;
 
@@ -51,28 +51,38 @@ router.post('/add', async (req,res)=>{
 })
 
 
-router.get('/update/:id', async (req,res)=>{
+router.get('/update/:id', isLoggedIn,async (req,res)=>{
 
     const {id}=req.params;
     const empleado=await pool.query('SELECT * FROM Empleado WHERE cedula=?',[id]);
     
-    console.log(empleado)
+
     
     res.render('employees/edit',{empleado:empleado[0]});
 
 })
 
-router.post('/update/:id', async (req,res)=>{
+router.post('/update', isLoggedIn , async (req,res)=>{
+console.log('##')
+    const {cedula,email,password,nombre,fundacion,rol}=req.body
+    const employee={
+        cedula,
+        email,
+        password:await helpers.encryptPassword(password),
+        nombre,
+        fundacion,
+        rol
 
-    const {id}=req.params;
-    await pool.query('UPDATE FROM Empleado WHERE cedula=?',[id]); 
+    }
+    console.log(employee)
+    await pool.query('UPDATE Empleado SET ? WHERE cedula=#'.replace('#',cedula),[employee]); 
     
     res.redirect('/employees');
 
 })
 
 
-router.get('/delete/:id', async (req,res)=>{
+router.get('/delete/:id', isLoggedIn,async (req,res)=>{
 
     const {id}=req.params;
     pool.query('DELETE FROM Empleado WHERE cedula=?',[id]); 

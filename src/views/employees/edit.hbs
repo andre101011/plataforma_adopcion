@@ -5,25 +5,48 @@
             <form action="/employees/update" method="POST">
                 <h2 class="form-title">Actualizar Datos</h2>
 
-                <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" name="nombre" value="{{empleado.nombre}}" class="form-control">
+                <div class="form-group" >
+                    <label>Identificacion:</label>
+                    <input type="text" name="cedula" required value="{{empleado.cedula}}" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="nombre" required value="{{empleado.nombre}}" class="form-control">
+                </div>
+                <div class="form-group" aria-hidden="true">
                     <label>Correo Electronico</label>
-                    <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
+                    <input type="email" class="form-control" required name="email" aria-describedby="emailHelp"
                         value="{{empleado.email}}" placeholder="Enter email">
+                </div>
+
+                <div class="form-group" >
+                    <label>Fundacion</label>
+                    <input type="text" class="form-control"required name="fundacion" aria-describedby="emailHelp"
+                        value="{{empleado.fundacion}}">
+                </div>
+                <div class="form-group" hidden>
+                    <label>Rol</label>
+                    <input type="text" class="form-control" required name="rol" aria-describedby="emailHelp"
+                        value="{{empleado.rol}}">
                 </div>
 
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="text" name="password" value="{{empleado.password}}" class="form-control"
+                    <input type="text" name="password" required placeholder="nueva contraseña" class="form-control"
                         placeholder="Password">
 
                 </div>
-                <div class="form-textbox">
-                    <button type="submit" name="submit" id="submit" class="btn btn-primary submit">Actualizar Datos Del Empleado</button>
+                <div class="form-inline justify-content-end">
+
+                    <a href="/" class="btn btn-secondary form-control mr-sm-2">
+                        Descartar
+                    </a>
+
+                    <button type="submit" class="btn btn-success form-control mr-sm-2">
+                        Guardar Cambios
+                    </button>
                 </div>
+
             </form>
         </div>
     </div>

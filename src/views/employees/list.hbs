@@ -1,37 +1,56 @@
-<div class="card" style="padding-top: 5%;">
-    <table id="example" class="cell-border">
-        <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Cedula</th>
-                <th scope="col">Email</th>
-                <th scope="col">Contraseña</th>
-                <th scope="col">Opciones</th>
+<div class="form-main-wrapper">
+    <img src="/img/silueta_logo.svg" class="silhouette">
+
+    <div class="form-container" style="width: 50rem; ">
 
 
-            </tr>
-        </thead>
-        <tbody>
-            {{#each empleados}}
-            <tr>
-                <td>{{nombre}}</td>
-                <td>{{cedula}}</td>
-                <td>{{email}}</td>
-                <td>{{password}}</td>
-                <td>
-                    <div class="form-group">
-                        <a class="btn btn-info" href="/employees/update/{{cedula}}"><i class="fas fa-edit"></i></a>
-                    </div>
-                    <div class="form-group">
-                        <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
-                                class="far fa-trash-alt"></i></a>
-                    </div>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+
+        <div class="form-content">
+
+            <h2 class="form-title" style="padding-top: rem;padding-bottom: 1rem;"> <i class="fas fa-cat"></i>
+                Colaboradores con acceso a la plataforma <i class="fas fa-dog"></i></h2>
+
+            {{>message}}
+            <table id="example" class="cell-border">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Cedula</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each empleados}}
+                    <tr>
+                        <td>{{nombre}}</td>
+                        <td>{{cedula}}</td>
+                        <td>{{email}}</td>
+                        <td>
+                            <div>
+                                <div class="form-group">
+                                    <a class="btn btn-info" href="/employees/update/{{cedula}}"><i
+                                            class="fas fa-edit"></i> </a>
+                                </div>
+                                <div class="form-group">
+                                    <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
+                                            class="far fa-trash-alt"></i> </a>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
+
+</div>
+
 
 
 <script>$(document).ready(function () {

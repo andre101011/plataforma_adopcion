@@ -73,9 +73,7 @@ h2 {
   box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
 }
 
-.bg-orange {
-  background-color: #7e5e4b !important;
-}
+
 a.bg-orange:focus,
 a.bg-orange:hover,
 button.bg-orange:focus,
@@ -107,7 +105,7 @@ button.bg-orange:hover {
   width: min-content;
 }
 
-.social-container .fa {
+.social-container .fab {
   color: white;
   padding: 1rem;
   font-size: 1.2rem;
@@ -118,7 +116,7 @@ button.bg-orange:hover {
   transition: all 0.4s;
 }
 
-.social-container .fa:hover {
+.social-container .fab:hover {
   background-color: #333;
   border: 2px double #333;
   opacity: 0.9;
@@ -392,6 +390,7 @@ button.bg-orange:hover {
 
 /*-------------------------------------------- pa organizar ---------------------------*/
 .nav {
+  /*
   position: fixed;
   z-index: 3;
   height: 60px;
@@ -399,10 +398,31 @@ button.bg-orange:hover {
   background: linear-gradient(rgba(43, 42, 59, 0.705), rgb(87, 75, 74));
   -webkit-transition: 300ms ease;
   transition: 300ms ease;
+  */
+  background: #8d4521;
+ 
   font-family: "Lemonada", serif;
   font-size: 15px;
 }
+/**
+.dropdown-item {
+  background: #8d4521;
+  color: white;
 
+}
+.dropdown-menu{
+  background: #8d4521;
+  
+}
+*/
+.nav-link{
+  color: white;
+ 
+ 
+}
+.nav-link:hover{
+  color: gray;
+}
 footer {
   font-family: "Nunito Sans", sans-serif;
   background: #9b8375;

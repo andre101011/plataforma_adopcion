@@ -1,36 +1,36 @@
 
-<img src="/img/pattern.svg"  class="silhouette">
 <div style="padding-top: 7%;">
- 
+
   <ul class="pagination justify-content-center">
 
-    
-    <form class="form-inline">
-      <label  class="form-control mr-sm-2" style="border: none;">Busqueda:  </label>
-      <input class="form-control mr-sm-2" type="search"  aria-label="Search">
 
-      <button class="btn btn-success my-2 my-sm-0"  type="submit">Buscar</button>
+    <form class="form-inline">
+      <label class="form-control mr-sm-2" style="border: none;">Busqueda: </label>
+      <input class="form-control mr-sm-2" type="search" aria-label="Search">
+
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </ul>
-  
+
 </div>
 
 <div class="text">
-  
-  <h2 style="color: black;">Animales en custodia:</h2></div>
 
+  <h2 style="color: black;">Animales en custodia:</h2>
+</div>
+ {{>message}}
 <div class="card-group">
   {{#each animales}}
   <div class="col mb-2" style="width: 20rem; padding-top: 5%;">
     <div class="card border-dark" style="width: 17rem;">
       <img src="{{ruta_imagen}}" class="card-img-top" alt="...">
-       <div class="card-img-overlay"></div>
+      <div class="card-img-overlay"></div>
       <div class="card-body">
 
 
         <h5 class="card-title" style="font-size: 25px;">{{nombre}} <a href="/amimals/delete"
             class="btn btn-success">ADOPTADO <i class="fas fa-check"></i></a></h5>
-        
+
         <p class="card-text">Edad: {{edad}}</p>
         <a href="/amimals/delete" class="btn btn-primary">Ver Detalles</a>
       </div>
@@ -42,31 +42,31 @@
       <div class="card-body">
         <h5 class="card-title" style="font-size: 25px;">{{nombre}} <a href="/amimals/delete"
             class="btn btn-success">ADOPTADO <i class="fas fa-check"></i></a></h5>
-        
+
         <p class="card-text">Edad (Meses): {{edad}}</p>
         <a href="/amimals/delete" class="btn btn-primary">Ver Detalles</a>
       </div>
     </div>
   </div>
-   <div class="col mb-2" style="width: 20rem; padding-top: 5%;">
+  <div class="col mb-2" style="width: 20rem; padding-top: 5%;">
     <div class="card border-dark" style="width: 17rem;">
       <img src="{{ruta_imagen}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title" style="font-size: 25px;">{{nombre}} <a href="/amimals/delete"
             class="btn btn-success">ADOPTADO <i class="fas fa-check"></i></a></h5>
-        
+
         <p class="card-text">Edad (Meses): {{edad}}</p>
         <a href="/amimals/delete" class="btn btn-primary">Ver Detalles</a>
       </div>
     </div>
   </div>
-   <div class="col mb-2" style="width: 20rem; padding-top: 5%;">
+  <div class="col mb-2" style="width: 20rem; padding-top: 5%;">
     <div class="card border-dark" style="width: 17rem;">
       <img src="{{ruta_imagen}}" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title" style="font-size: 25px;">{{nombre}} <a href="/amimals/delete"
             class="btn btn-success">ADOPTADO <i class="fas fa-check"></i></a></h5>
-        
+
         <p class="card-text">Edad (Meses): {{edad}}</p>
         <a href="/amimals/delete" class="btn btn-primary">Ver Detalles</a>
       </div>

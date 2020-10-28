@@ -3,6 +3,7 @@ module.exports={
     isLoggedIn(req,res,next){
         
         if(req.isAuthenticated()){
+           
             return next() ;
         }
         return res.redirect('/');
@@ -13,6 +14,13 @@ module.exports={
         if(!req.isAuthenticated()){
             return next();
         }
-        return res.redirect('/platform');
+        return res.redirect('/');
+    },
+    isAdmin(req,res,next){
+      
+        if(req.user.rol=='admin'){
+            return next();
+        }
+        return res.redirect('/');
     }
 };

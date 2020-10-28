@@ -1,13 +1,15 @@
 <div class="form-main-wrapper">
     <img src="/img/silueta_logo.svg" alt="" class="silhouette">
+
+
     <div class="form-container" style="width: 30rem;">
         <div class="form-content">
-            <form class="login-form"  action="/employees/login" method="POST">
+            <form class="login-form" action="/employees/login" method="POST">
                 <h2 class="form-title">LogIn </h2>
 
-                <div class="wrap-input m-b-23" >
+                <div class="wrap-input m-b-23">
                     <span class="label-input">Correo electronico</span>
-                    <input class="input"required type="email" name="email">
+                    <input class="input" required type="email" name="email">
                     <span class="focus-input" data-symbol="&#xf007"></span>
                 </div>
 
@@ -22,17 +24,17 @@
                         ¿Olvidó su contraseña?
                     </a>
                 </div>
-
+                {{>message}}
 
                 <div class="wrap-login-form-btn">
                     <div class="login-form-bgbtn"></div>
-                    <button  type="submit" class="login-form-btn">
+                    <button type="submit" class="login-form-btn">
                         Ingresar
                     </button>
                 </div>
+                <!-- Button trigger modal -->
 
             </form>
-
         </div>
     </div>
 </div>

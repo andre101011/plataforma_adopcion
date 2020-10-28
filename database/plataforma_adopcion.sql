@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-10-2020 a las 21:02:24
+-- Tiempo de generación: 28-10-2020 a las 16:19:51
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -93,7 +93,9 @@ CREATE TABLE `Animal` (
 --
 
 INSERT INTO `Animal` (`id_animal`, `especie`, `nombre`, `edad`, `sexo`, `caracteristicas`, `sitio_rescate`, `fecha_rescate`, `raza`, `color`, `vacunas`, `esterilizado`, `desparasitado`, `tamanio`, `ruta_imagen`, `custodia`, `estado`) VALUES
-(2, 'gato', 'mishi', '2', 'macho', 'mimoso', 'la fachada', '2020-10-07', 'no aplica', 'negro', 'sisas', 1, 1, '2', 'uploaded_images/deepin4.png', 'fundamor', 'sin adoptar');
+(8, 'perro', 'Neron', '6', 'macho', 'Es un perrito muy tierno, pero es un poco nervioso\r\n', 'Chaguala', '2020-10-22', 'criollo', 'cafe', 'antirrabica', 1, 1, '10', 'uploaded_images/descarga.jpeg', 'Fundamor', 'sin adoptar'),
+(9, 'gato', 'Mishi', '2', 'hembra', 'Es muy jugueton', 'Barrio Guaduales', '2020-10-13', 'no aplica', 'gris', 'antirrabica', 1, 1, '30', 'uploaded_images/descarga (1).jpeg', 'Fundamor', 'sin adoptar'),
+(10, 'gato', 'carey', '3', 'hembra', 'amistoso...', 'llanitos', '2020-10-14', 'no aplica', 'cafe', 'antirrabica', 1, 1, '30', 'uploaded_images/5c8ad782230000d50423cebe.jpeg', 'Fundamor', 'sin adoptar');
 
 -- --------------------------------------------------------
 
@@ -106,18 +108,18 @@ CREATE TABLE `Empleado` (
   `email` varchar(45) NOT NULL,
   `password` varchar(200) NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `fundacion` varchar(30) DEFAULT NULL
+  `fundacion` varchar(30) DEFAULT NULL,
+  `rol` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `Empleado`
 --
 
-INSERT INTO `Empleado` (`cedula`, `email`, `password`, `nombre`, `fundacion`) VALUES
-('123', 'lucas@gmail.com', '$2a$10$veGAUkU/zQrTm2DS07F8keFudddKIU4jQcnLgBBmtSnQN9oRUCyOe', 'lucas', 'fundamor'),
-('123145', 'Juan@gmail.com', '$2a$10$hMVmW5LgcPFTrVnpmfEdP.BnJLXhYFmEzbBv6pQu8C3opgtZ2B58O', 'Juan', 'fundamor'),
-('123457', 'nfs@gmail.com', '$2a$10$oNfHQyJXGXLVBl1XE/7vOeqZcuUhYBrZkBb2vnxjf6SgZDw0GM7te', 'nfs', 'fundamor'),
-('456788', 'pedro@gmail.com', '$2a$10$RNrvjjT26Vo32GsSTYZdYuh/rzhyEumdXcnUP8Rxrr52gxK5832dK', 'pedro', 'fundamor');
+INSERT INTO `Empleado` (`cedula`, `email`, `password`, `nombre`, `fundacion`, `rol`) VALUES
+('1005095547', 'nfigueroasan@gmail.com', '$2a$10$SBAKjynfNPNFz0pPh4YUsOGuaWxBg1S9LUz0iUldyDPqQib124bT2', 'Neyder', 'fundamor', 'admin'),
+('629475683', 'juan@gmail.com', '$2a$10$PagkiAaKc7bXZ95tfCDcV.rbluBujqTNAOp5U.VePxbsCfU0kwfZe', 'juan', 'fundamor', NULL),
+('987654', 'marcos@gmail.com', '$2a$10$G974WyQJ3vsofauC5AaZte4lmYtfF9abeCvi/r4uUqbygY.GOrWYS', 'marcos', 'fundamor', NULL);
 
 -- --------------------------------------------------------
 
@@ -193,7 +195,7 @@ ALTER TABLE `Adopcion`
 -- AUTO_INCREMENT de la tabla `Animal`
 --
 ALTER TABLE `Animal`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

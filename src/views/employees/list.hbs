@@ -1,58 +1,70 @@
 <div class="form-main-wrapper">
     <img src="/img/silueta_logo.svg" class="silhouette">
 
-    <div class="form-container" style="width: 50rem; ">
-
-
+    <div class="form-container" style="width: 50rem;">
 
         <div class="form-content">
 
-            <h2 class="form-title" style="padding-top: rem;padding-bottom: 1rem;"> <i class="fas fa-cat"></i>
+            <h2 class="form-title page-content"> <i class="fas fa-cat"></i>
                 Colaboradores con acceso a la plataforma <i class="fas fa-dog"></i></h2>
 
             {{>message}}
-            <table id="example" class="cell-border">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Cedula</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each empleados}}
-                    <tr>
-                        <td>{{nombre}}</td>
-                        <td>{{cedula}}</td>
-                        <td>{{email}}</td>
-                        <td>
-                            <div>
-                                <div class="form-group">
-                                    <a class="btn btn-info" href="/employees/update/{{cedula}}"><i
-                                            class="fas fa-edit"></i> </a>
+            <div class="table-responsive" >
+                <table id="table" class="cell-border table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cedula</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each empleados}}
+                        <tr>
+                            <td>{{nombre}}</td>
+                            <td>{{cedula}}</td>
+                            <td>{{email}}</td>
+                            <td>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <a class="btn btn-info" href="/employees/update/{{cedula}}"><i
+                                                class="fas fa-edit"></i> </a>
+                                    </div>
+                                    <div></div>
+                                    <div class="col-md-6 mb-3">
+                                        <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
+                                                class="far fa-trash-alt"></i> </a>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
-                                            class="far fa-trash-alt"></i> </a>
+                            </td>
+                        </tr>
 
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                    {{/each}}
-                </tbody>
-            </table>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-</div>
-
 </div>
 
 
 
-<script>$(document).ready(function () {
-        $('#example').DataTable();
-    });</script>
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable({
+            "language": {
+                "lengthMenu": "Visualizando _MENU_ colaboradores por página",
+                "zeroRecords": "No hay nada ",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay elementos",
+                "infoFiltered": "(filtrados de _MAX_ colaboradores)",
+                "search": "Buscar:",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    });
+</script>

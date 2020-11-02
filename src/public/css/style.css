@@ -1,5 +1,6 @@
 /*--FONTS*/
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lemonada");
 
 html,
 body {
@@ -72,7 +73,6 @@ h2 {
   -moz-box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 6px 6px 1px rgba(0, 0, 0, 0.75);
 }
-
 
 a.bg-orange:focus,
 a.bg-orange:hover,
@@ -160,7 +160,6 @@ button.bg-orange:hover {
   padding: 150px 0;
   min-height: min-content;
   background: linear-gradient(45deg, #da4453, #89216b);
-  
 }
 
 .silhouette {
@@ -390,39 +389,122 @@ button.bg-orange:hover {
 
 /*-------------------------------------------- pa organizar ---------------------------*/
 .nav {
-  /*
-  position: fixed;
-  z-index: 3;
-  height: 60px;
-  width: 100%;
-  background: linear-gradient(rgba(43, 42, 59, 0.705), rgb(87, 75, 74));
+  background: linear-gradient(rgb(163, 78, 22), #8d45217e);
   -webkit-transition: 300ms ease;
   transition: 300ms ease;
-  */
-  background: #8d4521;
- 
-  font-family: "Lemonada", serif;
-  font-size: 15px;
-}
-/**
-.dropdown-item {
-  background: #8d4521;
-  color: white;
 
+  /*background: #8d4521;*/
+
+  font-family: "Lemonada", serif;
+  font-size: 13px;
 }
-.dropdown-menu{
-  background: #8d4521;
+.navbar {
+ 
+  /*height: 7%;*/
+ 
+}
+
+.navbar-expand {
+  background: #0c85d0;
+}
+
+.navbar-toggler {
+  position: relative;
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+
+  text-align: center;
+  padding: 0.5rem;
+  width: min-content;
+}
+.navbar-toggler:hover {
+  background-color: rgb(180, 94, 43);
+  border: 2px double #333;
+  opacity: 0.9;
+  text-decoration: none;
+  transform: rotate(360deg);
+  box-shadow: 2px 2px 24px #fff;
+}
+
+.collapse {
   
 }
-*/
-.nav-link{
+
+.navbar-collapse {
+
+  justify-content: center;
+}
+
+.dropdown-menu {
+  font-size: 13px;
+  background: #8d4521;
+  border: none;
+  justify-content: center;
+ 
+}
+
+.dropdown-menu:hover {
+  color: rgb(255, 125, 39);
+  
+}
+
+.dropdown-item {
+  color: rgb(194, 194, 194);
+  width: auto;
+}
+.dropdown-item:hover {
+ 
+  background-color: rgb(255, 125, 39);
+}
+
+.nav-link {
   color: white;
- 
- 
 }
-.nav-link:hover{
-  color: gray;
+.nav-link:hover {
+  
+  color: rgb(255, 125, 39);
 }
+.sr-only:hover{
+  
+  color: rgb(255, 125, 39);
+}
+
+.page-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.custom-input-file {
+  background-color: #3a4899;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  width: 40%;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-radius: 25px;
+  overflow: hidden;
+  padding: 10px;
+  margin: auto;
+}
+.custom-input-file:hover {
+  background-color: #3c3e4b;
+}
+
+.custom-input-file .input-file {
+  border: 10000px solid transparent;
+  cursor: pointer;
+  font-size: 10000px;
+  margin: 0;
+  opacity: 0;
+  outline: 0 none;
+  padding: 10%;
+  position: absolute;
+  right: -1000px;
+  top: -1000px;
+}
+
 footer {
   font-family: "Nunito Sans", sans-serif;
   background: #9b8375;
@@ -447,13 +529,52 @@ footer .row:after {
   clear: both;
 }
 
-footer .col-6,
-.col-12 {
-  width: 100%;
-}
+
 @media screen and (min-width: 640px) {
   footer .col-6,
   .col-12 {
     float: left;
   }
+}
+
+/*------------------------------ validacion de contraseña--------------------------------------------*/
+.short {
+  width: 100%;
+  background-color: #dc3545;
+  margin-top: 5px;
+  height: 3px;
+  color: #dc3545;
+  font-weight: 500;
+  font-size: 12px;
+}
+.weak {
+  width: 100%;
+  background-color: #ffc107;
+  margin-top: 5px;
+  height: 3px;
+  color: #ffc107;
+  font-weight: 500;
+  font-size: 12px;
+}
+.good {
+  width: 100%;
+  background-color: #28a745;
+  margin-top: 5px;
+  height: 3px;
+  color: #28a745;
+  font-weight: 500;
+  font-size: 12px;
+}
+.strong {
+  width: 100%;
+  background-color: #d39e00;
+  margin-top: 5px;
+  height: 3px;
+  color: #d39e00;
+  font-weight: 500;
+  font-size: 12px;
+}
+.error-equals {
+  color: #dc3545;
+  font-size: 12px;
 }

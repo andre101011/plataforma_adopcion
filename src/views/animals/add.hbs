@@ -1,118 +1,158 @@
-<img src="/img/pattern3.svg" alt="" class="silhouette">
+
+
+<img src="/img/pattern3.svg" class="silhouette">
 <div class="form-main-wrapper animal-add">
 
     <div class="form-container">
         <div class="form-content">
-
             <form action="/animals/add" method="POST" class="signup-form" enctype="multipart/form-data">
                 <h2 class="form-title"> <i class="fas fa-cat"></i> Registrar Animal <i class="fas fa-dog"></i></h2>
 
-                <div>
-                    <label>Especie: </label>
-                    <div class="form-group">
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline1" value="perro" name="especie"
-                                class="custom-control-input">
-                            <label class="custom-control-label" for="customRadioInline1">Perro</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline2" value="gato" name="especie"
-                                class="custom-control-input">
-                            <label class="custom-control-label" for="customRadioInline2">Gato</label>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Edad:</label>
+                        <input class="form-control" type="text" name="edad" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Color:</label>
+                        <input type="text" name="color" class="form-control" placeholder="" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Tamaño:</label>
+                        <div class="form-group">
+                            <select class="custom-select" name="tamanio" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Grande">Grande</option>
+                                <option value="Mediano">Mediano</option>
+                                <option value="Pequenio">Pequeño</option>
+                            </select>
+                            <div class="invalid-feedback">Example invalid custom select feedback</div>
                         </div>
                     </div>
 
-                </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Especie: </label>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" value="perro" name="especie"
+                                    class="custom-control-input" required>
+                                <label class="custom-control-label" for="customRadioInline1">Perro</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" value="gato" name="especie"
+                                    class="custom-control-input" required>
+                                <label class="custom-control-label" for="customRadioInline2">Gato</label>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" name="nombre" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Edad</label>
-                    <input class="form-control" type="number" value="30" min="1" name="edad">
-                </div>
-                <div class="form-group">
-                    <div>
+
+                    <div class="col-md-6 mb-3">
                         <label>Sexo: </label>
                         <div class="form-group">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline5" value="macho" name="sexo"
-                                    class="custom-control-input">
+                                    class="custom-control-input" required>
                                 <label class="custom-control-label" for="customRadioInline5">Macho</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline4" value="hembra" name="sexo"
-                                    class="custom-control-input">
+                                    class="custom-control-input" required>
                                 <label class="custom-control-label" for="customRadioInline4">Hembra</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Características:</label>
+                        <textarea class="form-control" rows="3" name="caracteristicas" rows="3"></textarea>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Sitio de rescate:</label>
+                        <textarea type="text" name="sitio_rescate" rows="1" class="form-control"
+                            placeholder=""></textarea>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Fecha de rescate:</label>
+                        <input class="form-control" type="date" name="fecha_rescate" id="example-date-input">
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label>Vacunas:</label>
+                        <textarea type="text" name="vacunas" rows="1" class="form-control" placeholder=""
+                            required></textarea>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Estado:</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="esterilizado" value='1'
+                                    id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Esterilizado</label>
+
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="desparasitado" value="1"
+                                    id="customCheck2">
+                                <label class="custom-control-label" for="customCheck2">Desparasitado</label>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Custodia:</label>
+                        <div class="form-group">
+                            <select class="custom-select" name="custodia" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Fundamor">Fundamor</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                            <div class="invalid-feedback">Example invalid custom select feedback</div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 mb-3 justify-content-center">
+                        <label>Foto del animal:</label>
+
+                        <div class="form-row">
+                            <div class="custom-input-file col-md-6 mb-3">
+
+                                <input type="file" id="image" class="input-file" name="image">
+                               <i class="fas fa-upload"></i> Subir Imagen  
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <div class="card bg-transparent text-white">
+                            <img src="" id="imgSalida" class="card-img">
+                            <div class="card-img-overlay">
+                                <div class="form-row">
+                                    <label class="card-title" id="imageName">Card title</label>
+                                </div>
+
                             </div>
                         </div>
 
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Caracteristicas</label>
-                    <textarea class="form-control" name="caracteristicas" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Sitio de rescate</label>
-                    <input type="text" name="sitio_rescate" class="form-control" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label>Fecha de rescate</label>
-                    <input class="form-control" type="date" name="fecha_rescate" id="example-date-input">
-
-                </div>
-
-                <div class="form-group">
-                    <label>Raza</label>
-                    <input type="text" name="raza" class="form-control" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label>Color</label>
-                    <input type="text" name="color" class="form-control" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label>Vacunas</label>
-                    <input type="text" name="vacunas" class="form-control" placeholder="">
-                </div>
-
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="esterilizado" value='1'
-                            id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Esterilizado</label>
-
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" name="desparasitado" value="1"
-                            id="customCheck2">
-                        <label class="custom-control-label" for="customCheck2">Desparasitado</label>
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Altura al hombro (centimetros)</label>
-                    <input class="form-control" type="number" value="30" min="1" name="tamanio" placeholder="">
-
-                </div>
-
-
-                <div class="form-group">
-                    <label>Foto del animal</label>
-                    <div>
-                        <input type="file" class="image-selector-button" name="image">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Custodia</label>
-                        <input type="text" name="custodia" class="form-control" placeholder="">
-                    </div>
                     <div class="wrap-login-form-btn">
                         <div class="login-form-bgbtn"></div>
                         <button type="submit" class="login-form-btn">
@@ -121,7 +161,64 @@
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
+
+<script>
+    /**
+    document.getElementById('image').onchange = function (e) {
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = function () {
+            var preview = document.getElementById('preview'),
+                image = document.createElement('img');
+            image.src = reader.result;
+            preview.innerHTML = '';
+            preview.append(image);
+        };
+    };
+
+
+
+    $(window).load(function(){
+        */
+
+    $(function () {
+        $('#image').change(function (e) {
+            document.getElementById('imageName').innerHTML = 'No se ha seleccionado un archivo';
+            $('#imgSalida').attr("src", null);
+            addImage(e);
+        });
+
+        function addImage(e) {
+            var file = e.target.files[0],
+                imageType = /image.*/;
+
+            if (e.target.files[0] != null) {
+                var name = e.target.files[0].name
+
+                document.getElementById('imageName').innerHTML = name;
+
+
+                if (!file.type.match(imageType)){
+                    alert('tipo de archivo no soportado')
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = fileOnload;
+
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function fileOnload(e) {
+            var result = e.target.result;
+
+            $('#imgSalida').attr("src", result);
+        }
+    });
+
+    
+
+</script>

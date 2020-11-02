@@ -25,28 +25,24 @@ router.get('/add', isLoggedIn,isAdmin,(req,res)=>{
 
 router.post('/add',isLoggedIn, isAdmin,async (req,res)=>{
    
-    const {email, password,passwordConfirm,cedula,nombre}= req.body;
+    const {email, password,cedula,nombre}= req.body;
 
-    if(password!==passwordConfirm){
-        console.log('las contraseñas son diferentes')
-        res.redirect('/employees/add')
-    }else{
-
-     const newPerson={
+    const newPerson={
         email,
         password,
         cedula,
         nombre,
         fundacion: 'fundamor'
     };
+
     newPerson.password= await helpers.encryptPassword(password)
 
     await pool.query('INSERT into Empleado set ?',[newPerson]);
 
-    req.flash('success','Registro de empleado exitoso') ;
+    req.flash('success','Registro de colaborador exitoso') ;
 
     res.redirect('/employees')
-}
+
    
 })
 
@@ -65,17 +61,21 @@ router.get('/update/:id', isLoggedIn,async (req,res)=>{
 router.post('/update', isLoggedIn , async (req,res)=>{
 console.log('##')
     const {cedula,email,password,nombre,fundacion,rol}=req.body
+   
     const employee={
         cedula,
         email,
         password:await helpers.encryptPassword(password),
         nombre,
         fundacion,
-        rol
+        
 
     }
+
+  
+    
     console.log(employee)
-    await pool.query('UPDATE Empleado SET ? WHERE cedula=#'.replace('#',cedula),[employee]); 
+    await pool.query(`UPDATE Empleado SET ? WHERE cedula=${cedula}`,[employee]); 
     
     res.redirect('/employees');
 
@@ -86,7 +86,7 @@ router.get('/delete/:id', isLoggedIn,async (req,res)=>{
 
     const {id}=req.params;
     pool.query('DELETE FROM Empleado WHERE cedula=?',[id]); 
-    req.flash('success','El empleado fue removido exitosamente') ;
+    req.flash('success','El colaborador fue removido exitosamente') ;
     res.redirect('/employees');
 
 })

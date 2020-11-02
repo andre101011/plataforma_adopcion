@@ -1,0 +1,57 @@
+<div class="form-main-wrapper">
+    <img src="/img/silueta_logo.svg" class="silhouette">
+
+
+    <div class="form-container" style="width: 60rem;">
+        <div class="form-content">
+
+            <div class="card border-primary mb-3" style="max-width: 18rem;">
+                <canvas id="testGrafica" width="400" height="600"></canvas>
+
+                <div class="card-body text-primary">
+                    <h5 class="card-title">Grafica 1</h5>
+                    <p class="card-text">Representa...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+    var da = JSON.parse(`[{{data}}]`);
+    var miCanvas = document.getElementById("testGrafica").getContext("2d");
+    var chart = new Chart(miCanvas, {
+        type: "bar",
+        data: {
+            labels: ["empleados", "Animales"],
+            datasets: [
+                {
+                    label: "prueba de grafica",
+                    backgroundColor: "rgb(0,0,0)",
+                    borderColor: "rgb(0,255,0)",
+                    data: da
+
+                },
+            ],
+        },
+    });
+
+</script>

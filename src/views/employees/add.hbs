@@ -1,39 +1,143 @@
 <div class="form-main-wrapper">
     <img src="/img/silueta_logo.svg" alt="" class="silhouette">
-    <div class="form-container">
+    <div class="form-container" style="width: 30rem;">
         <div class="form-content">
-            <form action="/employees/add" method="POST" class="signup-form">
+            <form action="/employees/add" method="POST" class="needs-validation" novalidate>
                 <h2 class="form-title">Registro De Colaboradores</h2>
 
                 <div class="form-group">
-                    <label>Nombre Completo</label>
-                    <input type="text" name="nombre" class="form-control">
+                    <label>Nombre Completo:</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="jhon" required>
+                    <div class="invalid-feedback">
+                        Debe llenar este campo
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Correo Electronico</label>
+                    <label>Correo Electronico:</label>
                     <input type="email" class="form-control" name="email" aria-describedby="emailHelp"
-                        placeholder="Enter email">
+                        placeholder="example@gmail.com" required>
+                    <div class="invalid-feedback">
+                        Debe ingresar un correo valido
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Cedula</label>
-                    <input type="text" name="cedula" class="form-control">
+                    <label>Cedula:</label>
+                    <input type="text" placeholder="987654321" name="cedula" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Debe llenar este campo
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" name="password" class="form-control" placeholder="Password">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label>Contraseña:</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="12345678"
+                            required>
+                        <div id="strengthMessage"></div>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Confirmar Contraseña:</label>
+                        <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"
+                            placeholder="12345678" required>
+                        <div id="passwordConfirmMessage"></div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Confirmar Contraseña</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Password">
-                </div>
+
                 <div class="wrap-login-form-btn">
                     <div class="login-form-bgbtn"></div>
-                    <button type="submit" class="login-form-btn">
+                    <button type="submit" class="login-form-btn" id="submit">
                         Registrar
                     </button>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
+
+
+<script>
+    // Valida que se llenen los campos
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+
+                form.addEventListener('submit', function (event) {
+                    var pass = document.getElementById('password').value;
+                    var password2 = document.getElementById('passwordConfirm').value;
+
+                    if (form.checkValidity() === false || (pass !== password2)) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+
+    //sugiere una contraseña segura
+    $(document).ready(function () {
+        $('#password').keyup(function () {
+            $('#strengthMessage').html(checkStrength($('#password').val()))
+        })
+        function checkStrength(password) {
+            var strength = 0
+            if (password.length < 6) {
+                $('#strengthMessage').removeClass()
+                $('#strengthMessage').addClass('short')
+                return 'Muy corta'
+            }
+            if (password.length > 7) strength += 1
+            // If password contains both lower and uppercase characters, increase strength value.
+            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+            // If it has numbers and characters, increase strength value.
+            if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+            // If it has one special character, increase strength value.
+            if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+            // If it has two special characters, increase strength value.
+            if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+            // Calculated strength value, we can return messages
+            // If value is less than 2
+            if (strength < 2) {
+                $('#strengthMessage').removeClass()
+                $('#strengthMessage').addClass('weak')
+                return 'Debil'
+            } else if (strength == 2) {
+                $('#strengthMessage').removeClass()
+                $('#strengthMessage').addClass('good')
+                return 'Buena'
+            } else {
+                $('#strengthMessage').removeClass()
+                $('#strengthMessage').addClass('strong')
+                return 'Fuerte'
+            }
+        }
+    });
+
+    //valida que la contraseña y su confirmacion sean iguales
+
+    $(document).ready(function () {
+        $('#passwordConfirm').keyup(function () {
+            $('#passwordConfirmMessage').html(checkEquals($('#passwordConfirm').val()))
+        })
+        function checkEquals(password2) {
+            var pass = $('#password').val();
+            if (password2 != pass) {
+
+                $('#passwordConfirmMessage').removeClass()
+                $('#passwordConfirmMessage').addClass('error-equals')
+                return 'Las contraseñas no coinciden';
+            } else {
+                return '';
+            }
+        }
+    });
+
+</script>

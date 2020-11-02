@@ -2,7 +2,7 @@
 
   <button class="navbar-toggler toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span> <i class="fa fa-bars"></i></span>
   </button>
 
 
@@ -10,7 +10,7 @@
   <a class="navbar-brand" href="/">
     <img src="/img/logotipo.svg" width="130" alt="Fundamor" loading="lazy">
   </a>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 
 
     <ul class="navbar-nav">
@@ -27,6 +27,19 @@
           <a class="dropdown-item" href="/animals">Consultar Lista </a>
         </div>
       </li>
+
+
+        <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Adopciones <span class="sr-only">(current)</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/adoptions/add">Iniciar nuevo proceso</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/adoptions">Listar los procesos</a>
+        </div>
+      </li>
       {{/if}}
 
       <li class="nav-item dropdown active">
@@ -35,14 +48,14 @@
           Colaboradores <span class="sr-only">(current)</span>
         </a>
 
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
           {{#if user}}
 
           {{#if user.rol}}
           <a class="dropdown-item" href="/employees/add">Agregar</a>
           <a class="dropdown-item" href="/employees">Consultar Lista</a>
           {{else}}
-          <a class="dropdown-item disabled" href="/employees/add " aria-disabled="true">Agregar</a>
+          <a class="dropdown-item disabled" href="/employees/add" aria-disabled="true">Agregar</a>
           <a class="dropdown-item disabled" href="/employees" aria-disabled="true">Consultar Lista</a>
 
 
@@ -59,34 +72,33 @@
       <li class="nav-item">
         <a class="nav-link" href="/statistics">Estadisticas</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Adopciones</a>
-      </li>
-      {{/if}}
+      
+      {{else}}
       <li class="nav-item">
         <a class="nav-link" href="#">Acerca De</a>
       </li>
+      {{/if}}
 
-
+      {{#if user}}
+      <li class="nav-item dropdown active my-2 my-lg-0">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">(current) </span> <i class="fas fa-user"></i>
+          {{user.email}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/employees/update/{{user.cedula}}">Actualizar datos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/employees/logout">Salir</a>
+        </div>
+      </li>
+      {{/if}}
 
     </ul>
 
   </div>
 
-  {{#if user}}
-  <li class="nav-item dropdown active my-2 my-lg-0">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      <span class="sr-only">(current) </span> <i class="fas fa-user"></i>
-      {{user.email}}
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" href="/employees/update/{{user.cedula}}">Actualizar datos</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item"  href="/employees/logout">Salir</a>
-    </div>
-  </li>
-  {{/if}}
+
 
 
 

@@ -8,7 +8,7 @@ pool.getConnection((err,connection)=>{
 
     if(err){
         if(err.code ===  'PROTOCOL_CONECTION_LOST'){
-            console.log('conexion a la base de datos cerrada');
+            console.log('conexión a la base de datos cerrada');
         }else if(err.code==='ER_CON_COUNT_ERROR'){
             console.log('la bd cuenta con demasiadas conexiones')
         }else if(err.code==='ECONNREFUSED'){
@@ -19,7 +19,7 @@ pool.getConnection((err,connection)=>{
 
         if(connection){
             connection.release();
-            console.log('conexion a la base de datos exitosa');
+            console.log('conexión a la base de datos exitosa');
         }      
     } 
 

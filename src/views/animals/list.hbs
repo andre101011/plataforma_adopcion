@@ -1,46 +1,26 @@
-<div style="padding-top: 7%;">
-  <ul class="pagination justify-content-center">
-    <form class="form-inline">
-      <label class="form-control mr-sm-2" style="border: none;">Busqueda: </label>
-      <input class="form-control mr-sm-2" type="search" aria-label="Search">
-      <button class="btn btn-success my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
-  </ul>
-</div>
+<div class="animal-add-container">
+  <h2>Animales en custodia:</h2>
 
-<div class="text">
-  <h2 style="color: black;">Animales en custodia:</h2>
-</div>
- {{>message}}
-<div class="card-group">
-  {{#each animals}}
-  <div class="col mb-2" style="width: 20rem; padding-top: 5%;">
-    <div class="card border-dark" style="width: 17rem;">
-      <img src="{{ruta_imagen}}" class="card-img-top" alt="...">
-      <div class="card-img-overlay"></div>
+  {{>message}}
+  <div class="card-group">
+    {{#each animals}}
+    <div class="card">
+      <img src="{{ruta_imagen}}" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title" style="font-size: 25px;">{{nombre}} <a href="/amimals/delete"
-            class="btn btn-success">ADOPTADO <i class="fas fa-check"></i></a></h5>
+        <h5 class="card-title">Nombre: <br> {{nombre}}</h5>
+        <h5 class="card-text">Edad:<br> {{edad}}</h5>
+        <div class="buttons">
+          <a href="/animals/delete" class="btn btn-success">Adoptado <i class="fas fa-check"></i></a>
+          <a href="/animals/delete" class="btn btn-primary">Ver Detalles</a>
+        </div>
 
-        <p class="card-text">Edad: {{edad}}</p>
-        <a href="/amimals/delete" class="btn btn-primary">Ver Detalles</a>
+        <div class="caracteristics">{{caracteristicas}}</div>
+
+
       </div>
     </div>
+
+    {{/each}}
   </div>
-
-  {{/each}}
+  <a class="top-button" href="#top"><i class="fas fa-arrow-up"></i></a>
 </div>
-
-<nav aria-label="Page navigation example" style="padding-top: 2%;">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Atras</a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#">Siguiente</a>
-    </li>
-  </ul>
-</nav>

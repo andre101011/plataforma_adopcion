@@ -60,6 +60,13 @@ h2 {
   display: inline-block;
   max-width: 50%;
   color: white;
+  overflow: hidden;
+}
+
+.text h1 {
+  -webkit-animation: FadeSlideIn 1.5s forwards;
+  -moz-animation: FadeSlideIn 1.5s forwards;
+  animation: FadeSlideIn 1.5s forwards;
 }
 
 .btn-adoptar {
@@ -148,10 +155,82 @@ button.bg-orange:hover {
 
 /*-------------------------------Animal--------------------------*/
 
-.animal-add .image-selector-button {
+.animal-add-container {
+  padding: 10vh 1rem 10vh 2rem;
+  background-color: #ebebeb;
 }
 
-.animal-add .imageUpload-container button {
+.animal-add-container .card-group {
+  padding-top: 5vh;
+  display: inline-block;
+  position: relative;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  min-height: 100vh;
+}
+
+.animal-add-container .card-group .card {
+  justify-self: center;
+  border-color: transparent;
+  border-radius: 10px;
+  position: relative;
+  width: 400px;
+  height: 500px;
+  overflow: hidden;
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.36);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.36);
+  box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.36);
+}
+.animal-add-container .card-group .card-img-top {
+  background-color: black;
+  margin-top: 3rem;
+  object-fit: contain;
+  max-height: 50%;
+  transition: transform 0.3s;
+}
+.animal-add-container .card-group .card-img-top:hover {
+  transform: scale(1.5);
+}
+
+.animal-add-container .card-group .card .card-body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-row-gap: 1rem;
+  grid-column-gap: 0;
+}
+
+.animal-add-container .card-group .card .card-title {
+  overflow: hidden;
+  line-height: 1;
+}
+.animal-add-container .card-group .card .buttons a {
+  display: block;
+  height: min-content;
+  padding: 0px;
+  border-radius: 0;
+}
+
+.animal-add-container .card-group .card .caracteristics {
+  background-color: #ebebeb;
+  padding: 0.5rem;
+  border-radius: 5px;
+  grid-column: 1/-1;
+  grid-row: 2/-1;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+
+.top-button{
+  padding: 1rem;
+  position: fixed;
+  background-color: rgba(0,0,0,0.5);
+  color:#fff;
+  bottom: 5%;
+  right: 5%;
+  font-size: 1.5rem;
+  border-radius: 50%;
 }
 
 /*-------------------------------form---------------------------------*/
@@ -268,8 +347,6 @@ button.bg-orange:hover {
 .form-main-wrapper input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
 }
-
-/*-------------------------------Employees add---------------------------------*/
 
 /*-----------------------------------------List employees----------------------------------------*/
 
@@ -389,19 +466,11 @@ button.bg-orange:hover {
 
 /*-------------------------------------------- pa organizar ---------------------------*/
 .nav {
-  background: linear-gradient(rgb(163, 78, 22), #8d45217e);
+  background: linear-gradient(rgb(163, 78, 22), #8d4521);
   -webkit-transition: 300ms ease;
   transition: 300ms ease;
-
-  /*background: #8d4521;*/
-
   font-family: "Lemonada", serif;
   font-size: 13px;
-}
-.navbar {
- 
-  /*height: 7%;*/
- 
 }
 
 .navbar-expand {
@@ -426,26 +495,15 @@ button.bg-orange:hover {
   box-shadow: 2px 2px 24px #fff;
 }
 
-.collapse {
-  
-}
-
 .navbar-collapse {
-
   justify-content: center;
 }
 
 .dropdown-menu {
   font-size: 13px;
-  background: #8d4521;
+  background-color: rgba(141, 69, 33, 1);
   border: none;
   justify-content: center;
- 
-}
-
-.dropdown-menu:hover {
-  color: rgb(255, 125, 39);
-  
 }
 
 .dropdown-item {
@@ -453,7 +511,6 @@ button.bg-orange:hover {
   width: auto;
 }
 .dropdown-item:hover {
- 
   background-color: rgb(255, 125, 39);
 }
 
@@ -461,11 +518,9 @@ button.bg-orange:hover {
   color: white;
 }
 .nav-link:hover {
-  
   color: rgb(255, 125, 39);
 }
-.sr-only:hover{
-  
+.sr-only:hover {
   color: rgb(255, 125, 39);
 }
 
@@ -529,7 +584,6 @@ footer .row:after {
   clear: both;
 }
 
-
 @media screen and (min-width: 640px) {
   footer .col-6,
   .col-12 {
@@ -577,4 +631,37 @@ footer .row:after {
 .error-equals {
   color: #dc3545;
   font-size: 12px;
+}
+
+/**----------------------Animaciones--------------------------------**/
+
+@-webkit-keyframes FadeSlideIn {
+  0% {
+    transform: translateX(-900px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 100%;
+  }
+}
+@-moz-keyframes FadeSlideIn {
+  0% {
+    transform: translateX(-900px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 100%;
+  }
+}
+@keyframes FadeSlideIn {
+  0% {
+    transform: translateX(-900px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 100%;
+  }
 }

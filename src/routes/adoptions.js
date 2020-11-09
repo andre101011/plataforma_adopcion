@@ -36,9 +36,11 @@ router.get("/", isLoggedIn, async (req, res) => {
  * 
  */
 
-router.get('/add', isLoggedIn,(req,res)=>{
-
-    res.render('adoptions/add');
+router.get('/add/:id_animal', isLoggedIn, async (req,res)=>{
+    const { id_animal } = req.params;
+    var persons=await pool.query('SELECT * FROM Adoptante');
+    var animal=await pool.query('SELECT * FROM Animal WHERE id_animal=?',[id_animal]);
+    res.render('adoptions/add', { persons: persons, animal:animal[0]});
 })
 
 router.post('/add',isLoggedIn,async (req,res)=>{

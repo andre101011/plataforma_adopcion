@@ -35,8 +35,7 @@
           Adopciones <span class="sr-only">(current)</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/adoptions/add">Iniciar nuevo proceso</a>
-          <div class="dropdown-divider"></div>
+          
           <a class="dropdown-item" href="/adoptions">Listar los procesos</a>
         </div>
       </li>
@@ -84,12 +83,13 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <span class="sr-only">(current) </span> <i class="fas fa-user"></i>
+          
           {{user.email}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/employees/update/{{user.cedula}}">Actualizar datos</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/employees/logout">Salir</a>
+          <a class="dropdown-item" href="/employees/logout" >Salir</a>
         </div>
       </li>
       {{/if}}
@@ -97,9 +97,4 @@
     </ul>
 
   </div>
-
-
-
-
-
 </nav>

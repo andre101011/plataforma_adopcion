@@ -1,7 +1,7 @@
 var count = 0;
 
 window.onbeforeunload = function (event) {
-  console.log(event.type);
+ 
 };
 function validateReload(e) {
   /** 

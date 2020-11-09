@@ -1,3 +1,17 @@
+/**Modulo complementario que maneja la autenticaciónn
+ *
+ * @todo 
+ *
+ *
+ * @author Neyder Figueroa
+ * @author Andrés Llinás
+ * @since 2020 Universidad del Quindío
+ * @copyright Todos los derechos reservados
+ *
+ */
+
+
+
 const passport = require('passport');
 const LocalStrategy =require('passport-local').Strategy;
 const helpers=require('../lib/helpers');
@@ -43,9 +57,7 @@ passport.serializeUser((empleado,done)=>{
 
 passport.deserializeUser(async (cedula,done)=>{
 
-   
     const employees = await pool.query('SELECT * FROM Empleado WHERE cedula=?',[cedula]); 
-
     done(null,employees[0]);
 
 });

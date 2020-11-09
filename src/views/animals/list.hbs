@@ -10,10 +10,10 @@
         <h5 class="card-title">Nombre: <br> {{nombre}}</h5>
         <h5 class="card-text">Edad:<br> {{edad}}</h5>
         <div class="buttons">
-          <a href="/animals/delete" class="btn btn-success">Adoptado <i class="fas fa-check"></i></a>
-          <a href="/animals/delete" class="btn btn-primary">Ver Detalles</a>
+          <a href="#" class="btn btn-danger"> {{estado}} <i class="fas fa-check"></i></a>
+          <a href="/animals/detail/{{id_animal}}" class="btn btn-primary">Ver Detalles</a>
         </div>
-
+        <a href="/adoptions/add/{{id_animal}}" class="btn btn-info">Iniciar Proceso De Adopción</a>
         <div class="caracteristics">{{caracteristicas}}</div>
 
 
@@ -22,5 +22,5 @@
 
     {{/each}}
   </div>
-  <a class="top-button" href="#top"><i class="fas fa-arrow-up"></i></a>
+
 </div>

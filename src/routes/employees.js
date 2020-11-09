@@ -59,7 +59,7 @@ router.get('/update/:id', isLoggedIn,async (req,res)=>{
 })
 
 router.post('/update', isLoggedIn , async (req,res)=>{
-console.log('##')
+
     const {cedula,email,password,nombre,fundacion,rol}=req.body
    
     const employee={
@@ -85,7 +85,7 @@ console.log('##')
 router.get('/delete/:id', isLoggedIn,async (req,res)=>{
 
     const {id}=req.params;
-    pool.query('DELETE FROM Empleado WHERE cedula=?',[id]); 
+    await pool.query('DELETE FROM Empleado WHERE cedula=?',[id]); 
     req.flash('success','El colaborador fue removido exitosamente') ;
     res.redirect('/employees');
 

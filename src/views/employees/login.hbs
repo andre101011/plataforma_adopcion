@@ -1,5 +1,5 @@
 <div class="form-main-wrapper">
-    <img src="/img/silueta_logo.svg"  class="silhouette">
+    <img src="/img/silueta_logo.svg" class="silhouette">
 
 
     <div class="form-container" style="width: 30rem;">
@@ -20,11 +20,13 @@
                 </div>
 
                 <div class="text-right p-t-8 p-b-31" style="padding-top: 1rem; padding-bottom: 1rem;">
-                    <a href="#">
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">
                         ¿Olvidó su contraseña?
                     </a>
+
+
                 </div>
-                 <!-- Captura de algun mensaje-->
+                <!-- Captura de algun mensaje-->
                 {{>message}}
 
                 <div class="wrap-login-form-btn">
@@ -32,6 +34,32 @@
                     <button type="submit" class="login-form-btn">
                         Ingresar
                     </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Recuperacíon de contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/employees/restore_password" method="POST">
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Correo electronico con el que se registró:</label>
+                        <input type="text" name="email" class="form-control" placeholder="example@email.com" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
             </form>
         </div>

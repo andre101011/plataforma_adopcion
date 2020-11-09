@@ -6,32 +6,32 @@
                 <h2 class="form-title">Actualizar Datos</h2>
 
                 <div class="form-group" >
-                    <label>Identificacion:</label>
-                    <input type="text" name="cedula" required value="{{empleado.cedula}}" class="form-control">
+                    <label>Identificación:</label>
+                    <input type="text" name="cedula" readonly  value="{{empleado.cedula}}" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Nombre Completo</label>
                     <input type="text" name="nombre" required value="{{empleado.nombre}}" class="form-control">
                 </div>
                 <div class="form-group" aria-hidden="true">
-                    <label>Correo Electronico</label>
+                    <label>Correo Electronico:</label>
                     <input type="email" class="form-control" required name="email" aria-describedby="emailHelp"
                         value="{{empleado.email}}" placeholder="Enter email">
                 </div>
 
                 <div class="form-group" >
-                    <label>Fundacion</label>
+                    <label>Fundación:</label>
                     <input type="text" class="form-control" required name="fundacion" aria-describedby="emailHelp"
                         value="{{empleado.fundacion}}">
                 </div>
-                <div class="form-group" hidden>
-                    <label>Rol</label>
-                    <input type="text" class="form-control" name="rol" aria-describedby="emailHelp"
+                <div class="form-group" >
+                    <label>Rol:</label>
+                    <input type="text" class="form-control" readonly name="rol" aria-describedby="emailHelp"
                         value="{{empleado.rol}}">
                 </div>
 
                 <div class="form-group">
-                    <label>Contraseña</label>
+                    <label>Contraseña:</label>
                     <input type="text" name="password" required placeholder="nueva contraseña" class="form-control"
                         placeholder="Password">
 

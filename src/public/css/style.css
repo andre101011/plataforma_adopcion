@@ -212,6 +212,8 @@ button.bg-orange:hover {
   border-radius: 0;
 }
 
+
+
 .animal-add-container .card-group .card .caracteristics {
   background-color: #ebebeb;
   padding: 0.5rem;
@@ -230,7 +232,7 @@ button.bg-orange:hover {
   bottom: 5%;
   right: 5%;
   font-size: 1.5rem;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 
 /*-------------------------------form---------------------------------*/
@@ -238,7 +240,7 @@ button.bg-orange:hover {
 .form-main-wrapper {
   padding: 150px 0;
   min-height: min-content;
-  background: linear-gradient(45deg, #da4453, #89216b);
+  background: linear-gradient(45deg, #a17059, #131b30);
 }
 
 .silhouette {

@@ -102,7 +102,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
     tamanio,
     ruta_imagen,
     custodia,
-    estado: "sin adoptar",
+    estado: "Sin Adoptar",
   };
 
   console.log(newAnimal);
@@ -118,7 +118,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
 /**Modulo que permite actualizar los datos de los animales
  * 
  */
-router.get("/update:id", isLoggedIn, async (req, res) => {
+router.get("/update/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const animal = await pool.query("SELECT * FROM Animal WHERE id=?", [id]);
 
@@ -128,11 +128,32 @@ router.get("/update:id", isLoggedIn, async (req, res) => {
 /**Modulo que permite actualizar los datos de los animales
  * 
  */
-router.post("/update:id", isLoggedIn, async (req, res) => {
+router.post("/update", isLoggedIn, async (req, res) => {
   const { id } = req.params;
   await pool.query("UPDATE FROM Animal WHERE id=?", [id]);
 
   res.redirect("/animals");
+});
+
+
+/**Modulo que permite ver en detalle a los animales y sus datos
+ * 
+ */
+router.get('/detail/:id', isLoggedIn, async (req, res) => {
+ 
+  const { id } = req.params;
+  const animal = await pool.query("SELECT * FROM Animal WHERE id_animal=?", [id]);
+ 
+ 
+  var date=  new Date(animal[0].fecha_rescate);
+ 
+  var formatedDate= date.getFullYear()+"-"+ date.toLocaleDateString()+"-"+ date.getDay();
+  console.log((animal[0].fecha_rescate).toString())
+  console.log(formatedDate)
+  
+
+
+  res.render("animals/detail", { animal: animal[0] });
 });
 
 module.exports = router;

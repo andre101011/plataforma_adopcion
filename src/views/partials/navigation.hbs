@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-dark navbar-expand-lg nav">
+<nav class="navbar fixed-top navbar-dark navbar-expand-lg nav" id="navbar">
 
   <button class="navbar-toggler toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,3 +98,16 @@
 
   </div>
 </nav>
+
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navbar").style.top = "0";
+  } else {
+    document.getElementById("navbar").style.top = "-60px";
+  }
+  prevScrollpos = currentScrollPos;
+}
+</script>

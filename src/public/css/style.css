@@ -63,7 +63,7 @@ h2 {
   color: #555;
 }
 #back-to-top-button.show {
-  opacity: .9;
+  opacity: 0.9;
   visibility: visible;
 }
 
@@ -461,7 +461,8 @@ button.bg-orange:hover {
   }
 }
 
-/*-------------------------------------------- pa organizar ---------------------------*/
+/*-------------------------------------------- nav ---------------------------*/
+
 .nav {
   background: linear-gradient(rgb(163, 78, 22), #8d4521);
   -webkit-transition: 300ms ease;
@@ -520,6 +521,12 @@ button.bg-orange:hover {
   color: rgb(255, 125, 39);
 }
 
+
+
+
+
+/*-------------------------------------------- pa organizar ---------------------------*/
+
 .page-content {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -554,37 +561,6 @@ button.bg-orange:hover {
   position: absolute;
   right: -1000px;
   top: -1000px;
-}
-
-footer {
-  font-family: "Nunito Sans", sans-serif;
-  background: #9b8375;
-  color: #ddd;
-  padding: 2rem;
-}
-
-footer p {
-  margin: 1em 0;
-  max-width: 50em;
-}
-
-footer .row {
-  margin: 0 auto;
-  max-width: 1000px;
-  display: block;
-}
-
-footer .row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-@media screen and (min-width: 640px) {
-  footer .col-6,
-  .col-12 {
-    float: left;
-  }
 }
 
 /*------------------------------ validacion de contraseña--------------------------------------------*/
@@ -659,5 +635,37 @@ footer .row:after {
   100% {
     transform: translateX(0);
     opacity: 100%;
+  }
+}
+
+/*-------------------------------------------- Footer ---------------------------*/
+footer {
+  font-family: "Nunito Sans", sans-serif;
+  background: #9b8375;
+  color: #ddd;
+  padding: 2rem;
+}
+
+footer p {
+  margin: 1em 0;
+  max-width: 50em;
+}
+
+footer .row {
+  margin: 0 auto;
+  max-width: 1000px;
+  display: block;
+}
+
+footer .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (min-width: 640px) {
+  footer .col-6,
+  .col-12 {
+    float: left;
   }
 }

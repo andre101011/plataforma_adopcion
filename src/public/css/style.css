@@ -2,12 +2,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lemonada");
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+html {
+  box-sizing: border-box;
   font-size: 100%;
+  scroll-behavior: smooth;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 h1,
@@ -38,6 +41,32 @@ h2 {
   font-size: 2rem;
 }
 
+#back-to-top-button {
+  display: inline-block;
+  text-align: center;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+  font-size: 3rem;
+  color: white;
+}
+
+#back-to-top-button:hover {
+  cursor: pointer;
+  color: #333;
+}
+#back-to-top-button:active {
+  color: #555;
+}
+#back-to-top-button.show {
+  opacity: .9;
+  visibility: visible;
+}
+
 /*------------------------------index----------------------------*/
 
 .heroSection {
@@ -50,7 +79,6 @@ h2 {
 }
 
 .heroContent {
-  box-sizing: border-box;
   padding: 10rem 5%;
   position: relative;
 }
@@ -156,18 +184,22 @@ button.bg-orange:hover {
 /*-------------------------------Animal--------------------------*/
 
 .animal-add-container {
-  padding: 10vh 1rem 10vh 2rem;
+  margin-top: 63.406px;
   background-color: #ebebeb;
+}
+.animal-add-container h2 {
+  padding-left: 5vh;
+  padding-top: 2rem;
+  font-weight: bold;
 }
 
 .animal-add-container .card-group {
-  padding-top: 5vh;
+  padding: 5vh 2.5vw 5vh 2.5vw;
   display: inline-block;
   position: relative;
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  min-height: 100vh;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 .animal-add-container .card-group .card {
@@ -175,7 +207,7 @@ button.bg-orange:hover {
   border-color: transparent;
   border-radius: 10px;
   position: relative;
-  width: 400px;
+  width: 350px;
   height: 500px;
   overflow: hidden;
   -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.36);
@@ -196,12 +228,10 @@ button.bg-orange:hover {
 .animal-add-container .card-group .card .card-body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-row-gap: 1rem;
   grid-column-gap: 0;
 }
 
-.animal-add-container .card-group .card .card-title {
+.animal-add-container .card-group .card h5 {
   overflow: hidden;
   line-height: 1;
 }
@@ -212,27 +242,19 @@ button.bg-orange:hover {
   border-radius: 0;
 }
 
-
+.animal-add-container .card-group .card .btn-iniciar {
+  margin-top: 0.5rem;
+  grid-column: 1/-1;
+}
 
 .animal-add-container .card-group .card .caracteristics {
   background-color: #ebebeb;
   padding: 0.5rem;
   border-radius: 5px;
   grid-column: 1/-1;
-  grid-row: 2/-1;
+
   overflow-y: hidden;
   text-overflow: ellipsis;
-}
-
-.top-button{
-  padding: 1rem;
-  position: fixed;
-  background-color: rgba(0,0,0,0.5);
-  color:#fff;
-  bottom: 5%;
-  right: 5%;
-  font-size: 1.5rem;
-  border-radius: 20%;
 }
 
 /*-------------------------------form---------------------------------*/
@@ -279,16 +301,6 @@ button.bg-orange:hover {
 .form-main-wrapper .form-content {
   padding: 40px 60px 32px 60px;
   position: relative;
-}
-
-.form-main-wrapper input {
-  /**
-  border: solid 2px #ebebeb;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  **/
 }
 
 .form-main-wrapper .form-title {
@@ -379,7 +391,7 @@ button.bg-orange:hover {
   }
 
   .text {
-    width: 90%;
+    max-width: 100%;
   }
 
   .text h1 {
@@ -413,32 +425,15 @@ button.bg-orange:hover {
     left: 0 px;
     width: 100%;
   }
-}
-/*Small devices (landscape phones, less than 768px)
-@media (min-width: 576px) and (max-width: 767.98px) {
-
-  .heroSection{
-    height: 100vh;
+  .animal-add-container .card-group {
+    padding-left: 0;
+    padding-right: 0;
   }
-
-  .text {
-    font-size: 1.5vw;
-  }
-  .imagotipo {
-    min-width: 85%;
-    margin-right: 0;
-    align-self: right;
-    justify-self: right;
-  }
-  .silhouette {
-    visibility: hidden;
-  }
-  .form-main-wrapper .form-container {
-    width: calc(100% - 30px);
-    max-width: 100%;
+  .animal-add-container .card-group .card-img-top:hover {
+    transform: none;
   }
 }
-*/
+
 /* Medium devices (tablets, less than 992px)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
   .silhouette {
@@ -483,7 +478,6 @@ button.bg-orange:hover {
   position: relative;
   display: flex;
   background: rgba(0, 0, 0, 0.2);
-
   text-align: center;
   padding: 0.5rem;
   width: min-content;

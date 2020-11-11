@@ -1,0 +1,76 @@
+<div class="form-main-wrapper">
+    <img src="/img/silueta_logo.svg" class="silhouette">
+
+    <div class="form-container" style="width: 80rem;">
+
+        <div class="form-content">
+
+            <h2 class="form-title page-content"> <i class="fas fa-cat"></i>
+                Personas vinculadas a los procesos de adopción <i class="fas fa-dog"></i></h2>
+
+            {{>message}}
+            <div class="table-responsive">
+                <table id="table" class="cell-border table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">N°Cedula</th>
+                            <th scope="col">Celular</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each adopters}}
+                        <tr>
+                            <td>{{nombre}}</td>
+                            <td>{{apellido}}</td>
+                            <td>{{documento_identidad}}</td>
+                            <td>{{celular}}</td>
+                            <td>{{correo}}</td>
+                            <td>{{direccion}}</td>
+                            <td>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <a class="btn btn-info" href="/adoptions/update/{{id_adopcion}}"><i
+                                                class="fas fa-edit"></i> </a>
+                                    </div>
+                                    <div></div>
+                                    <div class="col-md-6 mb-3">
+                                        <a class="btn btn-danger" href="/adoptions/delete/{{id_adopcion}}"><i
+                                                class="far fa-trash-alt"></i> </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#table').DataTable({
+            "language": {
+                "lengthMenu": "Visualizando _MENU_ personas por página",
+                "zeroRecords": "No hay nada ",
+                "info": "Página _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay elementos",
+                "infoFiltered": "(filtrados de _MAX_ de personas)",
+                "search": "Buscar:",
+                "paginate": {
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
+    });
+</script>

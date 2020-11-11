@@ -92,13 +92,13 @@ router.post('/employees/restore_password', async (req,res)=>{
             from: `"Plataforma Adopcion" ${process.env.EMAIL}`, // sender address
             to: `${email}`, // list of receivers
             subject: "Recuperacion de contraseña", // Subject line
-            text: ("Hola %s",employees[0].nombre), // plain text body
-            html: "<b>Su contraseña es: ...</b>", // html body
+            text: ("Hola ?",employees[0].nombre), // plain text body
+            html: `<b> Hola ${employees[0].nombre} su contraseña es: ...</b>`, // html body
         });
     
-    console.log("Message sent: %s", info.messageId);
-    req.flash('success','Se ha enviado la contraseña a su correo electronico') ;
-
+        console.log("Message sent: %s", info.messageId);
+        req.flash('success','Se ha enviado la contraseña a su correo electronico') ;
+        
     }else{
         req.flash('error','El correo ingresado no se encuentra registrado') ;
     }

@@ -17,7 +17,13 @@ const express = require("express");
 const router = express.Router(); 
 const pool = require("../database"); //conexión con la bd
 const { isLoggedIn } = require("../lib/auth"); //validación de acceso
-
+const cloudinary=require('cloudinary');
+cloudinary.config({
+  cloud_name:process.env.CLOUD_NAME,
+  api_key:process.env.API_KEY,
+  api_secret:process.env.API_SECRET
+});
+const fs=require('fs-extra');
 
 /**Método que renderiza la página con la lista de animales
  * 
@@ -84,7 +90,9 @@ router.post("/add", isLoggedIn, async (req, res) => {
   if (req.file == null) {
     ruta_imagen = null;
   } else {
-    ruta_imagen = "uploaded_images/" + req.file.originalname;
+    //ruta_imagen = "uploaded_images/" + req.file.originalname;
+    const result=await cloudinary.v2.uploader.upload(req.file.path);
+    ruta_imagen=result.secure_url;
   }
 
   const newAnimal = {
@@ -105,12 +113,12 @@ router.post("/add", isLoggedIn, async (req, res) => {
     estado: "Sin Adoptar",
   };
 
-  console.log(newAnimal);
+  
   await pool.query("INSERT into Animal set ?", [newAnimal]);
-
+  await fs.unlink(req.file.path);
   req.flash("success", "Registro de animal exitoso");
-
   res.redirect("/animals");
+
 });
 
 

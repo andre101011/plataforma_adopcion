@@ -76,10 +76,11 @@ router.post('/employees/restore_password', async (req,res)=>{
     const {email}=req.body;
 
     const employees=await pool.query('SELECT * FROM Empleado WHERE email=?',[email]);
-    if(employees[0!=null]){
+    
+    if(employees[0]!=null){
         const transporter=nodemailer.createTransport({
-            host: "smtp.ethereal.email",
-            port: 587,
+            host: "server.hostingbricks.com",
+            port: 465,
             secure: true, // true for 465, false for other ports
             auth: {
               user: process.env.EMAIL, 

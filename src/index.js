@@ -33,7 +33,7 @@ const session = require("express-session");
 const passport = require("passport");
 const MySQLStore = require("express-mysql-session");
 const { database } = require("./keys");
-
+var uuid = require('uuid-random');
 
 require("./lib/passport");
 
@@ -49,7 +49,7 @@ app.engine(
     layoutsDir: path.join(app.get("views"), "layouts"),
     partialsDir: path.join(app.get("views"), "partials"),
     extname: ".hbs",
-    helpers: require("./lib/handlebars"),
+    helpers: require("./lib/handlebars.helpers"),
   })
 );
 
@@ -58,7 +58,7 @@ app.set("view engine", "hbs");
 const storage = multer.diskStorage({
   destination: path.join(__dirname, "public/uploaded_images"),
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    cb(null, uuid()+ path.extname(file.originalname).toLowerCase());
   },
 });
 
@@ -134,3 +134,4 @@ app.use(express.static(path.join(__dirname, "public")));
 app.listen(app.get("port"), () => {
   console.log("servidor ejecutandose en el puerto", app.get("port"));
 });
+

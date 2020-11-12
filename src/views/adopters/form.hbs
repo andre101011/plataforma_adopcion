@@ -1,0 +1,95 @@
+<img src="/img/pattern3.svg" class="silhouette">
+<div class="form-main-wrapper animal-add">
+
+    <div class="form-container">
+        <div class="form-content">
+            <form action="/animals/add" method="POST" class="signup-form" enctype="multipart/form-data">
+                <h2 class="form-title"> <i class="fas fa-cat"></i> Registrar Adoptante <i class="fas fa-dog"></i></h2>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Apellido:</label>
+                        <input class="form-control" type="text" name="apellido" required>
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+                        <label>Tipo documento:</label>
+                        <div class="form-group">
+                            <select class="custom-select" name="tipo_documento" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Grande">Cedula Cidudadania</option>
+                                <option value="Mediano">Tarjeta Identidad</option>
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>N° documento:</label>
+                        <input type="text" name="documento_identidad" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Telefono fijo:</label>
+                        <input type="text" name="tel_casa" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>N°Celular:</label>
+                        <input type="text" name="celular" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Municipo Residencia:</label>
+                        <div class="form-group">
+                            <select class="custom-select" name="ciudad" required>
+                                <option value="">Seleccione...</option>
+                                <option value="Grande">Armenia</option>
+                                <option value="Mediano">Calarcá</option>
+                                <option value="Grande">Montenegro</option>
+                                <option value="Grande">Circasia</option>
+                                <option value="Grande">Buenavista</option>
+                                <option value="Grande">Filandia</option>
+                                <option value="Grande">Tebaida</option>
+                                <option value="Grande">Quimbaya</option>
+                                <option value="Grande">Córdoba</option>
+                                <option value="Grande">Génova</option>
+                                <option value="Grande">Salento</option>
+                                <option value="Grande">Piajo</option>
+                                <option value="Grande">Otro</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Dirección:</label>
+                        <input type="text" name="direccion" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Ocupación:</label>
+                        <input type="text" name="ocupacion" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Correo:</label>
+                        <input type="text" name="ciudad" class="form-control" required>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Referencias:</label>
+                        <textarea class="form-control" rows="3" placeholder="Debe agregar por lo menos 2 referencias"
+                            name="referencias" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="form-inline justify-content-end">
+                    <a href="/" class="btn btn-secondary form-control mr-sm-2">Atras</a>
+                    <a href="/adopters/form_part2" class="btn btn-success form-control mr-sm-2">Guardar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

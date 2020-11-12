@@ -28,4 +28,16 @@ router.get("/", isLoggedIn, async (req, res) => {
     res.render("adopters/list", { adopters: adopters });
 });
 
+router.get("/add", isLoggedIn, async (req, res) => {
+    
+     
+    res.render("adopters/add");
+});
+
+router.post("/form_part2", isLoggedIn, async (req, res) => {
+    
+     
+    res.render("adopters/form");
+});
+
 module.exports = router;

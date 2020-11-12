@@ -1,9 +1,10 @@
 /**Modulo que maneja todas las operaciones y transacciones relacionadas
  * con los colaboradores de la fundacion de la fundación, las vistas controladas por este modulo
  * se encuentran en la carpeta views/employees
+ * en el front se llaman colaboradores pero a nivel de backend se llaman empleados
  *
  *
- * @todo 
+ * @todo al dar atras en editar navegue en el caché
  *
  *
  * @author Neyder Figueroa
@@ -111,7 +112,9 @@ router.post('/update', isLoggedIn , async (req,res)=>{
 
 })
 
-
+/**Metodo que elimina un colaborador en la base de datos
+ * 
+ */
 router.get('/delete/:id', isLoggedIn,async (req,res)=>{
 
     const {id}=req.params;

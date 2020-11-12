@@ -469,10 +469,12 @@ button.bg-orange:hover {
   transition: 300ms ease;
   font-family: "Lemonada", serif;
   font-size: 13px;
+ 
 }
 
 .navbar-expand {
   background: #0c85d0;
+  
 }
 
 .navbar-toggler {
@@ -493,21 +495,34 @@ button.bg-orange:hover {
 }
 
 .navbar-collapse {
-  justify-content: center;
+  /*justify-content: center;*/
+  text-align: center;
 }
 
 .dropdown-menu {
+  text-align: center;
   font-size: 13px;
-  background-color: rgba(141, 69, 33, 1);
+  background-color: #8d4521;
   border: none;
+  padding: 0em;
   justify-content: center;
+  
 }
 
+.dropdown {
+  padding-right: 2rem;
+
+}
+
+.dropdown-divider {
+}
 .dropdown-item {
+  
   color: rgb(194, 194, 194);
-  width: auto;
+  text-align: center;
 }
 .dropdown-item:hover {
+  color: rgb(255, 253, 253);
   background-color: rgb(255, 125, 39);
 }
 
@@ -520,10 +535,6 @@ button.bg-orange:hover {
 .sr-only:hover {
   color: rgb(255, 125, 39);
 }
-
-
-
-
 
 /*-------------------------------------------- pa organizar ---------------------------*/
 

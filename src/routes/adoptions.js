@@ -40,7 +40,7 @@ router.get('/add/:id_animal', isLoggedIn, async (req,res)=>{
     const { id_animal } = req.params;
     var persons=await pool.query('SELECT * FROM Adoptante');
     var animal=await pool.query('SELECT * FROM Animal WHERE id_animal=?',[id_animal]);
-    res.render('adoptions/add', { persons: persons, animal:animal[0]});
+    res.render('adoptions/add', { person: persons[0], animal:animal[0]});
 })
 
 router.post('/add',isLoggedIn,async (req,res)=>{
@@ -67,7 +67,28 @@ router.post('/add',isLoggedIn,async (req,res)=>{
 })
 
 
+router.get("/tracing_list", isLoggedIn, async (req, res) => {
+    
+    const tracings = await pool.query("SELECT * FROM Seguimiento");
+  
+    res.render("adoptions/tracing_list", { tracings: tracings });
+});
 
 
+router.get("/add_tracing", isLoggedIn, async (req, res) => {
+    
+  
+   // const tracing = await pool.query("SELECT * FROM Adopcion");
+  
+    res.render("adoptions/add_tracing");
+});
+
+router.post("/add_tracing", isLoggedIn, async (req, res) => {
+    
+  
+    const adoptions = await pool.query("SELECT * FROM Adopcion");
+  
+    res.redirect("adoptions/tracing_list");
+});
 
 module.exports = router;

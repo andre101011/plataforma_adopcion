@@ -8,10 +8,45 @@
 
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label>Nombre Del Animal:</label>
+                        <label>Nombre del animal:</label>
                         <input type="text" name="nombre" value="{{animal.nombre}}" class="form-control" required>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Id del animal:</label>
+                        <input type="text" name="nombre" value="{{animal.id_animal}}" readonly aria-readonly="true"
+                            class="form-control" required>
+                    </div>
 
+                    <div class="col-md-6 mb-3">
+                        <label>Estado de la adopción:</label>
+                        <div class="form-group">
+                            <select class="custom-select" name="estado" required>
+                                <option value="">Seleccione...</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Aprobada">Aprobada</option>
+                                <option value="Denegada">Denegada</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Fecha de estudio:</label>
+                        <input class="form-control" type="date" name="fecha_estudio" id="example-date-input">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Fecha de entrega:</label>
+                        <input class="form-control" type="date" name="fecha_estudio" id="example-date-input">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Cédula del encargado del proceso:</label>
+                        <input type="text" name="nombre" value="{{user.cedula}}" readonly aria-readonly="true"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Observaciones:</label>
+                        <textarea class="form-control" rows="3" name="observaciones" rows="3"></textarea>
+                    </div>
 
                     <div class="col-md-12 mb-3 justify-content-center">
                         <label>Foto del animal:</label>
@@ -26,8 +61,22 @@
 
                         </div>
                     </div>
-
-
+                    <div class="col-md-12 mb-3">
+                        <label>Datos del adoptante:</label>
+                        <div class="card mb-3" style="border-color: rgb(163, 163, 163);">
+                            <div class="card-body form-row">
+                                <div class="col-md-12 mb-3">
+                                    <label>Seleccionar un adoptante(previamente creado):</label>
+                                    <input type="text" name="nombre" value="{{animal.id_animal}}" readonly
+                                        aria-readonly="true" class="form-control" required>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label>Agregar adoptante:</label>
+                                    <button class="btn btn-primary btn-lg btn-block">Agregar Adoptante </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <div class="wrap-login-form-btn">

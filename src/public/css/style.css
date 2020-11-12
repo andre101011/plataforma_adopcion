@@ -71,7 +71,7 @@ h2 {
 
 .heroSection {
   background-image: url("../img/cat_3.jpg");
-  height: 100%;
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -376,7 +376,7 @@ button.bg-orange:hover {
 @media (max-width: 767.98px) {
   .heroSection {
     height: auto;
-    min-height: 90% !important;
+    min-height: 100vh !important;
     background-color: #f85b33;
     background-image: linear-gradient(
         90deg,
@@ -388,6 +388,12 @@ button.bg-orange:hover {
     /*background-attachment: fixed;*/
     background-size: cover;
     background-position: 65% 50%;
+    
+  }
+
+  .heroContent {
+    padding: 20vh 5% 0 5%;
+    position: relative;
   }
 
   .text {
@@ -432,6 +438,10 @@ button.bg-orange:hover {
   .animal-add-container .card-group .card-img-top:hover {
     transform: none;
   }
+  .navbar-collapse{
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
 
 /* Medium devices (tablets, less than 992px)*/
@@ -446,6 +456,8 @@ button.bg-orange:hover {
     width: calc(100% - 30px);
     max-width: 100%;
   }
+
+
 }
 
 /*Large devices (desktops, less than 1200px)*/
@@ -469,12 +481,10 @@ button.bg-orange:hover {
   transition: 300ms ease;
   font-family: "Lemonada", serif;
   font-size: 13px;
- 
 }
 
 .navbar-expand {
   background: #0c85d0;
-  
 }
 
 .navbar-toggler {
@@ -495,8 +505,8 @@ button.bg-orange:hover {
 }
 
 .navbar-collapse {
-  /*justify-content: center;*/
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dropdown-menu {
@@ -506,18 +516,13 @@ button.bg-orange:hover {
   border: none;
   padding: 0em;
   justify-content: center;
-  
 }
 
 .dropdown {
   padding-right: 2rem;
-
 }
 
-.dropdown-divider {
-}
 .dropdown-item {
-  
   color: rgb(194, 194, 194);
   text-align: center;
 }

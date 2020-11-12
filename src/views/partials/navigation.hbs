@@ -8,86 +8,88 @@
   <a class="navbar-brand" href="/">
     <img src="/img/logotipo.svg" width="130" alt="Fundamor" loading="lazy">
   </a>
-  <div class="collapse navbar-collapse justify-content-xl-around" id="navbarNav">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    {{!-- Este div mantiene los anchor centrados, y el logo visible en movil --}}
+    <div class="do-not-delete"></div>
+    <div class="centered">
+      <ul class="navbar-nav">
+        {{#if user}}
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Animales <span class="sr-only">(current)</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/animals/add"><i class="far fa-plus-square"></i> Registrar Nuevo</a>
+            <a class="dropdown-item" href="/animals">Consultar Lista </a>
+          </div>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Adopciones <span class="sr-only">(current)</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/adoptions">Lista de procesos</a>
+            <a class="dropdown-item" href="/adopters">Lista de adoptantes</a>
+          </div>
+        </li>
+        {{/if}}
 
-    <ul class="navbar-nav">
-      {{#if user}}
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Animales <span class="sr-only">(current)</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/animals/add"><i class="far fa-plus-square"></i> Registrar Nuevo</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/animals">Consultar Lista </a>
-        </div>
-      </li>
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Adopciones <span class="sr-only">(current)</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/adoptions">Lista de procesos</a>
-          <a class="dropdown-item" href="/adopters">Lista de adoptantes</a>
-        </div>
-      </li>
-      {{/if}}
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Colaboradores <span class="sr-only">(current)</span>
+          </a>
 
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Colaboradores <span class="sr-only">(current)</span>
-        </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {{#if user}}
 
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          {{#if user}}
-
-          {{#if user.rol}}
-          <a class="dropdown-item" href="/employees/add">Agregar</a>
-          <a class="dropdown-item" href="/employees">Consultar Lista</a>
-          {{else}}
-          <a class="dropdown-item disabled" href="/employees/add" aria-disabled="true">Agregar</a>
-          <a class="dropdown-item disabled" href="/employees" aria-disabled="true">Consultar Lista</a>
+            {{#if user.rol}}
+            <a class="dropdown-item" href="/employees/add">Agregar</a>
+            <a class="dropdown-item" href="/employees">Consultar Lista</a>
+            {{else}}
+            <a class="dropdown-item disabled" href="/employees/add" aria-disabled="true">Agregar</a>
+            <a class="dropdown-item disabled" href="/employees" aria-disabled="true">Consultar Lista</a>
 
 
-          {{/if}}
-          {{else}}
-          <a class="dropdown-item" href="/employees/login"> <i class="fas fa-sign-in-alt"></i> Iniciar Sesion</a>
+            {{/if}}
+            {{else}}
+            <a class="dropdown-item" href="/employees/login"> <i class="fas fa-sign-in-alt"></i> Iniciar Sesion</a>
 
-          {{/if}}
+            {{/if}}
 
-        </div>
+          </div>
 
-      </li>
-      {{#if user}}
-      <li class="nav-item">
-        <a class="nav-link" href="/statistics">Estadisticas</a>
-      </li>
+        </li>
+        {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/statistics">Estadisticas</a>
+        </li>
 
-      {{else}}
-      <li class="nav-item">
-        <a class="nav-link" href="#">Acerca De</a>
-      </li>
-      {{/if}}
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Acerca De</a>
+        </li>
+        {{/if}}
 
-      {{#if user}}
-     
-      <li class="nav-item dropdown justify-content-end">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <span class="sr-only">(current) </span> <i class="fas fa-user"></i>
-          {{user.email}}
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/employees/update/{{user.cedula}}"><i class="fas fa-edit"  ></i>Actualizar datos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/employees/logout"> <i class="fas fa-sign-out-alt"></i>Salir</a>
-        </div>
-      </li>
-     
-      {{/if}}
+        {{#if user}}
+    </div>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">(current) </span> <i class="fas fa-user"></i>
+        {{user.email}}
+      </a>
+      <div class="dropdown-menu user-dropdown">
+        <a class="dropdown-item" href="/employees/update/{{user.cedula}}"><i class="fas fa-edit"></i>Actualizar
+          datos</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/employees/logout"> <i class="fas fa-sign-out-alt"></i>Salir</a>
+      </div>
+    </li>
+
+    {{/if}}
 
     </ul>
 
@@ -101,7 +103,7 @@
     if (prevScrollpos > currentScrollPos) {
       document.getElementById("navbar").style.top = "0";
     } else {
-      document.getElementById("navbar").style.top = "-60px";
+      document.getElementById("navbar").style.top = "-70px";
     }
     prevScrollpos = currentScrollPos;
   }

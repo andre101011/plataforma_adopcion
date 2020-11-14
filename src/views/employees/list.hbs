@@ -1,7 +1,7 @@
 <div class="form-main-wrapper">
     <img src="/img/silueta_logo.svg" class="silhouette">
 
-    <div class="form-container" style="width: 50rem;">
+    <div class="form-container employees-list-container ">
 
         <div class="form-content">
 
@@ -9,42 +9,52 @@
                 Colaboradores con acceso a la plataforma <i class="fas fa-dog"></i></h2>
 
             {{>message}}
-            <div class="table-responsive" >
-                <table id="table" class="cell-border table">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Cedula</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Opciones</th>
-                        </tr>
+            <div class="wrapper">
+                <div class="table">
+                    <thead>
+                        <div class="row header">
+                            <div class="cell">
+                                Nombre
+                            </div>
+                            <div class="cell">
+                                Cedula
+                            </div>
+                            <div class="cell">
+                                Email
+                            </div>
+                            <div class="cell">
+                                Opciones
+                            </div>
+                        </div>
                     </thead>
                     <tbody>
                         {{#each employees}}
-                        <tr>
-                            <td>{{nombre}}</td>
-                            <td>{{cedula}}</td>
-                            <td>{{email}}</td>
-                            <td>
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                        <a class="btn btn-info" href="/employees/update/{{cedula}}"><i
-                                                class="fas fa-edit"></i> </a>
-                                    </div>
-                                    <div></div>
-                                    <div class="col-md-6 mb-3">
-                                        <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
-                                                class="far fa-trash-alt"></i> </a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
+                        <div class="row">
+                            <div class="cell" data-title="Nombre">
+                                {{nombre}}
+                            </div>
+                            <div class="cell" data-title="Cedula">
+                                {{cedula}}
+                            </div>
+                            <div class="cell" data-title="Email">
+                                {{email}}
+                            </div>
+                            <div class="cell" data-title="Opciones">
+                                <a class="btn btn-info" href="/employees/update/{{cedula}}"><i class="fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-danger" href="/employees/delete/{{cedula}}"><i
+                                        class="far fa-trash-alt"></i> </a>
+                            </div>
+                        </div>
                         {{/each}}
                     </tbody>
-                </table>
+                </div>
             </div>
         </div>
+
+
+
+
     </div>
 </div>
 

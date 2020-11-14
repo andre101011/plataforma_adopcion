@@ -43,8 +43,6 @@ router.get("/stat1", async (req, res) => {
   res.render("statistics/statistics", { labels: labels, values: values });
 });
 
-
-
 router.get("/stat2", async (req, res) => {
   var result = await pool.query(
     "SELECT  date_format(fecha_entrega,'%Y-%b') as mes  , SUM(CASE WHEN sexo = 'macho' THEN 1 ELSE 0 END) AS machos  , SUM(CASE WHEN sexo = 'hembra' THEN 1 ELSE 0 END) AS hembras FROM    animal INNER JOIN adopcion ON animal.id_animal = adopcion.id_animal group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
@@ -54,11 +52,15 @@ router.get("/stat2", async (req, res) => {
   valuesH = extractAttributeValuesFromJsonArray(result, "hembras");
   valuesM = extractAttributeValuesFromJsonArray(result, "machos");
 
+  var currentTime = new Date();
+  var year = currentTime.getFullYear();
+
   res.render("statistics/statistics", {
     labels: labels,
     valuesH: valuesH,
     valuesM: valuesM,
     stat: "stat2",
+    year: year,
   });
 });
 

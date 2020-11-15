@@ -194,7 +194,7 @@ button.bg-orange:hover {
 
 /*-------------------------------Animal--------------------------*/
 
-.animal-add-container {
+.animal-list-container {
   margin-top: 47px;
   background-image: linear-gradient(
     45deg,
@@ -203,13 +203,13 @@ button.bg-orange:hover {
   );
   color: var(--palette-black);
 }
-.animal-add-container h2 {
+.animal-list-container h2 {
   padding-left: 5vh;
   padding-top: 2rem;
   font-weight: bold;
 }
 
-.animal-add-container .card-group {
+.animal-list-container .card-group {
   padding: 5vh 2.5vw 5vh 2.5vw;
   display: inline-block;
   position: relative;
@@ -218,7 +218,7 @@ button.bg-orange:hover {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
-.animal-add-container .card-group .card {
+.animal-list-container .card-group .card {
   justify-self: center;
   border-color: transparent;
   border-radius: 10px;
@@ -230,40 +230,40 @@ button.bg-orange:hover {
   -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.36);
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.36);
 }
-.animal-add-container .card-group .card-img-top {
+.animal-list-container .card-group .card-img-top {
   background-color: black;
   margin-top: 3rem;
   object-fit: contain;
   max-height: 50%;
   transition: transform 0.3s;
 }
-.animal-add-container .card-group .card-img-top:hover {
+.animal-list-container .card-group .card-img-top:hover {
   transform: scale(1.5);
 }
 
-.animal-add-container .card-group .card .card-body {
+.animal-list-container .card-group .card .card-body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 0;
 }
 
-.animal-add-container .card-group .card h5 {
+.animal-list-container .card-group .card h5 {
   overflow: hidden;
   line-height: 1;
 }
-.animal-add-container .card-group .card .buttons a {
+.animal-list-container .card-group .card .buttons a {
   display: block;
   height: min-content;
   padding: 0px;
   border-radius: 0;
 }
 
-.animal-add-container .card-group .card .btn-iniciar {
+.animal-list-container .card-group .card .btn-iniciar {
   margin-top: 0.5rem;
   grid-column: 1/-1;
 }
 
-.animal-add-container .card-group .card .caracteristics {
+.animal-list-container .card-group .card .caracteristics {
   background-color: #ebebeb;
   padding: 0.5rem;
   border-radius: 5px;
@@ -457,6 +457,20 @@ button.bg-orange:hover {
   }
 }
 
+/** -------------------------------adoptions-----------------------------*/
+
+.adoptions-add .img-wrap {
+  width: 100%;
+
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+.adoptions-add .animal-img {
+  width: 100%;
+  height: auto;
+}
+
 /*------------------------------------Media Queries------------------------------------------*/
 
 /*Extra small devices (portrait phones, less than 576px)*/
@@ -518,11 +532,11 @@ button.bg-orange:hover {
     left: 0 px;
     width: 100%;
   }
-  .animal-add-container .card-group {
+  .animal-list-container .card-group {
     padding-left: 0;
     padding-right: 0;
   }
-  .animal-add-container .card-group .card-img-top:hover {
+  .animal-list-container .card-group .card-img-top:hover {
     transform: none;
   }
   .navbar-collapse {
@@ -781,12 +795,11 @@ button.bg-orange:hover {
 
 /*-------------------------------------------- Footer ---------------------------*/
 
-/* STYLES SPECIFIC TO FOOTER  */
 .footer {
   width: 100%;
   position: relative;
   height: auto;
-  background-color: #421f0a;
+  background-color: var(--palette-wine);
 }
 .footer .col {
   width: 190px;
@@ -804,7 +817,7 @@ button.bg-orange:hover {
   font-size: 12px;
   line-height: 17px;
   padding: 20px 0px 5px 0px;
-  color: rgba(255, 255, 255, 0.2);
+  color: var(--palette-brown);
   font-weight: normal;
   text-transform: uppercase;
   letter-spacing: 0.25em;
@@ -815,7 +828,7 @@ button.bg-orange:hover {
   padding: 0;
 }
 .footer .col ul li {
-  color: #999999;
+  color: var(--palette-tan);
   font-size: 14px;
   font-family: inherit;
   font-weight: bold;

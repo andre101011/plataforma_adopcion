@@ -1,5 +1,5 @@
 <img src="/img/pattern3.svg" class="silhouette">
-<div class="form-main-wrapper animal-add">
+<div class="form-main-wrapper adoptions-add">
 
     <div class="form-container">
         <div class="form-content">
@@ -50,30 +50,23 @@
 
                     <div class="col-md-12 mb-3 justify-content-center">
                         <label>Foto del animal:</label>
-
-                        <div class="col-md- mb-3">
-                            <div class="card bg-transparent text-white">
-                                <img src="/{{animal.ruta_imagen}}">
-                                <div class="card-img-overlay">
-
-                                </div>
-                            </div>
-
+                        <div class="img-wrap">
+                            <img src="/{{animal.ruta_imagen}}" class="animal-img">
                         </div>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label>Datos del adoptante:</label>
-                        <div class="card mb-3" style="border-color: rgb(163, 163, 163);">
-                            <div class="card-body form-row">
-                                <div class="col-md-12 mb-3">
-                                    <label>Seleccionar un adoptante(previamente creado):</label>
-                                    <input type="text" name="nombre" value="{{animal.id_animal}}" readonly
-                                        aria-readonly="true" class="form-control" required>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label>Agregar adoptante:</label>
-                                    <a href="/adopters/add" class="btn btn-primary btn-lg btn-block">Agregar Adoptante </a>
-                                </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label>Datos del adoptante:</label>
+                    <div class="card mb-3" style="border-color: rgb(163, 163, 163);">
+                        <div class="card-body form-row">
+                            <div class="col-md-12 mb-3">
+                                <label>Seleccionar un adoptante(previamente creado):</label>
+                                <input type="text" name="nombre" value="{{animal.id_animal}}" readonly
+                                    aria-readonly="true" class="form-control" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label>Agregar adoptante:</label>
+                                <a href="/adopters/add" class="btn btn-primary btn-lg btn-block">Agregar Adoptante </a>
                             </div>
                         </div>
                     </div>
@@ -86,9 +79,10 @@
                         </button>
                     </div>
                 </div>
-            </form>
         </div>
+        </form>
     </div>
+</div>
 </div>
 
 <script>

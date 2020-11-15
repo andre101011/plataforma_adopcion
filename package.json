@@ -41,6 +41,7 @@
     "uuid-random": "^1.3.2"
   },
   "devDependencies": {
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.4"
   }
 }

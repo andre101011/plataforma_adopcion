@@ -43,5 +43,8 @@
   "devDependencies": {
     "mocha": "^8.2.1",
     "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }

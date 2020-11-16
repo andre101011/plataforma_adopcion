@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "debug": "cross-env NODE_ENV=development nodemon src",
-    "start": "cross-env NODE_ENV=production node src"
+    "start": "cross-env NODE_ENV=production node src",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -43,8 +44,5 @@
   "devDependencies": {
     "mocha": "^8.2.1",
     "nodemon": "^2.0.4"
-  },
-  "scripts": {
-    "test": "mocha"
   }
 }

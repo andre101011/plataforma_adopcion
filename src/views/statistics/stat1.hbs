@@ -25,6 +25,7 @@
 
     var labels = `{{labels}}`.split(",");
     var values = JSON.parse(`[{{values}}]`);
+    console.log(labels)
 
     new Chart(document.getElementById("canvas"), {
         type: 'bar',
@@ -56,8 +57,7 @@
             }
         }
     });
-    
-    * /
+
 
 
 </script>

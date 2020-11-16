@@ -13,7 +13,7 @@
     var valuesH = JSON.parse(`[{{valuesH}}]`);
     console.log(valuesH)
 
-    new Chart(document.getElementById("doughnut-chart"), {
+    new Chart(document.getElementById("canvas"), {
         type: 'doughnut',
         data: {
             labels: ["Machos", "Hembras"],
@@ -21,7 +21,7 @@
                 {
                     label: "Population (millions)",
                     backgroundColor: ["#3e95cd", "#8e5ea2"],
-                    data: [valuesH, valuesM]
+                    data: [ valuesM,valuesH]
                 }
             ]
         },

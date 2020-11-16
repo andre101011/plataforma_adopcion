@@ -3,7 +3,7 @@
  * se encuentran en la carpeta views/animals
  *
  *
- * @todo Imagen especial para cuando no hay imagen, previsualización de imagen upload
+ * @todo 
  *
  *
  * @author Neyder Figueroa
@@ -24,7 +24,7 @@ cloudinary.config({
   api_secret:process.env.API_SECRET
 });
 const fs=require('fs-extra');
-
+const helpers=require('../lib/helpers');
 /**Método que renderiza la página con la lista de animales
  * 
  */
@@ -65,7 +65,96 @@ router.post("/add", isLoggedIn, async (req, res) => {
     esterilizado,
     desparasitado,
     tamanio,
+    custodia
+  } = req.body;
+
+  if (esterilizado == null) {
+    esterilizado = 0;
+  }
+  if (desparasitado == null) {
+    desparasitado = 0;
+  }
+
+  if (fecha_rescate == "") {
+    fecha_rescate = null;
+  }
+  if (sitio_rescate == "") {
+    sitio_rescate = null;
+  }
+  if (caracteristicas == "") {
+    caracteristicas = null;
+  }
+
+  var ruta_imagen;
+
+  if (req.file == null) {
+    ruta_imagen = null; 
+  } else {
+    ruta_imagen = "uploaded_images/" + req.file.originalname;
+    //const result=await cloudinary.v2.uploader.upload(req.file.path);
+    //ruta_imagen=result.secure_url;
+    await fs.unlink(req.file.path);
+  }
+
+  const newAnimal = {
+    especie,
+    nombre,
+    edad,
+    sexo,
+    caracteristicas,
+    sitio_rescate,
+    fecha_rescate,
+    color,
+    vacunas,
+    esterilizado,
+    desparasitado,
+    tamanio,
+    ruta_imagen,
     custodia,
+    estado:"Sin Adoptar"
+  };
+
+  
+  await pool.query("INSERT into Animal set ?", [newAnimal]);
+  
+  req.flash("success", "Registro de animal exitoso");
+  res.redirect("/animals");
+
+});
+
+
+
+/**Modulo que permite actualizar los datos de los animales
+ * 
+ */
+router.get("/update/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  const animal = await pool.query("SELECT * FROM Animal WHERE id=?", [id]);
+
+  res.render("animals/edit", { animal: animal[0] });
+});
+
+/**Modulo que permite actualizar los datos de los animales
+ * 
+ */
+router.post("/update", isLoggedIn, async (req, res) => {
+  var {
+    id_animal,
+    nombre,
+    edad,
+    sexo,
+    caracteristicas,
+    especie,
+    sitio_rescate,
+    fecha_rescate,
+    color,
+    vacunas,
+    esterilizado,
+    desparasitado,
+    tamanio,
+    custodia,
+    estado,
+    imageName
   } = req.body;
 
   if (esterilizado == null) {
@@ -88,11 +177,16 @@ router.post("/add", isLoggedIn, async (req, res) => {
   var ruta_imagen = "";
 
   if (req.file == null) {
-    ruta_imagen = null;
+    if(imageName==undefined){
+      imageName=null;
+    }
+    ruta_imagen=imageName
   } else {
-    ruta_imagen = "uploaded_images/" + req.file.originalname;
+    //si llega aqui actualiza la imagen y luego la elimina de cloudinary
+    //ruta_imagen = "uploaded_images/" + req.file.originalname;
     //const result=await cloudinary.v2.uploader.upload(req.file.path);
     //ruta_imagen=result.secure_url;
+    await fs.unlink(req.file.path);
   }
 
   const newAnimal = {
@@ -110,35 +204,11 @@ router.post("/add", isLoggedIn, async (req, res) => {
     tamanio,
     ruta_imagen,
     custodia,
-    estado: "Sin Adoptar",
+    estado
   };
 
-  
-  await pool.query("INSERT into Animal set ?", [newAnimal]);
-  await fs.unlink(req.file.path);
-  req.flash("success", "Registro de animal exitoso");
-  res.redirect("/animals");
-
-});
-
-
-
-/**Modulo que permite actualizar los datos de los animales
- * 
- */
-router.get("/update/:id", isLoggedIn, async (req, res) => {
-  const { id } = req.params;
-  const animal = await pool.query("SELECT * FROM Animal WHERE id=?", [id]);
-
-  res.render("animals/edit", { animal: animal[0] });
-});
-
-/**Modulo que permite actualizar los datos de los animales
- * 
- */
-router.post("/update", isLoggedIn, async (req, res) => {
-  const { id } = req.params;
-  await pool.query("UPDATE FROM Animal WHERE id=?", [id]);
+  await pool.query(`UPDATE Animal SET ? WHERE id_animal=${id_animal}`,[newAnimal]);
+  req.flash("success", "Los datos del animal se han actualizado correctamente");
 
   res.redirect("/animals");
 });
@@ -152,16 +222,12 @@ router.get('/detail/:id', isLoggedIn, async (req, res) => {
   const { id } = req.params;
   const animal = await pool.query("SELECT * FROM Animal WHERE id_animal=?", [id]);
  
- 
-  var date=  new Date(animal[0].fecha_rescate);
- 
-  var formatedDate= date.getFullYear()+"-"+ date.toLocaleDateString()+"-"+ date.getDay();
-  console.log((animal[0].fecha_rescate).toString())
-  console.log(formatedDate)
-  
-
+  var date=helpers.formatDate(animal[0].fecha_rescate);
+  animal[0].fecha_rescate=date;
 
   res.render("animals/detail", { animal: animal[0] });
 });
+
+
 
 module.exports = router;

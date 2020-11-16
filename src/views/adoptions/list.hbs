@@ -28,21 +28,24 @@
                             <td>{{fecha_entrega}}</td>
                             <td>{{estado}}</td>
                             <td>
-                                <div class="form-row ">
+                                <div class="form-row justify-content-center">
                                     <div class="col-md-3 mb-2">
                                         <a class="btn btn-info" href="/adoptions/detail/{{id_adopcion}}"><i
-                                                class="fas fa-edit"></i> </a>
+                                                class="fas fa-edit"> </i> Detalles</a>
                                     </div>
-                                    <div></div>
-                                    <div class="col-md-3 mb-3">
-                                        <a class="btn btn-danger" href="/adoptions/delete/{{id_adopcion}}"><i
-                                                class="far fa-trash-alt"></i> </a>
-                                    </div>
+
 
                                     <div class="col-md-3 mb-3">
                                         <a class="btn btn-danger" href="/adoptions/tracings/{{id_adopcion}}"><i
                                                 class=""></i> Seguimientos </a>
                                     </div>
+
+                                    <div class="col-md-3 mb-3">
+                                        <a class="btn btn-danger" href="/adoptions/delete/{{id_adopcion}}"><i
+                                                class="far fa-trash-alt"></i> </a>
+                                    </div>
+
+
 
                                 </div>
                             </td>

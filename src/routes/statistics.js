@@ -15,37 +15,41 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../database");
 
-router.post("/stat1", async (req, res) => {
-  var { barraano } = req.body;
-  console.log(barraano);
 
-  const result = await pool.query(
-    "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
-  );
-
-  labels = extractAttributeValuesFromJsonArray(result, "fecha");
-  values = extractAttributeValuesFromJsonArray(result, "entregados");
-
-  res.render("statistics/statistics", { labels: labels, values: values });
-});
+router.get('/',(req,res)=>{
+  res.render('index');
+})
 
 router.get("/stat1", async (req, res) => {
   var { barraano } = req.body;
   console.log(barraano);
 
   const result = await pool.query(
-    "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
+    "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from Adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
   );
 
   labels = extractAttributeValuesFromJsonArray(result, "fecha");
   values = extractAttributeValuesFromJsonArray(result, "entregados");
 
-  res.render("statistics/statistics", { labels: labels, values: values });
+  res.render("statistics/stat1", { labels: labels, values: values });
 });
 
+router.post("/stat1", async (req, res) => {
+  var { barraano } = req.body;
+  console.log(barraano);
+
+  const result = await pool.query(
+    "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from Adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
+  );
+
+  labels = extractAttributeValuesFromJsonArray(result, "fecha");
+  values = extractAttributeValuesFromJsonArray(result, "entregados");
+
+  res.render("statistics/stat1", { labels: labels, values: values });
+});
 router.get("/stat2", async (req, res) => {
   var result = await pool.query(
-    "SELECT  date_format(fecha_entrega,'%Y-%b') as mes  , SUM(CASE WHEN sexo = 'macho' THEN 1 ELSE 0 END) AS machos  , SUM(CASE WHEN sexo = 'hembra' THEN 1 ELSE 0 END) AS hembras FROM    animal INNER JOIN adopcion ON animal.id_animal = adopcion.id_animal group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
+    "SELECT  date_format(fecha_entrega,'%Y-%b') as mes  , SUM(CASE WHEN sexo = 'macho' THEN 1 ELSE 0 END) AS machos  , SUM(CASE WHEN sexo = 'hembra' THEN 1 ELSE 0 END) AS hembras FROM  Animal INNER JOIN Adopcion ON Animal.id_animal = Adopcion.id_animal group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
   );
   console.log(result);
   labels = extractAttributeValuesFromJsonArray(result, "mes");
@@ -55,7 +59,7 @@ router.get("/stat2", async (req, res) => {
   var currentTime = new Date();
   var year = currentTime.getFullYear();
 
-  res.render("statistics/statistics", {
+  res.render("statistics/stat2", {
     labels: labels,
     valuesH: valuesH,
     valuesM: valuesM,
@@ -73,8 +77,8 @@ router.post("/stat2", async (req, res) => {
     `SELECT  date_format(fecha_entrega,'%Y-%b') as mes ,
     SUM(CASE WHEN sexo = 'macho' THEN 1 ELSE 0 END) AS machos  ,
     SUM(CASE WHEN sexo = 'hembra' THEN 1 ELSE 0 END) AS hembras
-    FROM  animal INNER JOIN adopcion 
-    ON animal.id_animal = adopcion.id_animal
+    FROM Animal INNER JOIN Adopcion 
+    ON Animal.id_animal = Adopcion.id_animal
     where year(fecha_entrega)="${barraano}"
     group by year(fecha_entrega),month(fecha_entrega)
     order by year(fecha_entrega),month(fecha_entrega);`
@@ -85,7 +89,7 @@ router.post("/stat2", async (req, res) => {
   valuesH = extractAttributeValuesFromJsonArray(result, "hembras");
   valuesM = extractAttributeValuesFromJsonArray(result, "machos");
 
-  res.render("statistics/statistics", {
+  res.render("statistics/stat2", {
     labels: labels,
     valuesH: valuesH,
     valuesM: valuesM,
@@ -94,7 +98,7 @@ router.post("/stat2", async (req, res) => {
   });
 });
 
-router.post("/stat3", async (req, res) => {
+router.get("/stat3", async (req, res) => {
   var { barraano } = req.body;
   var barraano = barraano;
   console.log(barraano);
@@ -107,7 +111,7 @@ router.post("/stat3", async (req, res) => {
   valuesH = extractAttributeValuesFromJsonArray(result, "hembras");
   valuesM = extractAttributeValuesFromJsonArray(result, "machos");
 
-  res.render("statistics/statistics", {
+  res.render("statistics/stat3", {
     valuesH: valuesH[0],
     valuesM: valuesM[0],
     stat: "stat3",

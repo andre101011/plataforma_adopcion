@@ -3,13 +3,17 @@
 
     <div class="form-container">
         <div class="form-content">
-            <form action="/animals/update" method="POST" class="signup-form" enctype="multipart/form-data">
+            <form action="/animals/update" method="POST" class="signup-form" enctype="multipart/form-data" novalidate>
                 <h2 class="form-title"> <i class="fas fa-cat"></i> Datos del animal {{animal.id_animal}} <i
                         class="fas fa-dog"></i></h2>
 
                 <div class="form-row">
 
-
+                    <div class="col-md-6 mb-3">
+                        <label>ID del animal:</label>
+                        <input type="text" name="id_animal"  id="inputid" value="{{animal.id_animal}}" class="form-control"
+                            id="id_animal" readonly>
+                    </div>
                     <div class="col-md-6 mb-3">
                         <label>Nombre:</label>
                         <input type="text" name="nombre" value="{{animal.nombre}}" class="form-control" id="nombre"
@@ -39,7 +43,18 @@
                             <div class="invalid-feedback">Example invalid custom select feedback</div>
                         </div>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Estado:</label>
+                        <div class="form-group">
+                            <select class="custom-select" name="estado" id="estado" required disabled>
+                                <option value="">Seleccione...</option>
+                                <option value="Adoptado">Adoptado</option>
+                                <option value="Sin Adoptar">Sin Adoptar</option>
+                                <option value="En proceso">En proceso</option>
+                            </select>
 
+                        </div>
+                    </div>
                     <div class="col-md-6 mb-3">
                         <label>Especie: </label>
                         <div class="form-group">
@@ -86,7 +101,7 @@
 
                     <div class="col-md-6 mb-3">
                         <label>Fecha de rescate:</label>
-                        <input class="form-control" type="date" name="fecha_rescate" value="2020-7-2" id="date"
+                        <input class="form-control" type="date" name="fecha_rescate" value="{{animal.fecha_rescate}}" id="date"
                             readonly>
                     </div>
 
@@ -143,20 +158,13 @@
                         </div>
                     </div>
 
-
                     <div class="col-md-12 mb-3 justify-content-center">
                         <label>Foto del animal:</label>
 
                         <div class="form-row">
-
-                            <div class="col-md-12 mb-3 justify-content-center">
-                                <label>Foto Actual:</label>
-                                <div class="img-wrap">
-                                    <img src="{{animal.ruta_imagen}}" class="animal-img">
-                                </div>
-                            </div>
                             <div class="custom-input-file col-md-6 mb-3">
-                                <input type="file" id="image" class="input-file" name="image" disabled>
+                                <input type="file" id="image" accept="image/*" value="{{animal.ruta_imagen}}"
+                                    class="input-file" name="image" readonly>
                                 <i class="fas fa-upload"></i> Actualizar imagen
                             </div>
                         </div>
@@ -164,10 +172,11 @@
 
                     <div class="col-md-12 mb-3">
                         <div class="card bg-transparent text-white">
-                            <img src="" id="imgSalida" class="card-img">
+                            <img src="{{animal.ruta_imagen}}" id="imgSalida" class="card-img">
+                            <input type="text" name="imageName" value="{{animal.ruta_imagen}}" readonly hidden>
                             <div class="card-img-overlay">
                                 <div class="form-row">
-                                    <label class="card-title" id="imageName">Card title</label>
+                                    <label class="card-title" id="imageName">Imagen Actual</label>
                                 </div>
                             </div>
                         </div>
@@ -189,11 +198,11 @@
 
 <script>
 
-    //document.getElementById('date').value="2020-02-04";
+  //document.getElementById('date').value="2020-02-04";
     $(function () {
         $('#image').change(function (e) {
             document.getElementById('imageName').innerHTML = 'No se ha seleccionado un archivo';
-            $('#imgSalida').attr("src", null);
+            $('#imgSalida').attr("src", `{{animal.ruta_imagen}}`);
             addImage(e);
         });
 
@@ -227,7 +236,7 @@
 
     $(`#tamanio option[value= "{{animal.tamanio}}"`).attr('selected', true);
     $(`#custodia option[value= "{{animal.custodia}}"`).attr('selected', true);
-
+    $(`#estado option[value= "{{animal.estado}}"`).attr('selected', true);
 
     if (`{{animal.especie}}` == "perro") {
 
@@ -254,7 +263,7 @@
         $('#submit').removeAttr("hidden");
         $('button[type=button]').prop("hidden", true);
         $('#nombre').focus();
-
+        $('#inputid').attr("readonly",true);
     }
 
 </script>

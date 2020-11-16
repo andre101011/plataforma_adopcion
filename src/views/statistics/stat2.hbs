@@ -1,0 +1,60 @@
+<div class="stat-main-wrapper">
+    <div class="stat-content">
+        <div class="canvas-wrapper">
+            <canvas id="canvas"></canvas>
+        </div>
+        <form action="/statistics/{{stat}}" method="POST" id="slider-form">
+            <div class="form-group">
+                <input name="barraano" id="year-slider" type="range" class="custom-range" value="{{year}}" min="2016"
+                    max="2020" step="1">
+                <div id="year-label">{{year}}</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+
+    var labels = `{{labels}}`.split(",");
+    var valuesM = JSON.parse(`[{{valuesM}}]`);
+    var valuesH = JSON.parse(`[{{valuesH}}]`);
+    console.log(valuesH)
+
+    new Chart(document.getElementById("canvas"), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: valuesM,
+                label: "Machos",
+                borderColor: "#3e95cd",
+                fill: false
+            }, {
+                data: valuesH,
+                label: "Hembras",
+                borderColor: "#c45850",
+                fill: false
+            }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            title: {
+                display: true,
+                text: 'Animales entregados | Discriminados por sexo'
+            }
+        }
+    });
+
+    var slide = document.getElementById('year-slider'),
+        sliderDiv = document.getElementById("year-label");
+
+    slide.onchange = function () {
+        sliderDiv.innerHTML = this.value;
+        document.getElementById("slider-form").submit();
+    }
+
+
+</script>

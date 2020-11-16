@@ -1,0 +1,63 @@
+<div class="stat-main-wrapper">
+    <div class="stat-content">
+        <div class="canvas-wrapper">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    //Metodo para mezclar el arreglo de colores
+    function shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+    //Colores de google charts
+    var colorArray = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#3366cc", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac", "#b77322", "#16d620", "#b91383", "#f4359e", "#9c5935", "#a9c413", "#2a778d", "#668d1c", "#bea413", "#0c5922", "#743411"];
+    colorArray = shuffle(colorArray);
+
+
+
+    var labels = `{{labels}}`.split(",");
+    var values = JSON.parse(`[{{values}}]`);
+
+    new Chart(document.getElementById("canvas"), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    backgroundColor: colorArray,
+                    data: values
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Número de animales dados en adopción"
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: Math.min.apply(this, values) - 1,
+                        max: Math.max.apply(this, values),
+                        stepSize: 1
+                    }
+                }]
+            }
+        }
+    });
+    
+    * /
+
+
+</script>

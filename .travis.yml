@@ -4,5 +4,5 @@ node_js:
 deploy:
   provider: heroku
   api_key:
-    secure: 7a9bca2d-265a-4350-9989-43a62b9617bc
+    secure: nfs@nfs-Inspiron
   app: adopciones-fundamor-travis

@@ -5,7 +5,7 @@
   <div class="card-group">
     {{#each animals}}
     <div class="card">
-      <img src="{{ruta_imagen}}" class="card-img-top">
+      <img src="{{ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'" class="card-img-top">
       <div class="card-body">
         <h5>Nombre: <br> {{nombre}}</h5>
         <h5>Edad:<br> {{edad}}</h5>

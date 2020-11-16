@@ -188,6 +188,9 @@
                             Habilitar Edición</button>
                         <button type="submit" id="submit" hidden class="btn btn-success form-control mr-sm-2">
                             Guardar</button>
+                        <button type="submit" name="eliminar" class="btn btn-danger" id="delete" hidden
+                            class="btn btn-delete form-control mr-sm-2">
+                            Eliminar</button>
                     </div>
                 </div>
 
@@ -261,6 +264,7 @@
         $('select').removeAttr("disabled");
         $('textarea').removeAttr("readonly");
         $('#submit').removeAttr("hidden");
+        $('#delete').removeAttr("hidden");
         $('button[type=button]').prop("hidden", true);
         $('#nombre').focus();
         $('#inputid').attr("readonly",true);

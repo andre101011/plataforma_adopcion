@@ -63,7 +63,7 @@ router.post('/add',isLoggedIn, isAdmin,async (req,res)=>{
         nombre,
         fundacion: 'fundamor'
     };
-
+    console.log(req.body)
     newPerson.password= await helpers.encryptPassword(password)
 
     await pool.query('INSERT into Empleado set ?',[newPerson]);

@@ -1,6 +1,6 @@
-<div class="form-main-wrapper">
+<div class="form-main-wrapper adopters-list-wrapper">
     <img src="/img/silueta_logo.svg" class="silhouette">
-    <div class="form-container" style="width: 80rem;">
+    <div class="form-container">
         <div class="form-content">
             <h2 class="form-title page-content"> <i class="fas fa-cat"></i>
                 Personas vinculadas a los procesos de adopción <i class="fas fa-dog"></i></h2>
@@ -28,17 +28,10 @@
                             <td>{{correo}}</td>
                             <td>{{direccion}}</td>
                             <td>
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                        <a class="btn btn-info" href="/adopters/get_adopter/{{documento_identidad}}">Ver
-                                            en detalle </a>
-                                    </div>
-                                    <div></div>
-                                    <div class="col-md-6 mb-3">
-                                        <a class="btn btn-danger" href="/adopters/delete/{{documento_identidad}}"><i
-                                                class="far fa-trash-alt"></i> </a>
-                                    </div>
-                                </div>
+                                <a class="btn btn-info" href="/adopters/get_adopter/{{documento_identidad}}">Ver
+                                    en detalle </a>
+                                <a class="btn btn-danger" href="/adopters/delete/{{documento_identidad}}"><i
+                                        class="far fa-trash-alt"></i> </a>
                             </td>
                         </tr>
 

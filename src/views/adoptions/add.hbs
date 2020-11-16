@@ -11,12 +11,14 @@
                     <div class="col-md-12 mb-3 justify-content-center">
                         <label>Animal adoptar:</label>
                         <div class="img-wrap">
-                            <img src="{{animal.ruta_imagen}}" class="animal-img">
+                            <img src="{{animal.ruta_imagen}}" class="animal-img"
+                                onerror="this.src='/img/sin_imagen.png'">
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Nombre del animal:</label>
-                        <input type="text" name="nombre" value="{{animal.nombre}}" class="form-control" readonly required>
+                        <input type="text" name="nombre" value="{{animal.nombre}}" class="form-control" readonly
+                            required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Id del animal:</label>

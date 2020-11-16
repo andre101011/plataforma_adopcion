@@ -471,6 +471,17 @@ button.bg-orange:hover {
   height: auto;
 }
 
+/**-------------------------------------adopters--------------------------*/
+
+.adopters-list-wrapper {
+  background-color: black;
+  min-height: 90vh;
+}
+
+.adopters-list-wrapper .form-container {
+  width: 80rem;
+}
+
 /*------------------------------------Media Queries------------------------------------------*/
 
 /*Extra small devices (portrait phones, less than 576px)*/
@@ -654,8 +665,6 @@ button.bg-orange:hover {
 .custom-input-file:hover {
   background-color: #3c3e4b;
 }
-
-
 
 .custom-input-file .input-file {
   border: 10000px solid transparent;

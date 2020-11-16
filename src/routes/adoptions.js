@@ -38,30 +38,43 @@ router.get("/", isLoggedIn, async (req, res) => {
 
 router.get('/add/:id_animal', isLoggedIn, async (req,res)=>{
     const { id_animal } = req.params;
-    var persons=await pool.query('SELECT * FROM Adoptante');
     var animal=await pool.query('SELECT * FROM Animal WHERE id_animal=?',[id_animal]);
-    res.render('adoptions/add', { person: persons[0], animal:animal[0]});
+    res.render('adoptions/add', {animal:animal[0]});
 })
 
 router.post('/add',isLoggedIn,async (req,res)=>{
    
-    const {email, password,passwordConfirm,cedula,nombre}= req.body;
+    const { id_animal,
+        fecha_estudio,
+        fecha_entrega,
+        Empleado_cedula,
+        estado,
+        observaciones,
+        id_adoptante}= req.body;
+    var adoptante=await pool.query('SELECT * FROM Animal WHERE id_animal=?',[id_adoptante]);
 
-    const newPerson={
-        email,
-        password,
-        cedula,
-        nombre,
-        fundacion: 'fundamor'
-    };
-
-    newPerson.password= await helpers.encryptPassword(password)
-
-    await pool.query('INSERT into Empleado set ?',[newPerson]);
-
-    req.flash('success','Registro de colaborador exitoso') ;
-
-    res.redirect('/adoptions')
+    if (adoptante!=null){
+        const newAdoption={
+            id_animal,
+            fecha_estudio,
+            fecha_entrega,
+            Empleado_cedula,
+            estado,
+            observaciones,
+            id_adoptante
+        };
+    
+        
+        await pool.query('INSERT into Adopcion set ?',[newAdoption]);
+    
+        req.flash('success','El nuevo proceso de adopción ha sido creado con exito') ;
+    
+        res.redirect('/adoptions')
+   
+    }else{
+        req.flash('error','El adoptante no está registrado') ;
+        res.redirect(`/adoptions/add/${id_animal}`)
+    }
 
    
 })
@@ -75,20 +88,33 @@ router.get("/tracing_list", isLoggedIn, async (req, res) => {
 });
 
 
-router.get("/add_tracing", isLoggedIn, async (req, res) => {
+router.get("/add_tracing/:id", isLoggedIn, async (req, res) => {
     
-  
-   // const tracing = await pool.query("SELECT * FROM Adopcion");
-  
-    res.render("adoptions/add_tracing");
+    const {id}=req.params
+    const adoption = await pool.query("SELECT * FROM Adopcion WHERE id_adopcion=?",[id]);
+    res.render("adoptions/add_tracing", {adoption: adoption[0]});
 });
 
 router.post("/add_tracing", isLoggedIn, async (req, res) => {
     
+    const { id_adopcion,
+        id_adoptante,
+        id_animal,
+        fecha_hora,
+        anotaciones,
+        }= req.body;
+
+    const newTracing={
+        id_adopcion,
+        id_adoptante,
+        id_animal,
+        fecha_hora,
+        anotaciones
+    };
+    
+     await pool.query('INSERT into Seguimiento set ?',[newTracing]);
   
-    const adoptions = await pool.query("SELECT * FROM Adopcion");
-  
-    res.redirect("adoptions/tracing_list");
+    res.redirect("/adoptions/tracing_list");
 });
 
 module.exports = router;

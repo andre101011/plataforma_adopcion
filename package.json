@@ -5,10 +5,7 @@
   "main": "index.js",
   "scripts": {
     "debug": "cross-env NODE_ENV=development nodemon src",
-    "start": "cross-env NODE_ENV=production node src",
-    "test": "nyc ./node_modules/.bin/ava -v",
-    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "standard": "standard index.js"
+    "start": "cross-env NODE_ENV=production node src"
   },
   "repository": {
     "type": "git",

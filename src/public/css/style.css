@@ -543,6 +543,9 @@ button.bg-orange:hover {
     left: 0 px;
     width: 100%;
   }
+  .animal-list-container {
+    min-height: 80vh;
+  }
   .animal-list-container .card-group {
     padding-left: 0;
     padding-right: 0;

@@ -1,12 +1,58 @@
 <div class="form-main-wrapper">
-    <img src="/img/silueta_logo.svg" class="silhouette">
+    <img src="/img/silueta_logo.svg" alt="" class="silhouette">
+    <div class="form-container" style="width: 30rem;">
+        <div class="form-content">
+            <form action="/adoptions/add_tracing" method="POST" class="needs-validation" >
+                <h2 class="form-title">Registro De Seguimientos</h2>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+
+                        <label>ID de adopción:</label>
+                        <input class="form-control" type="text" value="{{adoption.id_adopcion}}" name="id_adopcion"
+                            readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>ID adoptante:</label>
+                        <input type="text" name="id_adoptante" readonly value="{{adoption.id_adoptante}}"
+                            class="form-control" required>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>ID animal:</label>
+                        <input type="text" name="id_animal" value="{{adoption.id_animal}}" readonly class="form-control"
+                            required>
+
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Fecha:</label>
+                        <input class="form-control" type="date" name="fecha_hora" id="example-date-input" required>
+                    </div>
+                    <div class="col-md-12 mb-3">
+
+                        <label>Anotaciones:</label>
+                        <textarea class="form-control" rows="3" name="anotaciones" rows="3" required></textarea>
+
+                    </div>
+                    <div class="wrap-login-form-btn">
+                        <div class="login-form-bgbtn"></div>
+                        <button type="submit" class="login-form-btn" id="submit">
+                            Registrar Nuevo
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
 
     <div class="form-container" style="width: 80rem;">
 
         <div class="form-content">
 
             <h2 class="form-title page-content"> <i class="fas fa-cat"></i>
-                Seguimientos a los procesos de adopción<i class="fas fa-dog"></i></h2>
+                Seguimientos al proceso de adopcion {{adoption.id_adopcion}} <i class="fas fa-dog"></i></h2>
 
             {{>message}}
             <div class="table-responsive">
@@ -47,9 +93,6 @@
         </div>
     </div>
 </div>
-
-
-
 <script>
     $(document).ready(function () {
         $('#table').DataTable({

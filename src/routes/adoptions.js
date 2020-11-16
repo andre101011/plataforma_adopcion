@@ -13,8 +13,6 @@
  *
  */
 
-
-
 const express = require("express");
 const router = express.Router(); 
 const pool = require("../database"); //conexión con la bd
@@ -68,7 +66,7 @@ router.post('/add',isLoggedIn,async (req,res)=>{
         await pool.query('INSERT into Adopcion set ?',[newAdoption]);
     
         req.flash('success','El nuevo proceso de adopción ha sido creado con exito') ;
-    
+        
         res.redirect('/adoptions')
    
     }else{
@@ -80,19 +78,12 @@ router.post('/add',isLoggedIn,async (req,res)=>{
 })
 
 
-router.get("/tracing_list", isLoggedIn, async (req, res) => {
-    
-    const tracings = await pool.query("SELECT * FROM Seguimiento");
-  
-    res.render("adoptions/tracing_list", { tracings: tracings });
-});
-
-
-router.get("/add_tracing/:id", isLoggedIn, async (req, res) => {
+router.get("/tracings/:id", isLoggedIn, async (req, res) => {
     
     const {id}=req.params
     const adoption = await pool.query("SELECT * FROM Adopcion WHERE id_adopcion=?",[id]);
-    res.render("adoptions/add_tracing", {adoption: adoption[0]});
+    const tracings = await pool.query("SELECT * FROM Seguimiento WHERE id_adopcion=?",[id]);
+    res.render("adoptions/tracings", {adoption: adoption[0],tracings:tracings});
 });
 
 router.post("/add_tracing", isLoggedIn, async (req, res) => {
@@ -114,7 +105,14 @@ router.post("/add_tracing", isLoggedIn, async (req, res) => {
     
      await pool.query('INSERT into Seguimiento set ?',[newTracing]);
   
-    res.redirect("/adoptions/tracing_list");
+    res.redirect(`/adoptions/tracings/${id_adopcion}`);
 });
+
+router.get('/detail/:id', isLoggedIn, async (req,res)=>{
+    const { id } = req.params;
+    var adoption=await pool.query('SELECT * FROM Adopcion WHERE id_adopcion=?',[id]);
+    var animal=await pool.query('SELECT * FROM Animal WHERE id_animal=?',[adoption[0].id_animal]);
+    res.render('adoptions/detail', {adoption:adoption[0], animal:animal[0]});
+})
 
 module.exports = router;

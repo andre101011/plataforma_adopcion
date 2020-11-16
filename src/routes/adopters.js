@@ -1,4 +1,3 @@
-const { json } = require("express");
 /**Modulo que maneja todas las operaciones y transacciones relacionadas
  * con los interesados en realizar una adopcion, las vistas controladas por este modulo
  * se encuentran en la carpeta views/adoptions
@@ -13,7 +12,6 @@ const { json } = require("express");
  * @copyright Todos los derechos reservados
  *
  */
-
 
 const express = require("express");
 const router = express.Router(); 
@@ -174,7 +172,57 @@ router.post("/form_part3", isLoggedIn, async (req, res) => {
     console.log(adopter);   
     await pool.query("INSERT into Adoptante set ?", [adopter]);
     
+    req1_add=null;
+    req2_add=null;
+
     res.redirect("/adopters");
+});
+
+
+router.get("/get_adopter/:id", isLoggedIn, async (req, res) => {
+
+    const {id}=req.params;
+    const adopter = await pool.query("SELECT * FROM Adoptante WHERE documento_identidad=?",[id]);
+    
+    res.render("adopters/adopter",{adopter:adopter[0]});
+});
+
+router.post("/update", isLoggedIn, async (req, res) => {
+
+    const {nombre,
+        apellido,
+        tipo_documento,
+        documento_identidad,
+        tel_casa,
+        celular,
+        ciudad,
+        direccion,
+        ocupacion,
+        correo}=req.body;
+
+    adoptante={
+        nombre,
+        apellido,
+        tipo_documento,
+        documento_identidad,
+        tel_casa,
+        celular,
+        ciudad,
+        ocupacion,
+        direccion,
+        correo
+    };
+     
+    await pool.query(`UPDATE Adoptante SET ? WHERE documento_identidad=${documento_identidad}`,[adoptante]);
+    res.redirect('/adopters');
+;});
+
+router.get("/delete/:id", isLoggedIn, async (req, res) => {
+
+    const {id}=req.params;
+
+    await pool.query('DELETE FROM Adoptante WHERE documento_identidad=?',[id]);
+    res.render("/adopters");
 });
 
 module.exports = router;

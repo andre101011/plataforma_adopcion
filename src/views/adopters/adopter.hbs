@@ -1,0 +1,104 @@
+<img src="/img/pattern3.svg" class="silhouette">
+<div class="form-main-wrapper animal-add">
+    <div class="form-container">
+        <div class="form-content">
+            <form action="/adopters/update" method="POST">
+                <h2 class="form-title"> <i class="fas fa-cat"></i>Datos Del Adoptante<i class="fas fa-dog"></i></h2>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" value="{{adopter.nombre}}" class="form-control" readonly required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Apellido:</label>
+                        <input class="form-control" type="text" value="{{adopter.apellido}}" name="apellido" readonly required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Tipo documento:</label>
+                        <div class="form-group">
+                            <select class="custom-select" id="td" name="tipo_documento" disabled required>
+                                <option value="">Seleccione...</option>
+                                <option value="C.C">Cedula Cidudadania</option>
+                                <option value="T.I">Tarjeta Identidad</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>N° documento:</label>
+                        <input type="text" maxlength="10" name="documento_identidad"
+                            value="{{adopter.documento_identidad}}" class="form-control" readonly required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Telefono fijo:</label>
+                        <input type="tel" name="tel_casa" maxlength="7" value="{{adopter.tel_casa}}"
+                            class="form-control" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>N°Celular:</label>
+                        <input type="tel" maxlength="10" name="celular" value="{{adopter.celular}}" class="form-control"
+                            readonly>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Municipo Residencia:</label>
+                        <div class="form-group">
+                            <select class="custom-select" id="ciudad" name="ciudad" disabled required>
+
+                                <option value="">Seleccione...</option>
+                                <option value="Armenia">Armenia</option>
+                                <option value="Calarcá">Calarcá</option>
+                                <option value="Montenegro">Montenegro</option>
+                                <option value="Circasia">Circasia</option>
+                                <option value="Buenavista">Buenavista</option>
+                                <option value="Filandia">Filandia</option>
+                                <option value="Tebaida">Tebaida</option>
+                                <option value="Quimbaya">Quimbaya</option>
+                                <option value="Córdoba">Córdoba</option>
+                                <option value="Génova">Génova</option>
+                                <option value="Salento">Salento</option>
+                                <option value="Piajo">Piajo</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Dirección:</label>
+                        <input type="text" name="direccion" value="{{adopter.direccion}}" class="form-control" readonly required> 
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Ocupación:</label>
+                        <input type="text" name="ocupacion" value="{{adopter.ocupacion}}" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Correo:</label>
+                        <input type="email" name="correo" value="{{adopter.correo}}" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="form-inline justify-content-end">
+                    <a href="javascript:history.back()" class="btn btn-secondary form-control mr-sm-2">Atras</a>
+                    <button type="button"  onclick="edit()" class="btn btn-primary form-control mr-sm-2">
+                        Editar</button>
+                    <button type="submit" id="submit" hidden class="btn btn-success form-control mr-sm-2">
+                        Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(`#td option[value= "{{adopter.tipo_documento}}"`).attr('selected', true);
+    $(`#ciudad option[value= "{{adopter.ciudad}}"`).attr('selected', true);
+    function edit() {
+        $('input').removeAttr("readonly");
+        $('select').removeAttr("disabled");
+        $('#submit').removeAttr("hidden");
+        $('button[type=button]').prop("hidden",true);
+       
+    }
+</script>

@@ -3,8 +3,9 @@
 
     <div class="form-container">
         <div class="form-content">
-            <form action="/adoptions/add" method="POST" class="signup-form">
-                <h2 class="form-title"> <i class="fas fa-cat"></i>Nueva Adopción<i class="fas fa-dog"></i></h2>
+            <form action="/adoptions/update" method="POST" class="signup-form">
+                <h2 class="form-title"> <i class="fas fa-cat"></i>Detalle del proceso N° {{adoption.id_adopcion}}<i
+                        class="fas fa-dog"></i></h2>
 
                 <div class="form-row">
 
@@ -14,21 +15,22 @@
                             <img src="{{animal.ruta_imagen}}" class="animal-img">
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Nombre del animal:</label>
-                        <input type="text" name="nombre" value="{{animal.nombre}}" class="form-control" readonly required>
-                    </div>
+
                     <div class="col-md-6 mb-3">
                         <label>Id del animal:</label>
                         <input type="text" name="id_animal" value="{{animal.id_animal}}" readonly aria-readonly="true"
                             class="form-control" required>
                     </div>
-
+                    <div class="col-md-6 mb-3">
+                        <label>Detalles del animal:</label>
+                        <a class="btn btn-info" href="/animals/detail/{{animal.id_animal}}">Ver</a>
+                    </div>
 
 
                     <div class="col-md-6 mb-3">
                         <label>Fecha de estudio:</label>
-                        <input class="form-control" type="date" name="fecha_estudio" id="example-date-input" required>
+                        <input class="form-control" type="date" name="fecha_estudio" id="example-date-input" required
+                            readonly>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha de entrega:</label>
@@ -42,9 +44,9 @@
                     <div class="col-md-6 mb-3">
                         <label>Estado de la adopción:</label>
                         <div class="form-group">
-                            <select class="custom-select" name="estado" required>
+                            <select class="custom-select" id="estado" name="estado" required>
                                 <option value="">Seleccione...</option>
-                                <option value="En proceso" selected>En proceso</option>
+                                <option value="En proceso">En proceso</option>
                                 <option value="Aprobada">Aprobada</option>
                                 <option value="Denegada">Denegada</option>
                             </select>
@@ -53,21 +55,28 @@
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label>Cedula del adoptante(previamente registrado):</label>
-                        <input type="text" name="id_adoptante" required maxlength="10" class="form-control" required>
+                        <label>Cedula del adoptante:</label>
+                        <input type="text" name="id_adoptante" value="{{adoption.id_adoptante}}" required maxlength="10"
+                            class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Detalles del adoptante:</label>
+                        <a class="btn btn-info" href="/adopters/get_adopter/{{adoption.id_adoptante}}">Ver</a>
                     </div>
 
                     <div class="col-md-12 mb-3">
                         <label>Observaciones:</label>
-                        <textarea class="form-control" rows="3" name="observaciones" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" name="observaciones"
+                            rows="3">{{adoption.observaciones}}</textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
+                    <a href="javascript:history.back()" class="btn btn-secondary form-control mr-sm-2">Atras</a>
                     <div class="wrap-login-form-btn">
                         <div class="login-form-bgbtn"></div>
                         <button type="submit" class="login-form-btn">
-                            Crear proceso
+                            Actualizar Datos
                         </button>
                     </div>
                 </div>
@@ -78,5 +87,5 @@
 </div>
 
 <script>
-
+    $(`#estado option[value= "{{adoption.estado}}"`).attr('selected', true);   
 </script>

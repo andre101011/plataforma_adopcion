@@ -1,35 +1,38 @@
-
-
 <img src="/img/pattern3.svg" class="silhouette">
-<div class="form-main-wrapper animal-add">
+<div class="form-main-wrapper adoptions-add">
 
     <div class="form-container">
         <div class="form-content">
-            <form action="/animals/add" method="POST" class="signup-form" enctype="multipart/form-data">
-                <h2 class="form-title"> <i class="fas fa-cat"></i> Datos del animal <i class="fas fa-dog"></i></h2>
+            <form action="/animals/update" method="POST" class="signup-form" enctype="multipart/form-data">
+                <h2 class="form-title"> <i class="fas fa-cat"></i> Datos del animal {{animal.id_animal}} <i
+                        class="fas fa-dog"></i></h2>
 
                 <div class="form-row">
+
+
                     <div class="col-md-6 mb-3">
                         <label>Nombre:</label>
-                        <input type="text" name="nombre" value="{{animal.nombre}}" class="form-control" required>
+                        <input type="text" name="nombre" value="{{animal.nombre}}" class="form-control" id="nombre"
+                            required readonly>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Edad:</label>
-                        <input class="form-control" type="text" value="{{animal.edad}}" name="edad" required>
+                        <input class="form-control" type="text" value="{{animal.edad}}" name="edad" required readonly>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Color:</label>
-                        <input type="text" name="color" class="form-control"value="{{animal.color}}" placeholder="" required>
+                        <input type="text" name="color" class="form-control" value="{{animal.color}}" placeholder=""
+                            required readonly>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Tamaño:</label>
                         <div class="form-group">
-                            <select class="custom-select" name="tamanio"  required>
+                            <select class="custom-select" name="tamanio" id="tamanio" required disabled>
                                 <option value="">Seleccione...</option>
-                                <option value="Grande" >Grande</option>
+                                <option value="Grande">Grande</option>
                                 <option value="Mediano">Mediano</option>
                                 <option value="Pequenio">Pequeño</option>
                             </select>
@@ -42,12 +45,12 @@
                         <div class="form-group">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline1" value="perro" name="especie"
-                                    class="custom-control-input" required>
+                                    class="custom-control-input" required disabled>
                                 <label class="custom-control-label" for="customRadioInline1">Perro</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline2" value="gato" name="especie"
-                                    class="custom-control-input" required>
+                                    class="custom-control-input" required disabled>
                                 <label class="custom-control-label" for="customRadioInline2">Gato</label>
                             </div>
                         </div>
@@ -59,51 +62,68 @@
                         <div class="form-group">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline5" value="macho" name="sexo"
-                                    class="custom-control-input" required>
+                                    class="custom-control-input" required disabled>
                                 <label class="custom-control-label" for="customRadioInline5">Macho</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline4" value="hembra" name="sexo"
-                                    class="custom-control-input" required>
+                                    class="custom-control-input" required disabled>
                                 <label class="custom-control-label" for="customRadioInline4">Hembra</label>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
                         <label>Características:</label>
-                        <textarea class="form-control" rows="3" name="caracteristicas" rows="3">{{animal.caracteristicas}}</textarea>
+                        <textarea class="form-control" rows="3" name="caracteristicas" readonly
+                            rows="3">{{animal.caracteristicas}}</textarea>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Sitio de rescate:</label>
-                        <textarea type="text" name="sitio_rescate" rows="1" class="form-control"
+                        <textarea type="text" name="sitio_rescate" rows="1" class="form-control" readonly
                             placeholder="">{{animal.sitio_rescate}}</textarea>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Fecha de rescate:</label>
-                        <input class="form-control" type="date" name="fecha_rescate" value="2020-7-2"  id="date">
+                        <input class="form-control" type="date" name="fecha_rescate" value="2020-7-2" id="date"
+                            readonly>
                     </div>
 
                     <div class="col-md-12 mb-3">
                         <label>Vacunas:</label>
-                        <textarea type="text" name="vacunas" rows="1" class="form-control" placeholder=""
-                            required>{{animal.vacunas}}</textarea>
+                        <textarea type="text" name="vacunas" rows="1" class="form-control" placeholder="" required
+                            readonly>{{animal.vacunas}}</textarea>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Estado:</label>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
+                                {{#when animal.esterilizado "eq" "1"  }}
+                                <input type="checkbox" class="custom-control-input" checked name="esterilizado"
+                                    value='1' id="customCheck1" disabled>
+                                {{/when}}
+
+                                {{#when animal.esterilizado "eq" "0"  }}
                                 <input type="checkbox" class="custom-control-input" name="esterilizado" value='1'
-                                    id="customCheck1">
+                                    id="customCheck1" disabled>
+                                {{/when}}
                                 <label class="custom-control-label" for="customCheck1">Esterilizado</label>
+
+
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
+                                {{#when animal.desparasitado "eq" "1"  }}
+                                <input type="checkbox" class="custom-control-input" checked name="desparasitado"
+                                    value="1" id="customCheck2" disabled>
+                                {{/when}}
+                                {{#when animal.desparasitado "eq" "0"  }}
                                 <input type="checkbox" class="custom-control-input" name="desparasitado" value="1"
-                                    id="customCheck2">
+                                    id="customCheck2" disabled>
+                                {{/when}}
                                 <label class="custom-control-label" for="customCheck2">Desparasitado</label>
 
                             </div>
@@ -114,12 +134,12 @@
                     <div class="col-md-6 mb-3">
                         <label>Custodia:</label>
                         <div class="form-group">
-                            <select class="custom-select" name="custodia" required>
+                            <select class="custom-select" name="custodia" id="custodia" required disabled>
                                 <option value="">Seleccione...</option>
                                 <option value="Fundamor">Fundamor</option>
                                 <option value="Otros">Otros</option>
                             </select>
-                           
+
                         </div>
                     </div>
 
@@ -128,12 +148,17 @@
                         <label>Foto del animal:</label>
 
                         <div class="form-row">
-                            <div class="custom-input-file col-md-6 mb-3">
 
-                                <input type="file" id="image" class="input-file" name="image">
-                               <i class="fas fa-upload"></i> Subir Imagen  
+                            <div class="col-md-12 mb-3 justify-content-center">
+                                <label>Foto Actual:</label>
+                                <div class="img-wrap">
+                                    <img src="{{animal.ruta_imagen}}" class="animal-img">
+                                </div>
                             </div>
-
+                            <div class="custom-input-file col-md-6 mb-3">
+                                <input type="file" id="image" class="input-file" name="image" disabled>
+                                <i class="fas fa-upload"></i> Actualizar imagen
+                            </div>
                         </div>
                     </div>
 
@@ -144,46 +169,27 @@
                                 <div class="form-row">
                                     <label class="card-title" id="imageName">Card title</label>
                                 </div>
-
                             </div>
                         </div>
+                    </div>
 
+                    <div class="form-inline col-md-12 mb-3 justify-content-end">
+                        <a href="javascript:history.back()" class="btn btn-secondary form-control mr-sm-2">Atras</a>
+                        <button type="button" onclick="edit()" class="btn btn-primary form-control mr-sm-2">
+                            Habilitar Edición</button>
+                        <button type="submit" id="submit" hidden class="btn btn-success form-control mr-sm-2">
+                            Guardar</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="wrap-login-form-btn">
-                        <div class="login-form-bgbtn"></div>
-                        <button type="submit" class="login-form-btn">
-                            Registrar
-                        </button>
-                    </div>
-                </div>
+
             </form>
         </div>
     </div>
 </div>
 
 <script>
-    /**
-    document.getElementById('image').onchange = function (e) {
-        var reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = function () {
-            var preview = document.getElementById('preview'),
-                image = document.createElement('img');
-            image.src = reader.result;
-            preview.innerHTML = '';
-            preview.append(image);
-        };
-    };
 
-
-
-    $(window).load(function(){
-        */
-
-
-//document.getElementById('date').value="2020-02-04";
+    //document.getElementById('date').value="2020-02-04";
     $(function () {
         $('#image').change(function (e) {
             document.getElementById('imageName').innerHTML = 'No se ha seleccionado un archivo';
@@ -201,7 +207,7 @@
                 document.getElementById('imageName').innerHTML = name;
 
 
-                if (!file.type.match(imageType)){
+                if (!file.type.match(imageType)) {
                     alert('tipo de archivo no soportado')
                     return;
                 }
@@ -219,6 +225,36 @@
         }
     });
 
-    
+    $(`#tamanio option[value= "{{animal.tamanio}}"`).attr('selected', true);
+    $(`#custodia option[value= "{{animal.custodia}}"`).attr('selected', true);
+
+
+    if (`{{animal.especie}}` == "perro") {
+
+        $('#customRadioInline1').attr('checked', true);
+    } else {
+
+        $('#customRadioInline2').prop('checked', true);
+    }
+
+
+    if (`{{animal.sexo}}` == "macho") {
+
+        $('#customRadioInline5').attr('checked', true);
+    } else {
+
+        $('#customRadioInline4').prop('checked', true);
+    }
+
+    function edit() {
+        $('input').removeAttr("readonly");
+        $('input').removeAttr("disabled");
+        $('select').removeAttr("disabled");
+        $('textarea').removeAttr("readonly");
+        $('#submit').removeAttr("hidden");
+        $('button[type=button]').prop("hidden", true);
+        $('#nombre').focus();
+
+    }
 
 </script>

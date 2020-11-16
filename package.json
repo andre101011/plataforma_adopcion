@@ -6,9 +6,7 @@
   "scripts": {
     "debug": "cross-env NODE_ENV=development nodemon src",
     "start": "cross-env NODE_ENV=production node src",
-    "test": "nyc ./node_modules/.bin/ava -v",
-    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
-    "standard": "standard index.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -44,18 +42,7 @@
     "uuid-random": "^1.3.2"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
-    "co-exec": "^1.0",
-    "codecov": "^1.0.1",
-    "ghooks": "^1.2.4",
     "mocha": "^8.2.1",
-    "nodemon": "^2.0.4",
-    "nyc": "^10.0.0",
-    "standard": "^8.4.0"
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run standard"
-    }
+    "nodemon": "^2.0.4"
   }
 }

@@ -220,9 +220,17 @@ router.post("/update", isLoggedIn, async (req, res) => {
 router.get("/delete/:id", isLoggedIn, async (req, res) => {
 
     const {id}=req.params;
+    var adopcion=await pool.query('SELECT * FROM Adopcion WHERE id_adoptante=?',[id]);
+    var animal= await pool.query('SELECT * FROM Animal INNER JOIN Adopcion on Animal.id_animal=Adopcion.id_animal WHERE Adopcion.id_adoptante=?',[id]);
 
+    console.log(animal[0]);
+    console.log(adopcion[0]);
+
+    if((adopcion[0].estado=="Denegada" || adopcion[0].estado=="En proceso") && animal[0].estado!="Adoptado"){
+       await pool.query(`UPDATE Animal SET estado="Sin Adoptar" WHERE id_animal="${adopcion[0].id_animal}"`); 
+    }
     await pool.query('DELETE FROM Adoptante WHERE documento_identidad=?',[id]);
-    res.render("/adopters");
+    res.redirect("/adopters");
 });
 
 module.exports = router;

@@ -4,15 +4,19 @@
     <div class="form-container">
         <div class="form-content">
             <form action="/adoptions/update" method="POST" class="signup-form">
-                <h2 class="form-title"> <i class="fas fa-cat"></i>Detalle del proceso N° {{adoption.id_adopcion}}<i
+                <h2 class="form-title"> <i class="fas fa-cat"></i>Detalle del proceso de adopción<i
                         class="fas fa-dog"></i></h2>
 
                 <div class="form-row">
-
+                    <div class="col-md-6 mb-3">
+                        <label>Id del proceso:</label>
+                        <input type="text" name="id_adopcion" value="{{adoption.id_adopcion}}" readonly aria-readonly="true"
+                            class="form-control" required>
+                    </div>
                     <div class="col-md-12 mb-3 justify-content-center">
                         <label>Animal adoptar:</label>
                         <div class="img-wrap">
-                            <img src="{{animal.ruta_imagen}}" class="animal-img">
+                            <img src="{{animal.ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'" class="animal-img">
                         </div>
                     </div>
 
@@ -29,12 +33,13 @@
 
                     <div class="col-md-6 mb-3">
                         <label>Fecha de estudio:</label>
-                        <input class="form-control" type="date" name="fecha_estudio" value="{{adoption.fecha_estudio}}" id="example-date-input" required
-                            readonly>
+                        <input class="form-control" type="date" name="fecha_estudio" value="{{adoption.fecha_estudio}}"
+                            id="example-date-input" required readonly>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha de entrega:</label>
-                        <input class="form-control" type="date" name="fecha_entrega"  value="{{adoption.fecha_entrega}}" id="example-date-input">
+                        <input class="form-control" type="date" id="fecha_entrega" name="fecha_entrega" readonly
+                            value="{{adoption.fecha_entrega}}" id="example-date-input">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Cédula del encargado del proceso:</label>
@@ -44,7 +49,7 @@
                     <div class="col-md-6 mb-3">
                         <label>Estado de la adopción:</label>
                         <div class="form-group">
-                            <select class="custom-select" id="estado" name="estado" required>
+                            <select class="custom-select" id="estado" name="estado" required disabled>
                                 <option value="">Seleccione...</option>
                                 <option value="En proceso">En proceso</option>
                                 <option value="Aprobada">Aprobada</option>
@@ -57,7 +62,7 @@
                     <div class="col-md-6 mb-3">
                         <label>Cedula del adoptante:</label>
                         <input type="text" name="id_adoptante" value="{{adoption.id_adoptante}}" required maxlength="10"
-                            class="form-control" required>
+                            class="form-control" required readonly>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Detalles del adoptante:</label>
@@ -66,26 +71,37 @@
 
                     <div class="col-md-12 mb-3">
                         <label>Observaciones:</label>
-                        <textarea class="form-control" rows="3" name="observaciones"
-                            rows="3">{{adoption.observaciones}}</textarea>
+                        <textarea class="form-control" rows="3" id="observaciones" name="observaciones" rows="3"
+                            readonly>{{adoption.observaciones}}</textarea>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-inline col-md-12 mb-3 justify-content-end">
                     <a href="javascript:history.back()" class="btn btn-secondary form-control mr-sm-2">Atras</a>
-                    <div class="wrap-login-form-btn">
-                        <div class="login-form-bgbtn"></div>
-                        <button type="submit" class="login-form-btn">
-                            Actualizar Datos
-                        </button>
-                    </div>
+                    <button type="button" onclick="edit()" class="btn btn-primary form-control mr-sm-2">
+                        Habilitar Edición</button>
+                    <button type="submit" id="submit" hidden class="btn btn-success form-control mr-sm-2">
+                        Guardar Cambios</button>
                 </div>
+
+            </form>
         </div>
-        </form>
     </div>
-</div>
 </div>
 
 <script>
-    $(`#estado option[value= "{{adoption.estado}}"`).attr('selected', true);   
+    $(`#estado option[value= "{{adoption.estado}}"`).attr('selected', true);
+
+    function edit() {
+
+
+        $('#fecha_entrega').removeAttr("readonly");
+        $('#estado').removeAttr("disabled");
+        $('#observaciones').removeAttr("readonly");
+        $('button[type=button]').prop("hidden", true);
+        $('#submit').removeAttr("hidden");
+        $('#date').focus();
+        
+
+    }
 </script>

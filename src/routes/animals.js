@@ -3,7 +3,7 @@
  * se encuentran en la carpeta views/animals
  *
  *
- * @todo 
+ * @todo
  *
  *
  * @author Neyder Figueroa
@@ -14,19 +14,19 @@
  */
 
 const express = require("express");
-const router = express.Router(); 
+const router = express.Router();
 const pool = require("../database"); //conexión con la bd
 const { isLoggedIn } = require("../lib/auth"); //validación de acceso
-const cloudinary=require('cloudinary');
+const cloudinary = require("cloudinary");
 cloudinary.config({
-  cloud_name:process.env.CLOUD_NAME,
-  api_key:process.env.API_KEY,
-  api_secret:process.env.API_SECRET
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
-const fs=require('fs-extra');
-const helpers=require('../lib/helpers');
+const fs = require("fs-extra");
+const helpers = require("../lib/helpers");
 /**Método que renderiza la página con la lista de animales
- * 
+ *
  */
 router.get("/", isLoggedIn, async (req, res) => {
   const { id } = req.params;
@@ -65,7 +65,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
     esterilizado,
     desparasitado,
     tamanio,
-    custodia
+    custodia,
   } = req.body;
 
   if (esterilizado == null) {
@@ -88,7 +88,7 @@ router.post("/add", isLoggedIn, async (req, res) => {
   var ruta_imagen;
 
   if (req.file == null) {
-    ruta_imagen = null; 
+    ruta_imagen = null;
   } else {
     ruta_imagen = "uploaded_images/" + req.file.originalname;
     //const result=await cloudinary.v2.uploader.upload(req.file.path);
@@ -111,21 +111,17 @@ router.post("/add", isLoggedIn, async (req, res) => {
     tamanio,
     ruta_imagen,
     custodia,
-    estado:"Sin Adoptar"
+    estado: "Sin Adoptar",
   };
 
-  
   await pool.query("INSERT into Animal set ?", [newAnimal]);
-  
+
   req.flash("success", "Registro de animal exitoso");
   res.redirect("/animals");
-
 });
 
-
-
 /**Modulo que permite actualizar los datos de los animales
- * 
+ *
  */
 router.get("/update/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
@@ -135,7 +131,7 @@ router.get("/update/:id", isLoggedIn, async (req, res) => {
 });
 
 /**Modulo que permite actualizar los datos de los animales
- * 
+ *
  */
 router.post("/update", isLoggedIn, async (req, res) => {
   var {
@@ -154,7 +150,7 @@ router.post("/update", isLoggedIn, async (req, res) => {
     tamanio,
     custodia,
     estado,
-    imageName
+    imageName,
   } = req.body;
 
   if (esterilizado == null) {
@@ -177,10 +173,10 @@ router.post("/update", isLoggedIn, async (req, res) => {
   var ruta_imagen = "";
 
   if (req.file == null) {
-    if(imageName==undefined){
-      imageName=null;
+    if (imageName == undefined) {
+      imageName = null;
     }
-    ruta_imagen=imageName
+    ruta_imagen = imageName;
   } else {
     //si llega aqui actualiza la imagen y luego la elimina de cloudinary
     //ruta_imagen = "uploaded_images/" + req.file.originalname;
@@ -204,30 +200,112 @@ router.post("/update", isLoggedIn, async (req, res) => {
     tamanio,
     ruta_imagen,
     custodia,
-    estado
+    estado,
   };
 
-  await pool.query(`UPDATE Animal SET ? WHERE id_animal=${id_animal}`,[newAnimal]);
+  await pool.query(`UPDATE Animal SET ? WHERE id_animal=${id_animal}`, [
+    newAnimal,
+  ]);
   req.flash("success", "Los datos del animal se han actualizado correctamente");
 
   res.redirect("/animals");
 });
 
-
 /**Modulo que permite ver en detalle a los animales y sus datos
- * 
+ *
  */
-router.get('/detail/:id', isLoggedIn, async (req, res) => {
- 
+router.get("/detail/:id", isLoggedIn, async (req, res) => {
   const { id } = req.params;
-  const animal = await pool.query("SELECT * FROM Animal WHERE id_animal=?", [id]);
- 
-  var date=helpers.formatDate(animal[0].fecha_rescate);
-  animal[0].fecha_rescate=date;
+  const animal = await pool.query("SELECT * FROM Animal WHERE id_animal=?", [
+    id,
+  ]);
+
+  var date = helpers.formatDate(animal[0].fecha_rescate);
+  animal[0].fecha_rescate = date;
 
   res.render("animals/detail", { animal: animal[0] });
 });
 
+router.post("/search", isLoggedIn, async (req, res) => {
+  const {
+    search,
+    macho,
+    hembra,
+    Grande,
+    Mediano,
+    Pequenio,
+    gato,
+    perro,
+    adoptado,
+    sinAdoptar,
+    enProceso,
+  } = req.body;
 
+  var animals;
+
+  var filter = {
+    s1: macho,
+    s2: hembra,
+    t1: Grande,
+    t2: Mediano,
+    t3: Pequenio,
+    p1: gato,
+    p2: perro,
+    e1: adoptado,
+    e2: sinAdoptar,
+    e3: enProceso,
+  };
+  
+  var query_filter="and";
+  //filter=JSON.stringify(filter);
+  for (var i in filter) {
+    if (filter.hasOwnProperty(i)) {
+      if (filter[i] != undefined) {
+        if((i+"").startsWith("s")){
+          query_filter+=" sexo="+ `'${filter[i]}'` ;
+
+        }else if((i+"").startsWith("t")){
+          query_filter+=" tamanio="+  `'${filter[i]}'` ;
+
+        }
+        else if((i+"").startsWith("p")){
+
+          query_filter+=" especie="+  `'${filter[i]}'` ;
+
+        }else if((i+"").startsWith("e")){
+          query_filter+=" estado="+  `'${filter[i]}'`;
+        }
+        query_filter+=` and `;
+      }
+      
+      
+    }
+  }
+  query_filter=query_filter.substring(0,query_filter.length-5);
+  console.log(query_filter);
+  var query="SELECT * FROM Animal";
+  var empty=true;
+  if(search !== ""){
+    empty=false;
+    query+=` WHERE ( nombre LIKE '%${search}%' or id_animal LIKE '%${search}%' )`;
+  }
+
+  if (query_filter.length>3) {
+    console.log("entra" + query_filter)
+
+    if(empty){
+      query_filter= query_filter.substring(3,query_filter.length);
+      query+=" WHERE "+query_filter;
+    }else{
+      query+=" "+query_filter;
+    }
+  }
+  console.log(query);
+  
+  animals = await pool.query(query);
+  
+
+  res.render("animals/list", { animals: animals });
+});
 
 module.exports = router;

@@ -34,12 +34,12 @@
                                                 class="fas fa-edit"> </i> Detalles</a>
                                     </div>
 
-
+                                    {{#when estado "eq" "Aprobada"}}
                                     <div class="col-md-3 mb-3">
                                         <a class="btn btn-danger" href="/adoptions/tracings/{{id_adopcion}}"><i
                                                 class=""></i> Seguimientos </a>
                                     </div>
-
+                                    {{/when}}
                                     <div class="col-md-3 mb-3">
                                         <a class="btn btn-danger" href="/adoptions/delete/{{id_adopcion}}"><i
                                                 class="far fa-trash-alt"></i> </a>

@@ -57,9 +57,11 @@ router.post('/add',isLoggedIn,async (req,res)=>{
         estado,
         observaciones,
         id_adoptante}= req.body;
-    var adoptante=await pool.query('SELECT * FROM Adoptante WHERE documento_identidad=?',[id_adoptante]);
 
-    if (adoptante!=null){
+    var adoptante=await pool.query('SELECT * FROM Adoptante WHERE documento_identidad=?',[id_adoptante]);
+    var adoption=await pool.query('SELECT * FROM Adopcion WHERE id_adoptante=?',[id_adoptante]);
+    
+    if (adoptante[0]!=null && adoption[0]==null){
         const newAdoption={
             id_animal,
             id_adoptante,
@@ -70,21 +72,102 @@ router.post('/add',isLoggedIn,async (req,res)=>{
             observaciones,
             
         };
-    
         
+        var animal_state="";
+
+        if(estado=="Aceptada"){
+            animal_state="Adoptado";
+        }else if(estado=="Denegada"){
+            animal_state="Sin Adoptar";
+        }else{
+            animal_state="En proceso";
+        }
+    
+        await pool.query(`UPDATE Animal SET estado="${animal_state}" WHERE id_animal=${id_animal}`); 
         await pool.query('INSERT into Adopcion set ?',[newAdoption]);
-    
+
         req.flash('success','El nuevo proceso de adopción ha sido creado con exito') ;
-        
+    
         res.redirect('/adoptions')
    
     }else{
-        req.flash('error','El adoptante no está registrado') ;
+        
+        if(adoptante[0]==null){
+            req.flash('error','El adoptante no está registrado');
+        }else if(adoption[0]!=null){
+            req.flash('error',`El adoptante ya esta viculado al adopción "${adoption[0].id_adopcion}"`) ;
+        }
+        
         res.redirect(`/adoptions/add/${id_animal}`)
     }
 
    
-})
+});
+
+
+router.post('/update',isLoggedIn,async (req,res)=>{
+   
+    const { 
+        id_adopcion,
+        id_animal,
+        fecha_estudio,
+        fecha_entrega,
+        Empleado_cedula,
+        estado,
+        observaciones,
+        id_adoptante}= req.body;
+
+ 
+    const newAdoption={
+            id_animal,
+            id_adoptante,
+            fecha_estudio,
+            fecha_entrega,
+            Empleado_cedula,
+            estado,
+            observaciones,
+            
+        };
+    var animal_state="";
+    console.log(estado);
+    if(estado=="Aprobada"){
+        animal_state="Adoptado";
+
+    }else if(estado=="Denegada"){
+        animal_state="Sin Adoptar";
+    }else{
+        animal_state="En proceso";
+    }
+  
+    await pool.query(`UPDATE Animal SET estado="${animal_state}" WHERE id_animal=${id_animal}`); 
+    await pool.query(`UPDATE Adopcion SET ? WHERE id_adopcion=${id_adopcion}`,[newAdoption]);
+
+    req.flash('success','Los datos de la adopción se han actualizado correctamente') ;
+    
+    res.redirect('/adoptions'); 
+   
+});
+
+router.get("/delete/:id", isLoggedIn, async (req, res) => {
+    
+    const {id}=req.params;
+    var adopcion=await pool.query('SELECT * FROM Adopcion WHERE id_adopcion=?',[id]);
+    var animal= await pool.query('SELECT * FROM Animal WHERE id_animal=?',[adopcion[0].id_animal]);
+
+    console.log(animal[0]);
+
+    if((adopcion[0].estado=="Denegada" || adopcion[0].estado=="En proceso") && animal[0].estado!="Adoptado"){
+        await pool.query(`UPDATE Animal SET estado="Sin Adoptar" WHERE id_animal="${adopcion[0].id_animal}"`); 
+    }
+    
+    //var animal=await pool.query('SELECT * FROM Animal INNER JOIN Adopcion ON Adopcion.id_animal=Animal.id_animal where Adopcion.id_adopcion=?',[id]);
+
+    //const { especie}=animal[0];
+    await pool.query('DELETE FROM Adopcion WHERE id_adopcion=?',[id]); 
+    req.flash('success','El proceso de adopcion fue removido exitosamente');
+    
+    res.redirect(`/adoptions`);
+});
 
 
 router.get("/tracings/:id", isLoggedIn, async (req, res) => {
@@ -129,8 +212,8 @@ router.post("/add_tracing", isLoggedIn, async (req, res) => {
         fecha_hora,
         anotaciones
     };
-    
-     await pool.query('INSERT into Seguimiento set ?',[newTracing]);
+    req.flash('success','Se ha agregado un nuevo segumiento') ;
+    await pool.query('INSERT into Seguimiento set ?',[newTracing]);
   
     res.redirect(`/adoptions/tracings/${id_adopcion}`);
 });
@@ -143,8 +226,37 @@ router.get('/detail/:id', isLoggedIn, async (req,res)=>{
 
     adoption[0].fecha_estudio=helpers.formatDate(adoption[0].fecha_estudio);
     adoption[0].fecha_entrega=helpers.formatDate(adoption[0].fecha_entrega);
+    if(adoption[0].Empleado_cedula==null){
+        adoption.Empleado_cedula="NO EXISTE";
+    }
     
     res.render('adoptions/detail', {adoption:adoption[0], animal:animal[0]});
+});
+
+router.get('/detail_adoption/:id', isLoggedIn, async (req,res)=>{
+    
+    const { id } = req.params;
+    var id_animal=id.split('&')[0];
+    var state=id.split('&')[1];
+    if(state=="Adoptado"){
+        state="Aprobada";
+    }
+   
+    var adoption=await pool.query(`SELECT * FROM Adopcion WHERE id_animal="${id_animal}" and estado="${state}"`);
+
+    if(adoption[0]!=null){
+        var animal=await pool.query('SELECT * FROM Animal WHERE id_animal=?',[id_animal]);
+        adoption[0].fecha_estudio=helpers.formatDate(adoption[0].fecha_estudio);
+        adoption[0].fecha_entrega=helpers.formatDate(adoption[0].fecha_entrega);
+        if(adoption[0].Empleado_cedula==null){
+            adoption.Empleado_cedula="NO EXISTE";
+        }
+    
+        res.render('adoptions/detail', {adoption:adoption[0], animal:animal[0]});
+    }else{
+        req.flash('error','El proceso de adopción vinculado con este animal no existe') ;
+        res.redirect("/animals")
+    }
 })
 
 module.exports = router;

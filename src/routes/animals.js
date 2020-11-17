@@ -304,8 +304,8 @@ router.post("/search", isLoggedIn, async (req, res) => {
   
   animals = await pool.query(query);
   
-
-  res.render("animals/list", { animals: animals });
+  console.log(filter)
+  res.render("animals/list", { animals: animals, filter:filter});
 });
 
 module.exports = router;

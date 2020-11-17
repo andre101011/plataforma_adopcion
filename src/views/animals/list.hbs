@@ -177,3 +177,37 @@
   {{/if}}
 
 </div>
+
+<script>
+
+
+var filter=`{{filter.p1}}`;
+
+  var filter = {
+    s1: `{{filter.s1}}`,
+    s2: `{{filter.s2}}`,
+    t1: `{{filter.t1}}`,
+    t2: `{{filter.t2}}`,
+    t3: `{{filter.t3}}`,
+    p1: `{{filter.p1}}`,
+    p2: `{{filter.p2}}`,
+    e1: `{{filter.e1}}`,
+    e2: `{{filter.e2}}`,
+    e3: `{{filter.e3}}`,
+  };
+
+console.log(filter);
+var j=1;
+ for (var i in filter) {
+    if (filter.hasOwnProperty(i)) {
+      if (filter[i] != "") {
+        console.log("entra")
+        $('#customCheck'+j).attr('checked', true);
+        
+      }
+      j+=1;
+    }
+ }
+
+
+</script>

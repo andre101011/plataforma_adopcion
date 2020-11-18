@@ -16,7 +16,9 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../database");
 const passport = require("passport");
+const helpers=require('../lib/helpers');
 const nodemailer = require("nodemailer");
+
 const { isNotLoggedIn } = require("../lib/auth");
 
 /**Metodo encargado de renderizar la pagina de login
@@ -72,7 +74,8 @@ router.post("/employees/restore_password", async (req, res) => {
   if (employees[0] != null) {
 
     var newPassword=generatePassword();
-    await pool.query(`UPDATE Empleado SET password="${newPassword}" WHERE email="${email}"`);
+    var newPasswordcif=await helpers.encryptPassword(newPassword);
+    await pool.query(`UPDATE Empleado SET password="${newPasswordcif}" WHERE email="${email}"`);
 
     const transporter = nodemailer.createTransport({
       host: "server.hostingbricks.com",

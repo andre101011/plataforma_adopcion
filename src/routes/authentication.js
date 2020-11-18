@@ -70,6 +70,10 @@ router.post("/employees/restore_password", async (req, res) => {
   ]);
 
   if (employees[0] != null) {
+
+    var newPassword=generatePassword();
+    await pool.query(`UPDATE Empleado SET password="${newPassword}" WHERE email="${email}"`);
+
     const transporter = nodemailer.createTransport({
       host: "server.hostingbricks.com",
       port: 465,
@@ -174,7 +178,7 @@ router.post("/employees/restore_password", async (req, res) => {
                       <tr>
                         <td align="center" valign="top" style="padding: 36px 24px;">
                           <a href="https://adopciones-fundamor.herokuapp.com/" target="_blank" style="display: inline-block;">
-                            <img src="https://avatars3.githubusercontent.com/u/17712149?s=400&u=adf45f14750055b4fd6b590d8de5b65cc4cf6c3a&v=4" alt="Logo" border="0" width="48" style="display: block; width: 120px; max-width: 120px; min-width: 120px;">
+                            <img src="https://res.cloudinary.com/dzlu0xca4/image/upload/v1605676309/imagotipo_ykwjdt.png" alt="Logo" border="0" width="48" style="display: block; width: 120px; max-width: 120px; min-width: 120px;">
                           </a>
                         </td>
                       </tr>
@@ -198,7 +202,7 @@ router.post("/employees/restore_password", async (req, res) => {
                     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                       <tr>
                         <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                          <p style="margin: 0;"> Hola ${employees[0].nombre} su nueva contraseña es: ...</p>
+                          <p style="margin: 0;"> Hola! ${employees[0].nombre} su nueva contraseña es: ${newPassword}</p>
                         </td>
                       </tr>
                       <tr>
@@ -209,7 +213,7 @@ router.post("/employees/restore_password", async (req, res) => {
                                 <table border="0" cellpadding="0" cellspacing="0">
                                   <tr>
                                     <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                                      <a href="https://adopciones-fundamor.herokuapp.com/" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Botón para hacer algo</a>
+                                      <a href="https://adopciones-fundamor.herokuapp.com/employees/login" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Ir a la plataforma</a>
                                     </td>
                                   </tr>
                                 </table>
@@ -243,11 +247,40 @@ router.post("/employees/restore_password", async (req, res) => {
     });
 
     console.log("Message sent: %s", info.messageId);
-    req.flash("success", "Se ha enviado la contraseña a su correo electronico");
+    req.flash("success", "Se ha enviado una nueva contraseña a su correo electronico");
   } else {
     req.flash("error", "El correo ingresado no se encuentra registrado");
   }
   res.redirect("/employees/login");
 });
+
+function generatePassword(){
+
+  var lowerCaseAlp = "abcdefghijklmnopqrstuvwxyz";
+  var upperCaseAlp=lowerCaseAlp.toUpperCase();
+  var numbers = "0123456789";
+
+  var res="";
+  for(var i=0;i<8;i++){
+    
+    
+    
+    var r4=Math.floor(Math.random() * (3- 0) + 0);
+
+    if(r4==0){
+      var r1=Math.floor(Math.random() * (lowerCaseAlp.length - 0) + 0);
+      res+=lowerCaseAlp.charAt(r1);
+    }else if(r4==1){
+      var r2=Math.floor(Math.random() * (upperCaseAlp.length - 0) + 0);
+      res+=upperCaseAlp.charAt(r2);
+    }else{
+      var r3=Math.floor(Math.random() * (numbers.length- 0) + 0);
+      res+=numbers.charAt(r3);
+    }
+  }
+
+  return res;
+
+}
 
 module.exports = router;

@@ -19,7 +19,7 @@ const pool = require("../database"); //conexión con la bd
  */
 router.get('/', async (req,res)=>{
     
-    const animals = await pool.query("SELECT * FROM Animal WHERE estado='Sin Adoptar' ORDER BY fecha_rescate LIMIT 0, 9");
+    const animals = await pool.query("SELECT * FROM Animal WHERE estado='Sin Adoptar' ORDER BY fecha_rescate asc LIMIT 0, 9");
 
 
     res.render('index',{ animals: animals});

@@ -110,9 +110,9 @@ router.post("/add", isLoggedIn, async (req, res) => {
   if (req.file == null) {
     ruta_imagen = null;
   } else {
-    ruta_imagen = "uploaded_images/" + req.file.originalname;
-    //const result=await cloudinary.v2.uploader.upload(req.file.path);
-    //ruta_imagen=result.secure_url;
+    //ruta_imagen = "uploaded_images/" + req.file.originalname;
+    const result=await cloudinary.v2.uploader.upload(req.file.path);
+    ruta_imagen=result.secure_url;
     await fs.unlink(req.file.path);
   }
 

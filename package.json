@@ -6,8 +6,8 @@
   "scripts": {
     "debug": "cross-env NODE_ENV=development nodemon src",
     "start": "cross-env NODE_ENV=production node src",
-    "test": "npx cypress run --spec cypress/integration/pruebas/**/*-spec.js"
-    
+    "test": "npx cypress run --spec cypress/integration/pruebas/**/*-spec.js",
+    "cy:open": "./node_modules/.bin/cypress open"
   },
   "repository": {
     "type": "git",
@@ -48,4 +48,3 @@
     "nodemon": "^2.0.4"
   }
 }
-

@@ -1,5 +1,7 @@
 AI/*
 node_modules/
 src/public/uploaded_images
+cypress/screenshots
+cypress/videos
 .env
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-10-2020 a las 16:19:51
+-- Tiempo de generación: 18-11-2020 a las 19:56:47
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -29,15 +29,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `Adopcion` (
-  `solicitud_adopcion` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`solicitud_adopcion`)),
   `id_adopcion` int(11) NOT NULL,
   `id_animal` int(11) NOT NULL,
   `id_adoptante` varchar(45) NOT NULL,
   `fecha_estudio` date NOT NULL,
-  `fecha_entrega` date NOT NULL,
+  `fecha_entrega` date DEFAULT NULL,
   `estado` varchar(45) NOT NULL,
   `observaciones` varchar(200) DEFAULT NULL,
-  `Empleado_cedula` varchar(45) NOT NULL
+  `Empleado_cedula` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -47,7 +46,6 @@ CREATE TABLE `Adopcion` (
 --
 
 CREATE TABLE `Adoptante` (
-  `id_adoptante` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `tipo_documento` varchar(45) NOT NULL,
@@ -77,8 +75,7 @@ CREATE TABLE `Animal` (
   `caracteristicas` varchar(300) DEFAULT NULL,
   `sitio_rescate` varchar(45) DEFAULT NULL,
   `fecha_rescate` date DEFAULT NULL,
-  `raza` varchar(45) DEFAULT NULL,
-  `color` varchar(45) DEFAULT NULL,
+  `color` varchar(45) NOT NULL,
   `vacunas` varchar(100) NOT NULL,
   `esterilizado` tinyint(1) NOT NULL,
   `desparasitado` tinyint(1) NOT NULL,
@@ -87,15 +84,6 @@ CREATE TABLE `Animal` (
   `custodia` varchar(30) NOT NULL,
   `estado` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `Animal`
---
-
-INSERT INTO `Animal` (`id_animal`, `especie`, `nombre`, `edad`, `sexo`, `caracteristicas`, `sitio_rescate`, `fecha_rescate`, `raza`, `color`, `vacunas`, `esterilizado`, `desparasitado`, `tamanio`, `ruta_imagen`, `custodia`, `estado`) VALUES
-(8, 'perro', 'Neron', '6', 'macho', 'Es un perrito muy tierno, pero es un poco nervioso\r\n', 'Chaguala', '2020-10-22', 'criollo', 'cafe', 'antirrabica', 1, 1, '10', 'uploaded_images/descarga.jpeg', 'Fundamor', 'sin adoptar'),
-(9, 'gato', 'Mishi', '2', 'hembra', 'Es muy jugueton', 'Barrio Guaduales', '2020-10-13', 'no aplica', 'gris', 'antirrabica', 1, 1, '30', 'uploaded_images/descarga (1).jpeg', 'Fundamor', 'sin adoptar'),
-(10, 'gato', 'carey', '3', 'hembra', 'amistoso...', 'llanitos', '2020-10-14', 'no aplica', 'cafe', 'antirrabica', 1, 1, '30', 'uploaded_images/5c8ad782230000d50423cebe.jpeg', 'Fundamor', 'sin adoptar');
 
 -- --------------------------------------------------------
 
@@ -117,9 +105,7 @@ CREATE TABLE `Empleado` (
 --
 
 INSERT INTO `Empleado` (`cedula`, `email`, `password`, `nombre`, `fundacion`, `rol`) VALUES
-('1005095547', 'nfigueroasan@gmail.com', '$2a$10$SBAKjynfNPNFz0pPh4YUsOGuaWxBg1S9LUz0iUldyDPqQib124bT2', 'Neyder', 'fundamor', 'admin'),
-('629475683', 'juan@gmail.com', '$2a$10$PagkiAaKc7bXZ95tfCDcV.rbluBujqTNAOp5U.VePxbsCfU0kwfZe', 'juan', 'fundamor', NULL),
-('987654', 'marcos@gmail.com', '$2a$10$G974WyQJ3vsofauC5AaZte4lmYtfF9abeCvi/r4uUqbygY.GOrWYS', 'marcos', 'fundamor', NULL);
+('1005095547', 'nfigueroasan@gmail.com', '$2a$10$ETDhPsfxwkZcq0T1p5ZWU.XUrx.zYcXDW4Eub1d.WuryrF29agAry', 'nfs', 'fundamor', 'admin');
 
 -- --------------------------------------------------------
 
@@ -128,11 +114,12 @@ INSERT INTO `Empleado` (`cedula`, `email`, `password`, `nombre`, `fundacion`, `r
 --
 
 CREATE TABLE `Seguimiento` (
-  `idSeguimiento` int(11) NOT NULL,
-  `fecha_hora` datetime NOT NULL,
+  `id_seguimiento` int(11) NOT NULL,
+  `fecha_hora` date NOT NULL,
   `anotaciones` varchar(500) NOT NULL,
   `id_animal` int(11) NOT NULL,
-  `id_adoptante` varchar(45) NOT NULL
+  `id_adoptante` varchar(45) NOT NULL,
+  `id_adopcion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -146,16 +133,15 @@ ALTER TABLE `Adopcion`
   ADD PRIMARY KEY (`id_animal`,`id_adoptante`),
   ADD UNIQUE KEY `id_adopcion` (`id_adopcion`) USING BTREE,
   ADD KEY `fk_Adopcion_Animal` (`id_animal`) USING BTREE,
-  ADD KEY `fk_Adopcion_Adoptante` (`id_adoptante`) USING BTREE,
-  ADD KEY `fk_Adopcion_Empleado` (`Empleado_cedula`) USING BTREE;
+  ADD KEY `fk_Adopcion_Empleado` (`Empleado_cedula`) USING BTREE,
+  ADD KEY `fk_Adopcion_Adoptante` (`id_adoptante`);
 
 --
 -- Indices de la tabla `Adoptante`
 --
 ALTER TABLE `Adoptante`
-  ADD PRIMARY KEY (`id_adoptante`),
-  ADD UNIQUE KEY `idadoptante_UNIQUE` (`id_adoptante`),
-  ADD UNIQUE KEY `documento_identidad` (`documento_identidad`),
+  ADD PRIMARY KEY (`documento_identidad`) USING BTREE,
+  ADD UNIQUE KEY `documento_identidad` (`documento_identidad`) USING BTREE,
   ADD UNIQUE KEY `correo` (`correo`);
 
 --
@@ -178,8 +164,9 @@ ALTER TABLE `Empleado`
 -- Indices de la tabla `Seguimiento`
 --
 ALTER TABLE `Seguimiento`
-  ADD PRIMARY KEY (`id_animal`,`id_adoptante`),
-  ADD KEY `fk_Seguimiento_Adopcion` (`id_animal`,`id_adoptante`) USING BTREE;
+  ADD PRIMARY KEY (`id_seguimiento`) USING BTREE,
+  ADD UNIQUE KEY `id_seguimiento` (`id_seguimiento`),
+  ADD KEY `Seguimiento_ibfk_1` (`id_adopcion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -189,13 +176,19 @@ ALTER TABLE `Seguimiento`
 -- AUTO_INCREMENT de la tabla `Adopcion`
 --
 ALTER TABLE `Adopcion`
-  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_adopcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `Animal`
 --
 ALTER TABLE `Animal`
-  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_animal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de la tabla `Seguimiento`
+--
+ALTER TABLE `Seguimiento`
+  MODIFY `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
@@ -205,15 +198,15 @@ ALTER TABLE `Animal`
 -- Filtros para la tabla `Adopcion`
 --
 ALTER TABLE `Adopcion`
-  ADD CONSTRAINT `fk_Adopcion_Adoptante` FOREIGN KEY (`id_adoptante`) REFERENCES `Adoptante` (`id_adoptante`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Adopcion_Animal` FOREIGN KEY (`id_animal`) REFERENCES `Animal` (`id_animal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_Adopcion_Empleado` FOREIGN KEY (`Empleado_cedula`) REFERENCES `Empleado` (`cedula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_Adopcion_Adoptante` FOREIGN KEY (`id_adoptante`) REFERENCES `Adoptante` (`documento_identidad`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Adopcion_Animal` FOREIGN KEY (`id_animal`) REFERENCES `Animal` (`id_animal`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_Adopcion_Empleado` FOREIGN KEY (`Empleado_cedula`) REFERENCES `Empleado` (`cedula`) ON DELETE SET NULL;
 
 --
 -- Filtros para la tabla `Seguimiento`
 --
 ALTER TABLE `Seguimiento`
-  ADD CONSTRAINT `fk_Seguimiento_Adopcion` FOREIGN KEY (`id_animal`,`id_adoptante`) REFERENCES `Adopcion` (`id_animal`, `id_adoptante`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `Seguimiento_ibfk_1` FOREIGN KEY (`id_adopcion`) REFERENCES `Adopcion` (`id_adopcion`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -6,9 +6,3 @@ deploy:
   api_key:
     secure: EI702ubGkufRyjACjFoNCdF987XV3PdKakm4bWNfaWzI7vwe3fJ+g/uJ8hpmL+U7wt0BysPNEXhr1nbpb2XUgfTe6tkPguBDo4sHTKXFAdkMeqjG9RkqlCOCzVY9YAWsT+rN6nR5oIHGP8JxEwTlIuCsZljlZ60cEQIF6jvyNjDherDITnF3LnXwOO61vghZtU/ClIIpMYJ49LYF1IfywsGk6YVl7bIgBRi+lYAPfUZlRtIRbiVaXR5YOWBawnIUrOneXHkavDEuEQL8syFRQJnaw1quSc7ttEFMe7OUpLdzrzGYwQb1zCkl629PN3eYhHfn8l07gjE6vmb+4Xl504bbo1YiBsX7f5Mdz9Ak9FkXQRyCWEXMOXVX0x7KftdTTCo9J/NcxJ84ueRrBqRKGEoK5Aa5HwTQXm42iIisDJBiRgNggiYl2floQgbsfcnn7GWMKjsrs/KNYPhUQL7afybN6BuXkz6FpP0W3Tkpd1wxjzaMPA4f4M5vX2jYp6tp9KYDAjmoZOcmB8ieV01AuibdmMfBfM1GEHwgvnva5/Ekf2fcFjhLB2RyqzlW1IxULGBT4th15/x4p0/+P7vJsKfhRfDugvihKleiAOhb8Idgu07DX/qg6LymYXJm1JmJoggHP3EcnSugKz9Oyv5hsv2Kp8eEozeFDSVrWVUZOds=
   app: adopciones-fundamor
-    cache:
-    directories: - ~/.npm - node_modules
-    install:
--   npm install
-    script:
--   npm run cypress:ci

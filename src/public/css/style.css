@@ -702,7 +702,7 @@ button.bg-orange:hover {
   font-size: 1.8rem;
 }
 .navbar-toggler:hover {
-  background-color: rgb(180, 94, 43);
+  background-color: rgb(180, 43, 43);
   border: 2px double #333;
   opacity: 0.9;
   text-decoration: none;
@@ -718,7 +718,7 @@ button.bg-orange:hover {
 .dropdown-menu {
   text-align: center;
   font-size: 13px;
-  background-color: var(--palette-brown);
+  background-color: var(--palette-red);
   justify-content: center;
 }
 

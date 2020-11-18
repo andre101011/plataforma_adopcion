@@ -41,6 +41,11 @@ describe("Agregar un empleado ", () => {
     beforeEach(() => {
       cy.visit("/employees/login");
 
+
+    });
+
+    it("Ir a agregar y agregar", () => {
+
       cy.request("POST", "/employees/login", {
         email: "nfigueroasan@gmail.com",
         password: "1234567",
@@ -48,9 +53,9 @@ describe("Agregar un empleado ", () => {
 
       cy.visit("/animals");
       cy.url().should("include", "/animals");
-    });
 
-    it("Ir a agregar y agregar", () => {
+
+
       cy.visit("/employees/add");
 
       // Fill the username
@@ -76,11 +81,11 @@ describe("Agregar un empleado ", () => {
         .should("have.value", "12345678");
 
       // Locate and submit the form
-      cy.get('button[name="submit"]').click();
+      cy.get('button[name="registrar"]').click({force:true});
 
-  
+      //cy.get('form').submit()
 
-      cy.url().should("include", "/employess/list");
+      cy.get('.table').should('be.visible');
     });
   });
 });

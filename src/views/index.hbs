@@ -7,7 +7,7 @@
         </div>
 
         <div class="social-container">
-            <a href="https://es-la.facebook.com/fundamorcalarca/" target="_blanc" > <i class="fab fa-facebook"></i></a>
+            <a href="https://es-la.facebook.com/fundamorcalarca/" target="_blanc"> <i class="fab fa-facebook"></i></a>
             <a href="https://www.youtube.com/channel/UCNkfxop_V7eirZh_qmgdWfA" target="_blanc"
                 class="fab fa-youtube"></a>
             <a href="https://www.instagram.com/fundamorcalarca/" target="_blanc" class="fab fa-instagram"></a>
@@ -18,24 +18,12 @@
 
 <div class="carrousel-wrapper">
     <section class="regular slider">
+
+        {{#each animals}}
         <div>
-            <img src="/img/carrousel_images/img2.jpg">
+            <img src="{{ruta_imagen}}">
         </div>
-        <div>
-            <img src="/img/carrousel_images/img3.jpg">
-        </div>
-        <div>
-            <img src="/img/carrousel_images/img4.jpg">
-        </div>
-        <div>
-            <img src="/img/cat_3.jpg">
-        </div>
-        <div>
-            <img src="/img/isotipo.png">
-        </div>
-        <div>
-            <img src="/img/cat_3.jpg">
-        </div>
+        {{/each}}
     </section>
     <script>
         $('.slider').slick({
@@ -49,4 +37,43 @@
             variableWidth: true,
         });
     </script>
+</div>
+
+
+<div class="animal-list-container">
+    <h2>Animales en custodia:</h2>
+
+    {{>message}}
+
+
+
+
+    {{#if animals}}
+    <div class="card-group">
+        {{#each animals}}
+     
+        <div class="card">
+            <img src="{{ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'" class="card-img-top">
+            <div class="card-body">
+                <h5>Nombre: <br> {{nombre}}</h5>
+                <h5>Edad:<br> {{edad}}</h5>
+                <h5>Sexo:<br> {{sexo}}</h5>
+
+                <div class="caracteristics">{{caracteristicas}}</div>
+                <a href="/adopters/add/{{id_animal}}" class="btn btn-warning btn-iniciar">Quiero Adoptarlo</a>
+            </div>
+        </div>
+    
+        {{/each}}
+    </div>
+    {{else}}
+    <h2>Sin resultados</h2>
+
+    {{/if}}
+
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center" id="paginacion">
+            <a type="button" href="/adopters/animals" class="btn btn-warning">VERLOS TODOS</a>
+        </ul>
+    </nav>
 </div>

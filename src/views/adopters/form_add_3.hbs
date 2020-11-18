@@ -4,7 +4,13 @@
     <div class="form-container">
         <div class="form-content">
             <form action="/adopters/form_part3" method="POST" novalidate>
+                   {{#if user}}
                 <h2 class="form-title"> <i class="fas fa-cat"></i> Registrar Adoptante <i class="fas fa-dog"></i></h2>
+
+                {{else}}
+                <h2 class="form-title"> <i class="fas fa-cat"></i>Solicitud de adopción<i class="fas fa-dog"></i></h2>
+
+                {{/if}}
                 <h3>Cuestionario</h3>
                 <div class="form-row">
                     <div class="col-md-12 mb-3">

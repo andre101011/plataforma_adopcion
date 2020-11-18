@@ -329,7 +329,7 @@ router.post("/search", isLoggedIn, async (req, res) => {
 
 
   var animalsPags=animalsPart(actualAnimals,0,maxNumAnimals);
-  res.render("animals/list", { animals: animals, filter:filter, totalPages:Math.ceil(animals.length/maxNumAnimals),actualPage:0});
+  res.render("animals/list", { animals: animalsPags, filter:filter, totalPages:Math.ceil(animals.length/maxNumAnimals),actualPage:0});
 });
 
 

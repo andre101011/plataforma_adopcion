@@ -40,18 +40,15 @@
 </div>
 
 
-<div class="animal-list-container">
+<div class="public animal-list-container">
     <h2>Animales en custodia:</h2>
 
     {{>message}}
 
-
-
-
     {{#if animals}}
     <div class="card-group">
         {{#each animals}}
-     
+
         <div class="card">
             <img src="{{ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'" class="card-img-top">
             <div class="card-body">
@@ -63,19 +60,19 @@
                 <a href="/adopters/add/{{id_animal}}" class="btn btn-warning btn-iniciar">Quiero Adoptarlo</a>
             </div>
         </div>
-    
+
         {{/each}}
     </div>
     {{else}}
     <h2>Sin resultados</h2>
-
     {{/if}}
 
-    <nav aria-label="...">
+    <nav aria-label="..." class="verlos-todos-wrapper">
         <ul class="pagination justify-content-center" id="paginacion">
-            <a type="button" href="/adopters/animals" class="btn btn-warning">VERLOS TODOS</a>
+            <a type="button" href="/adopters/animals" class="btn btn-warning pulse-button">Verlos todos</a>
         </ul>
     </nav>
+
 </div>
 
 <script>

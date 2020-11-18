@@ -25,16 +25,36 @@ cloudinary.config({
 });
 const fs = require("fs-extra");
 const helpers = require("../lib/helpers");
+var actualAnimals;
+var maxNumAnimals=3;
+
 /**Método que renderiza la página con la lista de animales
  *
  */
 router.get("/", isLoggedIn, async (req, res) => {
-  const { id } = req.params;
-
+  
   const animals = await pool.query("SELECT * FROM Animal");
+  actualAnimals=animals;
 
-  res.render("animals/list", { animals: animals });
+  var animalsPags=animalsPart(animals,0,maxNumAnimals);
+
+  res.render("animals/list", { animals: animalsPags ,totalPages:Math.ceil(animals.length/maxNumAnimals),actualPage:0});
 });
+
+
+function animalsPart(data,init,end){
+
+  var res=[];
+
+  for (var i=init;i<end && i<data.length;i++){
+    res.push(data[i]);
+  }
+  console.log(res);
+  return res;
+ 
+
+}
+
 
 /**Método que renderiza la pagina add.hbs
  * que se encuentra en la carpeta views/animals
@@ -300,12 +320,33 @@ router.post("/search", isLoggedIn, async (req, res) => {
       query+=" "+query_filter;
     }
   }
-  console.log(query);
+  //console.log(query);
   
   animals = await pool.query(query);
+  //console.log(filter)
+
+  actualAnimals=animals;
+
+
+  var animalsPags=animalsPart(actualAnimals,0,maxNumAnimals);
+  res.render("animals/list", { animals: animals, filter:filter, totalPages:Math.ceil(animals.length/maxNumAnimals),actualPage:0});
+});
+
+
+/**Modulo que permite cambiar de pagina
+ *
+ */
+router.get("/pag/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  const animals = await pool.query("SELECT * FROM Animal");
+  actualAnimals=animals;
+ 
+  var pag=id;
+  var actualPage=parseInt(pag)*maxNumAnimals;
+  var animalsPags=animalsPart(actualAnimals,actualPage,actualPage+maxNumAnimals);
   
-  console.log(filter)
-  res.render("animals/list", { animals: animals, filter:filter});
+ 
+  res.render("animals/list", { animals:animalsPags,totalPages:Math.ceil(animals.length/maxNumAnimals),actualPage:id});
 });
 
 module.exports = router;

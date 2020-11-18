@@ -166,24 +166,6 @@
 </div>
 
 <script>
-    /**
-    document.getElementById('image').onchange = function (e) {
-        var reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = function () {
-            var preview = document.getElementById('preview'),
-                image = document.createElement('img');
-            image.src = reader.result;
-            preview.innerHTML = '';
-            preview.append(image);
-        };
-    };
-
-
-
-    $(window).load(function(){
-        */
-
     $(function () {
         $('#image').change(function (e) {
             document.getElementById('imageName').innerHTML = 'No se ha seleccionado un archivo';

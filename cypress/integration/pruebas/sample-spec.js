@@ -34,8 +34,8 @@ describe("La pagina de login", () => {
       cy.url().should("include", "/animals");
     });
   });
+  
 });
-
 
 
 describe("Buscar Animal", () => {

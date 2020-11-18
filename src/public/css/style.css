@@ -211,12 +211,15 @@ button.bg-orange:hover {
   background-color: var(--palette-white);
   padding-top: 3rem;
   padding-bottom: 2rem;
-
-  
 }
 .public.animal-list-container .verlos-todos-wrapper a {
-  padding: 1rem;  color: var(--palette-red);
+  padding: 1rem;
+  color: var(--palette-red);
   font-weight: bold;
+}
+.animal-list-container .pagination {
+  margin: 0;
+  padding-bottom:2rem;
 }
 
 .pulse-button {

@@ -153,11 +153,11 @@
   {{/if}}
 
 
-  
 
 
-  <nav aria-label="..." >
-    <ul class="pagination justify-content-center" id="paginacion">
+
+  <nav aria-label="...">
+    <ul class="pagination justify-content-center" id="paginacion" style="margin-bottom:0 !important;">
 
     </ul>
   </nav>
@@ -200,14 +200,14 @@
   console.log(numPages);
 
 
-  if(actualPage==0){
-  $("#paginacion").append(`
+  if (actualPage == 0) {
+    $("#paginacion").append(`
       <li class="page-item disabled">
       <a class="page-link" href="/animals/pag/${actualPage}"> Atras</a>
       </li>
       `);
-  }else{
-     $("#paginacion").append(`
+  } else {
+    $("#paginacion").append(`
       <li class="page-item ">
       <a class="page-link" href="/animals/pag/${actualPage - 1}">Atras</a>
       </li>
@@ -227,14 +227,14 @@
     }
 
   }
-  if((actualPage+1)==numPages){
-  $("#paginacion").append(`
+  if ((actualPage + 1) == numPages) {
+    $("#paginacion").append(`
       <li class="page-item disabled">
-      <a class="page-link" href="/animals/pag/${actualPage+1}"> Siguiente</a>
+      <a class="page-link" href="/animals/pag/${actualPage + 1}"> Siguiente</a>
       </li>
       `);
-  }else{
-     $("#paginacion").append(`
+  } else {
+    $("#paginacion").append(`
       <li class="page-item ">
       <a class="page-link" href="/animals/pag/${actualPage + 1}">Siguiente</a>
       </li>

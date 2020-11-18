@@ -112,10 +112,6 @@
         </div>
       </div>
     </div>
-
-
-
-
   </form>
 
 
@@ -156,6 +152,15 @@
 
   {{/if}}
 
+
+  
+
+
+  <nav aria-label="..." >
+    <ul class="pagination justify-content-center" id="paginacion">
+
+    </ul>
+  </nav>
 </div>
 
 <script>
@@ -176,16 +181,67 @@
     e3: `{{filter.e3}}`,
   };
 
-  console.log(filter);
   var j = 1;
   for (var i in filter) {
     if (filter.hasOwnProperty(i)) {
       if (filter[i] != "") {
+
         $('#customCheck' + j).attr('checked', true);
+
       }
       j += 1;
     }
   }
+
+  //---------------------------paginacíon
+
+  var numPages = parseInt('{{totalPages}}');
+  var actualPage = parseInt('{{actualPage}}');
+  console.log(numPages);
+
+
+  if(actualPage==0){
+  $("#paginacion").append(`
+      <li class="page-item disabled">
+      <a class="page-link" href="/animals/pag/${actualPage}"> Atras</a>
+      </li>
+      `);
+  }else{
+     $("#paginacion").append(`
+      <li class="page-item ">
+      <a class="page-link" href="/animals/pag/${actualPage - 1}">Atras</a>
+      </li>
+      `);
+  }
+
+  for (var i = 0; i < numPages; i++) {
+
+    if (actualPage != i) {
+      $("#paginacion").append(`
+      <li class="page-item"><a class="page-link" href="/animals/pag/${i}">${i + 1}</a></li>
+      `);
+    } else {
+      $("#paginacion").append(`
+        <li class="page-item active"><a class="page-link" href="/animals/pag/${i}">${i + 1}</a></li>
+      `);
+    }
+
+  }
+  if((actualPage+1)==numPages){
+  $("#paginacion").append(`
+      <li class="page-item disabled">
+      <a class="page-link" href="/animals/pag/${actualPage+1}"> Siguiente</a>
+      </li>
+      `);
+  }else{
+     $("#paginacion").append(`
+      <li class="page-item ">
+      <a class="page-link" href="/animals/pag/${actualPage + 1}">Siguiente</a>
+      </li>
+      `);
+  }
+
+
 
 
 </script>

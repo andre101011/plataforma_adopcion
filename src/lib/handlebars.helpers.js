@@ -50,6 +50,7 @@ module.exports = {
   for: function (init, end, incr, block) {
     accum = "";
     for (var i = init; i < end; i += incr) {
+      
       accum += block.fn(i);
     }
     return accum;

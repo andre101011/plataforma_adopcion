@@ -65,17 +65,17 @@ router.get("/employees/logout_page", async (req, res) => {
  * enviarla al correo del colaborador
  */
 router.post("/employees/restore_password", async (req, res) => {
-  const { email } = req.body;
+  const { emailRec } = req.body;
 
   const employees = await pool.query("SELECT * FROM Empleado WHERE email=?", [
-    email,
+    emailRec,
   ]);
 
   if (employees[0] != null) {
 
     var newPassword=generatePassword();
     var newPasswordcif=await helpers.encryptPassword(newPassword);
-    await pool.query(`UPDATE Empleado SET password="${newPasswordcif}" WHERE email="${email}"`);
+    await pool.query(`UPDATE Empleado SET password="${newPasswordcif}" WHERE email="${emailRec}"`);
 
     const transporter = nodemailer.createTransport({
       host: "server.hostingbricks.com",
@@ -89,7 +89,7 @@ router.post("/employees/restore_password", async (req, res) => {
 
     const info = await transporter.sendMail({
       from: `"Plataforma Adopcion" ${process.env.EMAIL}`, // sender address
-      to: `${email}`, // list of receivers
+      to: `${emailRec}`, // list of receivers
       subject: "Recuperacion de contraseña", // Subject line
       text: ("Hola ?", employees[0].nombre), // plain text body
       html: `<!DOCTYPE html>

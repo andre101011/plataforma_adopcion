@@ -37,7 +37,7 @@ describe("La pagina de login ", () => {
 
     it("loggearse sin ui", () => {
 
-      cy.request('POST', '/login', {
+      cy.request('POST', '/employees/login', {
         email:"nfigueroasan@gmail.com",
         password:"1234",
       })

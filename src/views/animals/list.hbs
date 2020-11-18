@@ -3,21 +3,17 @@
 
   {{>message}}
 
+  <form action="/animals/search" method="POST" class="form-inline my-2 my-lg-0 justify-content-center filter-form">
+    <div class="filtros">
+      <h5>Filtros de busqueda</h5>
+      <input class="form-control" name="search" type="search">
+      <button class="btn btn-success" type="submit">Buscar</button>
 
-
-
-  <form action="/animals/search" method="POST" class="form-inline my-2 my-lg-0 justify-content-center">
-    <input class="form-control mr-sm-2" name="search" type="search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-
-
-
-
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal">
-      Filtrar por
-    </button>
-
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Filtrar por
+      </button>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modalFilter"
       aria-hidden="true">
@@ -30,45 +26,52 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="form-row justify-content-lg-start">
-              <div class="col-md-12 mb-3">
-                <label>Sexo:</label>
-
+            <div class="row" style="margin: auto">
+              <div class="col-sm-6">Sexo:
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="macho" value="macho" id="customCheck1">
                     <label class="custom-control-label" for="customCheck1">Macho</label>
 
                   </div>
-                </div>
-
-                <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="hembra" value="hembra" id="customCheck2">
                     <label class="custom-control-label" for="customCheck2">Hembra</label>
 
                   </div>
                 </div>
+              </div>
+              <div class="col-sm-6">
+                Especie:
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="perro" value="perro" id="customCheck7">
+                    <label class="custom-control-label" for="customCheck7">Perro</label>
 
-                <label>Tamaño:</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="gato" value="gato" id="customCheck6">
+                    <label class="custom-control-label" for="customCheck6">Gato</label>
 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row " style="margin: auto; margin-top: 1rem;">
+              <div class="col-sm-6">
+                Tamaño:
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="Grande" value="Grande" id="customCheck3">
                     <label class="custom-control-label" for="customCheck3">Grande</label>
 
                   </div>
-                </div>
-
-                <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="Mediano" value="Mediano"
                       id="customCheck4">
                     <label class="custom-control-label" for="customCheck4">Mediano</label>
 
                   </div>
-                </div>
-                <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="Pequenio" value="Pequenio"
                       id="customCheck5">
@@ -76,27 +79,9 @@
 
                   </div>
                 </div>
-
-                <label>Especie:</label>
-
-                <div class="form-group">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="gato" value="gato" id="customCheck6">
-                    <label class="custom-control-label" for="customCheck6">Gato</label>
-
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="perro" value="perro" id="customCheck7">
-                    <label class="custom-control-label" for="customCheck7">Perro</label>
-
-                  </div>
-                </div>
-
-                <label>Estado:</label>
-
+              </div>
+              <div class="col-sm-6">
+                Estado:
                 <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="adoptado" value="Adoptado"
@@ -104,17 +89,12 @@
                     <label class="custom-control-label" for="customCheck8">Adoptado</label>
 
                   </div>
-                </div>
-
-                <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="sinAdoptar" value="Sin adoptar"
                       id="customCheck9">
                     <label class="custom-control-label" for="customCheck9">Sin Adoptar</label>
 
                   </div>
-                </div>
-                <div class="form-group">
                   <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="enProceso" value="En Proceso"
                       id="customCheck10">

@@ -15,12 +15,12 @@ describe("Pagina principal",
       it('loggearse', () => {
        
         // Fill the username
-        cy.get('input[name="email"]')
+        cy.get('input[id="email"]')
           .type('nfigueroasan@gmail.com')
           .should('have.value', 'nfigueroasan@gmail.com');
     
         // Fill the password
-        cy.get('input[name="password"]')
+        cy.get('input[id="password"]')
           .type('1234')
           .should('have.value', '1234');
     

@@ -1,5 +1,5 @@
 AI/*
-node_modules
+node_modules/
 src/public/uploaded_images
 .env
 

@@ -28,3 +28,22 @@ describe("La pagina de login", () => {
     });
   });
 });
+
+describe("La pagina de login ", () => {
+  context("Startup", () => {
+    beforeEach(() => {
+      cy.visit("/employees/login");
+    });
+
+    it("loggearse sin ui", () => {
+
+      cy.request('POST', '/login', {
+        email:"nfigueroasan@gmail.com",
+        password:"1234",
+      })
+      cy.visit('/animals')
+
+      cy.url().should("include", "/animals");
+    });
+  });
+});

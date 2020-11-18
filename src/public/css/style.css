@@ -476,6 +476,16 @@ button.bg-orange:hover {
   height: auto;
 }
 
+@media (max-width: 767.98px) {
+  .adoptions-list-wrapper .form-container .form-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .adoptions-list-wrapper .form-content {
+    padding: 5%;
+  }
+}
+
 /**-------------------------------------adopters--------------------------*/
 
 .adopters-list-wrapper {
@@ -487,14 +497,14 @@ button.bg-orange:hover {
   width: 80vw;
 }
 
-/*Extra small devices (portrait phones, less than 576px)*/
-/*max-width: 575.98px*/
 @media (max-width: 767.98px) {
   .adopters-list-wrapper .form-container .form-title {
-    font-size: 1.5rem ;
+    font-size: 1.5rem;
     text-align: center;
   }
-  .adopters-list-wrapper .form-content{padding: 5%;}
+  .adopters-list-wrapper .form-content {
+    padding: 5%;
+  }
 }
 
 /*------------------------------------Media Queries------------------------------------------*/

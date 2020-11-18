@@ -1,7 +1,7 @@
-<div class="form-main-wrapper">
+<div class="form-main-wrapper adoptions-list-wrapper">
     <img src="/img/silueta_logo.svg" class="silhouette">
 
-    <div class="form-container" >
+    <div class="form-container">
 
         <div class="form-content">
 
@@ -28,35 +28,27 @@
                             <td>{{fecha_entrega}}</td>
                             <td>{{estado}}</td>
                             <td>
-                                <div class="form-row justify-content-center">
-                                    <div class="col-md-3 mb-2">
-                                        <a class="btn btn-info" href="/adoptions/detail/{{id_adopcion}}"><i
-                                                class="fas fa-edit"> </i></a>
-                                    </div>
-
-                                    {{#when estado "eq" "Aprobada"}}
-                                    <div class="col-md-3 mb-3">
-                                        <a class="btn btn-danger" href="/adoptions/tracings/{{id_adopcion}}"><i
-                                                class=""></i> Seguimientos </a>
-                                    </div>
-                                    {{/when}}
-                                    <div class="col-md-3 mb-3">
-                                        <a class="btn btn-danger" href="/adoptions/delete/{{id_adopcion}}"><i
-                                                class="far fa-trash-alt"></i> </a>
-                                    </div>
+                                <a class="btn btn-info" href="/adoptions/detail/{{id_adopcion}}"><i class="fas fa-edit">
+                                    </i></a>
+                                {{#when estado "eq" "Aprobada"}}
+                                <a class="btn btn-danger" href="/adoptions/tracings/{{id_adopcion}}"><i class=""></i>
+                                    Seguimientos </a>
+                                {{/when}}
+                                <a class="btn btn-danger" href="/adoptions/delete/{{id_adopcion}}"><i
+                                        class="far fa-trash-alt"></i> </a>
 
 
 
-                                </div>
-                            </td>
-                        </tr>
-
-                        {{/each}}
-                    </tbody>
-                </table>
             </div>
+            </td>
+            </tr>
+
+            {{/each}}
+            </tbody>
+            </table>
         </div>
     </div>
+</div>
 </div>
 
 

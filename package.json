@@ -6,7 +6,7 @@
   "scripts": {
     "debug": "cross-env NODE_ENV=development nodemon src",
     "start": "cross-env NODE_ENV=production node src",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx cypress run --spec cypress/integration/pruebas/**/*-spec.js",
     "cy:open": "./node_modules/.bin/cypress open"
   },
   "repository": {

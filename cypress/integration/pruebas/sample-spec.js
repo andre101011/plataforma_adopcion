@@ -36,59 +36,7 @@ describe("La pagina de login", () => {
   });
 });
 
-describe("Agregar un empleado ", () => {
-  context("Startup", () => {
-    beforeEach(() => {
-      cy.visit("/employees/login");
 
-
-    });
-
-    it("Ir a agregar y agregar", () => {
-
-      cy.request("POST", "/employees/login", {
-        email: "nfigueroasan@gmail.com",
-        password: "1234567",
-      });
-
-      cy.visit("/animals");
-      cy.url().should("include", "/animals");
-
-
-
-      cy.visit("/employees/add");
-
-      // Fill the username
-      cy.get('input[name="nombre"]')
-        .type("cipress1")
-        .should("have.value", "cipress1");
-
-      // Fill the password
-      cy.get('input[name="email"]')
-        .type("test1@gmail.com")
-        .should("have.value", "test1@gmail.com");
-
-      cy.get('input[name="cedula"]')
-        .type("423637484")
-        .should("have.value", "423637484");
-
-      cy.get('input[name="password"]')
-        .type("12345678")
-        .should("have.value", "12345678");
-
-      cy.get('input[name="passwordConfirm"]')
-        .type("12345678")
-        .should("have.value", "12345678");
-
-      // Locate and submit the form
-      cy.get('button[name="registrar"]').click({force:true});
-
-      //cy.get('form').submit()
-
-      cy.get('.table').should('be.visible');
-    });
-  });
-});
 
 describe("Buscar Animal", () => {
   context("Startup", () => {

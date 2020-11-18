@@ -6,33 +6,29 @@ describe("Pagina principal",
   })
 
 
-  describe('The Login Page', () => {
-    beforeEach(() => {
-      // reset and seed the database prior to every test
-      cy.exec('npm run db:reset && npm run db:seed')
-  
-      // seed a user in the DB that we can control from our tests
-      // assuming it generates a random password for us
-      cy.request('POST', '/employees/login', { username: 'nfigueroas@gmail.com', password:'1234'})
-        .its('body')
-        .as('currentUser')
-    })
-  
-    it('sets auth cookie when logging in via form submission', function () {
-      // destructuring assignment of the this.currentUser object
-      const { username, password } = this.currentUser
-  
-      cy.visit('/employees/login')
-  
-      cy.get('input[name=email]').type(username)
-  
-      // {enter} causes the form to submit
-      cy.get('input[name=password]').type(`${password}{enter}`)
-  
-      // we should be redirected to /dashboard
-      cy.url().should('include', '/animals')
-  
-  
+  describe('La pagina de login', () => {
+    context('Startup', () => {
+      beforeEach(() => {
+        cy.visit('/employees/login');
+      });
+    
+      it('loggearse', () => {
+       
+        // Fill the username
+        cy.get('input[name="email"]')
+          .type('nfigueroasan@gmail.com')
+          .should('have.value', 'nfigueroasan@gmail.com');
+    
+        // Fill the password
+        cy.get('input[name="password"]')
+          .type('1234')
+          .should('have.value', '1234');
+    
+        // Locate and submit the form
+        cy.get('login-form').submit();
+        
+        cy.url().should('include', '/animals');
 
+      });
     })
   })

@@ -200,8 +200,8 @@ router.post("/update", isLoggedIn, async (req, res) => {
   } else {
     //si llega aqui actualiza la imagen y luego la elimina de cloudinary
     //ruta_imagen = "uploaded_images/" + req.file.originalname;
-    //const result=await cloudinary.v2.uploader.upload(req.file.path);
-    //ruta_imagen=result.secure_url;
+    const result=await cloudinary.v2.uploader.upload(req.file.path);
+    ruta_imagen=result.secure_url;
     await fs.unlink(req.file.path);
   }
 

@@ -1,6 +1,10 @@
 /*--FONTS*/
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Lemonada");
+
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 
 /* Esquema de colores en Hex */
 :root {
@@ -25,9 +29,29 @@ html {
 }
 
 h1,
-h2 {
+h2,h5 {
   font-family: "Handlee", cursive;
 }
+label{
+  font-family: 'Acme', sans-serif;
+  font-size: 17px;
+}
+option{
+  font-family: 'Patrick Hand', cursive;
+  font-size: 19px;
+}
+select{
+  font-family: 'Patrick Hand', cursive;
+  
+}
+i{
+  padding-right: 3px;
+}
+th{
+  font-family: 'Acme', sans-serif;
+  font-size: 17px;
+}
+
 
 .main-wrapper {
   padding: 0;
@@ -129,7 +153,7 @@ button.bg-orange:hover {
 }
 
 .button-message {
-  font-family: "Lemonada", serif;
+  font-family: 'Acme', sans-serif;
   font-size: 15px;
 }
 .button-message:hover {
@@ -494,9 +518,11 @@ button.bg-orange:hover {
     height: 6px;
   }
   .employees-list-container .row.header .cell {
+    
     display: none;
   }
   .employees-list-container .row .cell {
+    
     margin-bottom: 10px;
   }
   .employees-list-container .row .cell:before {
@@ -690,8 +716,8 @@ button.bg-orange:hover {
   -webkit-transition: 300ms ease;
   transition: 300ms ease;
   background: var(--palette-red);
-  font-family: "Lemonada", serif;
-  font-size: 13px;
+  font-family: 'Acme', sans-serif;
+  font-size: 17px;
   padding: 0 1rem;
 }
 
@@ -717,7 +743,7 @@ button.bg-orange:hover {
 
 .dropdown-menu {
   text-align: center;
-  font-size: 13px;
+  font-size: 16px;
   background-color: var(--palette-red);
   justify-content: center;
 }
@@ -880,7 +906,8 @@ button.bg-orange:hover {
   width: 50%;
 }
 .stat-content #year-label {
-  font-family: "Lemonada", serif;
+  font-family: 'Acme', sans-serif;
+  
   font-size: 1.3rem;
   color: var(--palette-wine);
 }
@@ -925,7 +952,7 @@ button.bg-orange:hover {
 .footer .col h1 {
   margin: 0;
   padding: 0;
-  font-family: inherit;
+  font-family: 'Acme', sans-serif;
   font-size: 12px;
   line-height: 17px;
   padding: 20px 0px 5px 0px;

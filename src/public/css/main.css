@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 input {
 	outline: none;
 	border: none;
@@ -53,15 +59,15 @@ button:hover {
 }
 
 .label-input {
-  font-family: "Lemonada", serif;
-  font-size: 12px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 19px;
  
 
 }
 
 .input{
-  font-family: "Lemonada", serif;
-  font-size: 13px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 17px;
   color: #333333;
   line-height: 1.2;
 
@@ -167,8 +173,8 @@ button:hover {
 }
 
 .login-form-btn {
-  font-family: "Lemonada", serif;
-  font-size: 16px;
+  font-family: 'Acme', sans-serif;
+  font-size: 20px;
   color: #fff;
   line-height: 1.2;
   text-transform: uppercase;

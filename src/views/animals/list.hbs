@@ -228,7 +228,7 @@
     }
 
   }
-  if ((actualPage + 1) == numPages) {
+  if ((actualPage + 1) == numPages||numPages==0) {
     $("#paginacion").append(`
       <li class="page-item disabled">
       <a class="page-link" href="/animals/pag/${actualPage + 1}"> Siguiente</a>

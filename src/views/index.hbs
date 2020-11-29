@@ -20,9 +20,12 @@
     <section class="regular slider">
 
         {{#each animals}}
+
+        {{#when ruta_imagen "noteq" null}}
         <div>
             <img src="{{ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'">
         </div>
+        {{/when}}
         {{/each}}
     </section>
     <script>

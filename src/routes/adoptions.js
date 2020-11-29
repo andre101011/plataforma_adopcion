@@ -61,7 +61,7 @@ router.post('/add',isLoggedIn,async (req,res)=>{
     var adoptante=await pool.query('SELECT * FROM Adoptante WHERE documento_identidad=?',[id_adoptante]);
     var adoption=await pool.query('SELECT * FROM Adopcion WHERE id_adoptante=?',[id_adoptante]);
     
-    if (adoptante[0]!=null && adoption[0]==null){
+    if (adoptante[0]!=null && (adoption[0]==null || adoption[0].estado=="Aprobada")){
         const newAdoption={
             id_animal,
             id_adoptante,
@@ -75,7 +75,7 @@ router.post('/add',isLoggedIn,async (req,res)=>{
         
         var animal_state="";
 
-        if(estado=="Aceptada"){
+        if(estado=="Aprobada"){
             animal_state="Adoptado";
         }else if(estado=="Denegada"){
             animal_state="Sin Adoptar";
@@ -94,8 +94,8 @@ router.post('/add',isLoggedIn,async (req,res)=>{
         
         if(adoptante[0]==null){
             req.flash('error','El adoptante no está registrado');
-        }else if(adoption[0]!=null){
-            req.flash('error',`El adoptante ya esta viculado al adopción "${adoption[0].id_adopcion}"`) ;
+        }else if(adoption[0]!=null && adoption[0].estado!=="Aprobada"){
+            req.flash('error',`El adoptante está vinculado a un proceso de adopción " ${adoption[0].id_adopcion}", que no ha concluido`) ;
         }
         
         res.redirect(`/adoptions/add/${id_animal}`)

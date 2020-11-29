@@ -172,7 +172,7 @@
 
                     <div class="col-md-12 mb-3">
                         <div class="card bg-transparent text-white">
-                            <img src="{{animal.ruta_imagen}}" id="imgSalida" class="card-img">
+                            <img src="{{animal.ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'" id="imgSalida" class="card-img">
                             <input type="text" name="imageName" value="{{animal.ruta_imagen}}" readonly hidden>
                             <div class="card-img-overlay">
                                 <div class="form-row">
@@ -188,9 +188,9 @@
                             Habilitar Edición</button>
                         <button type="submit" id="submit" hidden class="btn btn-success form-control mr-sm-2">
                             Guardar</button>
-                        <button type="submit" name="eliminar" class="btn btn-danger" id="delete" hidden
+                        <a type="button" href="/animals/delete/{{animal.id_animal}}" class="btn btn-danger" id="delete" hidden
                             class="btn btn-delete form-control mr-sm-2">
-                            Eliminar</button>
+                            Eliminar</a>
                     </div>
                 </div>
 

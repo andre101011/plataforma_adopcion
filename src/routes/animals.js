@@ -246,6 +246,18 @@ router.get("/detail/:id", isLoggedIn, async (req, res) => {
   res.render("animals/detail", { animal: animal[0] });
 });
 
+/**Modulo que permite eliminar un animal
+ *
+ */
+router.get("/delete/:id", isLoggedIn, async (req, res) => {
+  const { id } = req.params;
+  await pool.query("DELETE FROM Animal WHERE id_animal=?", [id]);
+  req.flash("success", "El animal fue removido exitosamente");
+
+  res.redirect("/animals");
+});
+
+
 router.post("/search", isLoggedIn, async (req, res) => {
   const {
     search,

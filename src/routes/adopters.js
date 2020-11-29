@@ -195,15 +195,20 @@ router.post("/form_part3", async (req, res) => {
     
     req1_add=null;
     req2_add=null;
-    console.log("intersado en"+ intersadoEn);
-    if(intersadoEn!=-1){
-        animalToAdopt=await pool.query("SELECT * FROM Animal WHERE id_animal=?",[intersadoEn]);
-        enviarNotificacion();
-    }
-    req.flash("success", "Se ha enviado la solicitud de adopción, debe estar atento, la fundación se comunicará con usted");
+    
+   
     if(req.isAuthenticated()){
+
     res.redirect("/adopters");
+
     }else{
+
+      if(intersadoEn!=-1){
+        animalToAdopt=await pool.query("SELECT * FROM Animal WHERE id_animal=?",[intersadoEn]);
+        enviarNotificacion(adopter);
+    }
+
+      req.flash("success", "Se ha enviado la solicitud de adopción, debe estar atento, la fundación se comunicará con usted");
       res.redirect("/adopters/animals");
     }
 });
@@ -375,7 +380,7 @@ function animalsPart(data,init,end){
     res.render("adopters/view", { animals:animalsPags,totalPages:Math.ceil(animals.length/maxNumAnimals),actualPage:id});
   });
 
- async function enviarNotificacion () {
+ async function enviarNotificacion (adopter) {
 
   const employees = await pool.query('SELECT * FROM Empleado'); 
 
@@ -505,7 +510,7 @@ function animalsPart(data,init,end){
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                       <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-                        <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Nuevo Adoptante</h1>
+                        <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Nuevo Adoptante!!!</h1>
                       </td>
                     </tr>
                   </table>
@@ -517,7 +522,7 @@ function animalsPart(data,init,end){
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                       <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                        <p style="margin: 0;">Hola! hay una nueva persona interesada en adoptar a "${animalToAdopt[0].nombre}" revisa la plataforma en la sección de adoptantes</p>
+                        <p style="margin: 0;">Hola! hay una nueva persona interesada en adoptar a "${animalToAdopt[0].nombre}", su nombre es "${adopter.nombre}" con CC:" ${adopter.documento_identidad}", revisa la plataforma en la sección de adoptantes</p>
                       </td>
                     </tr>
                     <tr>
@@ -550,7 +555,7 @@ function animalsPart(data,init,end){
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                       <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-                        <p style="margin: 0;">Recibió este correo electrónico porque recibimos una solicitud de su cuenta. Si no solicitó esto, puede eliminar este correo electrónico de forma segura.</p>
+                        <p style="margin: 0;">Recibió este correo electrónico porque se encuenta registrado en la plataforma de adopción propiedad de la fundación fundamor. Si no es de su agrado, puede eliminar este correo electrónico de forma segura.</p>
                       </td>
                     </tr>
                   </table>

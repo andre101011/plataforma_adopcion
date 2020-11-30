@@ -49,7 +49,7 @@ router.get("/add/:id", async (req, res) => {
     
     const {id}=req.params
     intersadoEn=parseInt(id);
-    console.log(intersadoEn);
+    
     res.render("adopters/form_add_1");
 });
 
@@ -57,7 +57,6 @@ router.post("/form_part1", async (req, res) => {
     
     const {nombre,
         apellido,
-        tipo_documento,
         documento_identidad,
         tel_casa,
         celular,
@@ -69,7 +68,6 @@ router.post("/form_part1", async (req, res) => {
     req1_add={
         nombre,
         apellido,
-        tipo_documento,
         documento_identidad,
         tel_casa,
         celular,
@@ -81,8 +79,23 @@ router.post("/form_part1", async (req, res) => {
         cuestionario:null,
     };
      
-    //console.log(req1_add);
-    res.render("adopters/form_add_2");
+    
+
+    var person=await pool.query("SELECT * FROM Adoptante WHERE documento_identidad=?",[documento_identidad]);
+
+    if(person[0]!=null){
+      req1_add=null;
+
+      req.flash("error", "Solo puede realizar una solicitud para adoptar un animal a la vez, usted ya ha realizado una solicitud y se encuentra en proceso de estudio");
+
+      res.redirect("/adopters/animals");
+
+    }else{
+ 
+      res.render("adopters/form_add_2");
+    }
+
+   
 });
 
 
@@ -258,10 +271,11 @@ router.get("/delete/:id", isLoggedIn, async (req, res) => {
     var adopcion=await pool.query('SELECT * FROM Adopcion WHERE id_adoptante=?',[id]);
     var animal= await pool.query('SELECT * FROM Animal INNER JOIN Adopcion on Animal.id_animal=Adopcion.id_animal WHERE Adopcion.id_adoptante=?',[id]);
 
-
-    if((adopcion[0].estado=="Denegada" || adopcion[0].estado=="En proceso") && animal[0].estado!="Adoptado"){
-       await pool.query(`UPDATE Animal SET estado="Sin Adoptar" WHERE id_animal="${adopcion[0].id_animal}"`); 
-    }
+    if(adopcion[0]!=null){
+      if((adopcion[0].estado=="Denegada" || adopcion[0].estado=="En proceso") && animal[0].estado!="Adoptado"){
+        await pool.query(`UPDATE Animal SET estado="Sin Adoptar" WHERE id_animal="${adopcion[0].id_animal}"`); 
+      }
+    } 
     await pool.query('DELETE FROM Adoptante WHERE documento_identidad=?',[id]);
     res.redirect("/adopters");
 });

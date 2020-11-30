@@ -21,9 +21,8 @@ router.get('/',(req,res)=>{
 })
 
 router.get("/stat1", async (req, res) => {
-  var { barraano } = req.body;
-  console.log(barraano);
-
+ 
+  
   const result = await pool.query(
     "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from Adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
   );
@@ -35,8 +34,7 @@ router.get("/stat1", async (req, res) => {
 });
 
 router.post("/stat1", async (req, res) => {
-  var { barraano } = req.body;
-  console.log(barraano);
+  
 
   const result = await pool.query(
     "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from Adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
@@ -71,7 +69,7 @@ router.get("/stat2", async (req, res) => {
 router.post("/stat2", async (req, res) => {
   var { barraano } = req.body;
   var barraano = barraano;
-  console.log(barraano);
+
 
   var result = await pool.query(
     `SELECT  date_format(fecha_entrega,'%Y-%b') as mes ,
@@ -101,13 +99,13 @@ router.post("/stat2", async (req, res) => {
 router.get("/stat3", async (req, res) => {
   var { barraano } = req.body;
   var barraano = barraano;
-  console.log(barraano);
+ 
 
   var result = await pool.query(
     'SELECT COUNT(CASE WHEN sexo ="macho" THEN id_animal END) AS machos, COUNT(CASE WHEN sexo ="hembra" THEN id_animal END) AS hembras, COUNT(*) AS Total FROM Animal WHERE estado<>"adoptado";'
   );
 
-  console.log(result);
+ 
   valuesH = extractAttributeValuesFromJsonArray(result, "hembras");
   valuesM = extractAttributeValuesFromJsonArray(result, "machos");
 

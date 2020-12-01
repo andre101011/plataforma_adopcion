@@ -79,18 +79,11 @@ router.post("/form_part1", async (req, res) => {
         cuestionario:null,
     };
      
-    
-
     var person=await pool.query("SELECT * FROM Adoptante WHERE documento_identidad=?",[documento_identidad]);
-    var adopcion=await pool.query('SELECT * FROM Adopcion WHERE id_adoptante=?',[documento_identidad]);
     if(person[0]!=null){
       req1_add=null;
-      if(adopcion[0]!=null){
-        req.flash("error", "Solo puede realizar una solicitud para adoptar un animal a la vez, usted ya ha realizado una solicitud y se encuentra en proceso de estudio");
-      }else{
-        req.flash("error", "Este adoptante ya se encuentra registrado");
-
-      }
+      
+      req.flash("error", "La identificación ingresada ya se encuentra registrada en el sistema");
       res.redirect("/adopters/add/-1");
 
     }else{
@@ -214,6 +207,8 @@ router.post("/form_part3", async (req, res) => {
     
    
     if(req.isAuthenticated()){
+
+    req.flash("success", "Se ha registrado el adoptante con exitosamente");
 
     res.redirect("/adopters");
 

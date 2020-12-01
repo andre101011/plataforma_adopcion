@@ -3,5 +3,7 @@ node_modules/
 src/public/uploaded_images
 cypress/screenshots/
 cypress/videos/
+cypress/integration/pruebas/heaps-test.js
+
 .env
 

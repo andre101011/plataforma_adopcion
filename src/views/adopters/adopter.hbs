@@ -15,17 +15,7 @@
                         <label>Apellido:</label>
                         <input class="form-control" type="text" value="{{adopter.apellido}}" name="apellido" readonly required>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Tipo documento:</label>
-                        <div class="form-group">
-                            <select class="custom-select" id="td" name="tipo_documento" disabled required>
-                                <option value="">Seleccione...</option>
-                                <option value="C.C">Cedula Cidudadania</option>
-                                <option value="T.I">Tarjeta Identidad</option>
-                            </select>
 
-                        </div>
-                    </div>
                     <div class="col-md-6 mb-3">
                         <label>N° documento:</label>
                         <input type="text" maxlength="10" name="documento_identidad"
@@ -50,15 +40,15 @@
 
                                 <option value="">Seleccione...</option>
                                 <option value="Armenia">Armenia</option>
-                                <option value="Calarcá">Calarcá</option>
+                                <option value="Calarca">Calarcá</option>
                                 <option value="Montenegro">Montenegro</option>
                                 <option value="Circasia">Circasia</option>
                                 <option value="Buenavista">Buenavista</option>
                                 <option value="Filandia">Filandia</option>
                                 <option value="Tebaida">Tebaida</option>
                                 <option value="Quimbaya">Quimbaya</option>
-                                <option value="Córdoba">Córdoba</option>
-                                <option value="Génova">Génova</option>
+                                <option value="Cordoba">Córdoba</option>
+                                <option value="Genova">Génova</option>
                                 <option value="Salento">Salento</option>
                                 <option value="Piajo">Piajo</option>
                                 <option value="Otro">Otro</option>
@@ -94,6 +84,7 @@
 <script>
     $(`#td option[value= "{{adopter.tipo_documento}}"`).attr('selected', true);
     $(`#ciudad option[value= "{{adopter.ciudad}}"`).attr('selected', true);
+   
     function edit() {
         $('input').removeAttr("readonly");
         $('select').removeAttr("disabled");

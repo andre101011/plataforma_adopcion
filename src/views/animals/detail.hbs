@@ -45,15 +45,10 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Estado:</label>
-                        <div class="form-group">
-                            <select class="custom-select" name="estado" id="estado" required disabled>
-                                <option value="">Seleccione...</option>
-                                <option value="Adoptado">Adoptado</option>
-                                <option value="Sin Adoptar">Sin Adoptar</option>
-                                <option value="En proceso">En proceso</option>
-                            </select>
 
-                        </div>
+                         <input type="text" name="estado" id="estado" class="form-control" value="{{animal.estado}}" 
+                            required readonly>
+                
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Especie: </label>
@@ -239,7 +234,7 @@
 
     $(`#tamanio option[value= "{{animal.tamanio}}"`).attr('selected', true);
     $(`#custodia option[value= "{{animal.custodia}}"`).attr('selected', true);
-    $(`#estado option[value= "{{animal.estado}}"`).attr('selected', true);
+    
 
     if (`{{animal.especie}}` == "perro") {
 
@@ -268,7 +263,7 @@
         $('button[type=button]').prop("hidden", true);
         $('#nombre').focus();
         $('#inputid').attr("readonly",true);
-        $('#estado').attr("disabled",true);
+        $('#estado').attr("readonly",true);
     }
 
 </script>

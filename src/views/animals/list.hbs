@@ -125,7 +125,7 @@
         <h5>Edad:<br> {{edad}}</h5>
         <div class="buttons">
           {{#when estado "eq" "Sin Adoptar"}}
-          <div  class="btn btn-danger"  > {{estado}}</div>
+          <div  class="btn btn-danger"> {{estado}}</div>
           {{/when}}
           {{#when estado "eq" "Adoptado"}}
           <a href="/adoptions/detail_adoption/{{id_animal}}&{{estado}}" class="btn btn-success"> {{estado}} <i

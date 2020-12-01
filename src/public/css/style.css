@@ -341,7 +341,7 @@ button.bg-orange:hover {
   overflow: hidden;
   line-height: 1;
 }
-.animal-list-container .card-group .card .buttons a {
+.animal-list-container .card-group .card .buttons *  {
   display: block;
   height: min-content;
   padding: 0px;

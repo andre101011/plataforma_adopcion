@@ -26,11 +26,17 @@ router.get("/stat1", async (req, res) => {
   const result = await pool.query(
     "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from Adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
   );
+  if(result[0]!=null){
+    console.log('llega');
+    labels = extractAttributeValuesFromJsonArray(result, "fecha");
+    values = extractAttributeValuesFromJsonArray(result, "entregados");
+    res.render("statistics/stat1", { labels: labels, values: values });
+  }else{
+    req.flash("error", "No hay suficientes datos para generar la grafica");
+    res.redirect("/animals");
+  }
 
-  labels = extractAttributeValuesFromJsonArray(result, "fecha");
-  values = extractAttributeValuesFromJsonArray(result, "entregados");
-
-  res.render("statistics/stat1", { labels: labels, values: values });
+  
 });
 
 router.post("/stat1", async (req, res) => {

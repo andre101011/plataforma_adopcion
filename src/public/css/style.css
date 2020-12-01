@@ -1,10 +1,9 @@
 /*--FONTS*/
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Acme&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap");
 
 /* Esquema de colores en Hex */
 :root {
@@ -29,29 +28,28 @@ html {
 }
 
 h1,
-h2,h5 {
+h2,
+h5 {
   font-family: "Handlee", cursive;
 }
-label{
-  font-family: 'Acme', sans-serif;
+label {
+  font-family: "Acme", sans-serif;
   font-size: 17px;
 }
-option{
-  font-family: 'Patrick Hand', cursive;
+option {
+  font-family: "Patrick Hand", cursive;
   font-size: 19px;
 }
-select{
-  font-family: 'Patrick Hand', cursive;
-  
+select {
+  font-family: "Patrick Hand", cursive;
 }
-i{
+i {
   padding-right: 3px;
 }
-th{
-  font-family: 'Acme', sans-serif;
+th {
+  font-family: "Acme", sans-serif;
   font-size: 17px;
 }
-
 
 .main-wrapper {
   padding: 0;
@@ -153,7 +151,7 @@ button.bg-orange:hover {
 }
 
 .button-message {
-  font-family: 'Acme', sans-serif;
+  font-family: "Acme", sans-serif;
   font-size: 15px;
 }
 .button-message:hover {
@@ -243,7 +241,7 @@ button.bg-orange:hover {
 }
 .animal-list-container .pagination {
   margin: 0;
-  padding-bottom:2rem;
+  padding-bottom: 2rem;
 }
 
 .pulse-button {
@@ -341,11 +339,14 @@ button.bg-orange:hover {
   overflow: hidden;
   line-height: 1;
 }
-.animal-list-container .card-group .card .buttons *  {
+.animal-list-container .card-group .card .buttons * {
   display: block;
   height: min-content;
   padding: 0px;
   border-radius: 0;
+}
+.animal-list-container .card-group .card .buttons div {
+  cursor: default;
 }
 
 .animal-list-container .card-group .card .btn-iniciar {
@@ -518,11 +519,9 @@ button.bg-orange:hover {
     height: 6px;
   }
   .employees-list-container .row.header .cell {
-    
     display: none;
   }
   .employees-list-container .row .cell {
-    
     margin-bottom: 10px;
   }
   .employees-list-container .row .cell:before {
@@ -716,7 +715,7 @@ button.bg-orange:hover {
   -webkit-transition: 300ms ease;
   transition: 300ms ease;
   background: var(--palette-red);
-  font-family: 'Acme', sans-serif;
+  font-family: "Acme", sans-serif;
   font-size: 17px;
   padding: 0 1rem;
 }
@@ -906,8 +905,8 @@ button.bg-orange:hover {
   width: 50%;
 }
 .stat-content #year-label {
-  font-family: 'Acme', sans-serif;
-  
+  font-family: "Acme", sans-serif;
+
   font-size: 1.3rem;
   color: var(--palette-wine);
 }
@@ -952,7 +951,7 @@ button.bg-orange:hover {
 .footer .col h1 {
   margin: 0;
   padding: 0;
-  font-family: 'Acme', sans-serif;
+  font-family: "Acme", sans-serif;
   font-size: 12px;
   line-height: 17px;
   padding: 20px 0px 5px 0px;

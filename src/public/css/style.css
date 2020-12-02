@@ -46,6 +46,12 @@ select {
 i {
   padding-right: 3px;
 }
+button{
+  font-family: 'Acme', sans-serif;
+}
+a{
+  font-family: 'Acme', sans-serif;
+}
 th {
   font-family: "Acme", sans-serif;
   font-size: 17px;
@@ -228,6 +234,12 @@ button.bg-orange:hover {
 .public.animal-list-container {
   margin-top: 47px;
   background-color: black;
+}
+.state-sin-adoptar{
+
+  text-align: center;
+ 
+
 }
 .public.animal-list-container .verlos-todos-wrapper {
   background-color: var(--palette-white);

@@ -8,12 +8,14 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label>Nombre:</label>
-                        <input type="text" name="nombre" value="{{adopter.nombre}}" class="form-control" readonly required>
+                        <input type="text" name="nombre" value="{{adopter.nombre}}" class="form-control" readonly
+                            required>
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label>Apellido:</label>
-                        <input class="form-control" type="text" value="{{adopter.apellido}}" name="apellido" readonly required>
+                        <input class="form-control" type="text" value="{{adopter.apellido}}" name="apellido" readonly
+                            required>
                     </div>
 
                     <div class="col-md-6 mb-3">
@@ -58,7 +60,8 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Dirección:</label>
-                        <input type="text" name="direccion" value="{{adopter.direccion}}" class="form-control" readonly required> 
+                        <input type="text" name="direccion" value="{{adopter.direccion}}" class="form-control" readonly
+                            required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Ocupación:</label>
@@ -68,10 +71,19 @@
                         <label>Correo:</label>
                         <input type="email" name="correo" value="{{adopter.correo}}" class="form-control" readonly>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <a href="/adopters/references/{{adopter.documento_identidad}}" id="refButton" class="btn btn-info form-control mr-sm-2">
+                            Referencias
+                        </a>
+                        <br></br>
+                        <a href="/adopters/questionary/{{adopter.documento_identidad}}" id="cuestButton" class="btn btn-info form-control mr-sm-2">
+                            Cuestionario
+                        </a>
+                    </div>
                 </div>
                 <div class="form-inline justify-content-end">
                     <a href="javascript:history.back()" class="btn btn-secondary form-control mr-sm-2">Atras</a>
-                    <button type="button"  onclick="edit()" class="btn btn-primary form-control mr-sm-2">
+                    <button type="button" onclick="edit()" class="btn btn-primary form-control mr-sm-2">
                         Editar</button>
                     <button type="submit" id="submit" hidden class="btn btn-success form-control mr-sm-2">
                         Guardar</button>
@@ -81,15 +93,21 @@
     </div>
 </div>
 
+
 <script>
     $(`#td option[value= "{{adopter.tipo_documento}}"`).attr('selected', true);
     $(`#ciudad option[value= "{{adopter.ciudad}}"`).attr('selected', true);
-   
+
     function edit() {
         $('input').removeAttr("readonly");
         $('select').removeAttr("disabled");
         $('#submit').removeAttr("hidden");
-        $('button[type=button]').prop("hidden",true);
-       
+        $('button[type=button]').prop("hidden", true);
+
     }
+
+
+
+
+
 </script>

@@ -10,13 +10,14 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label>Id del proceso:</label>
-                        <input type="text" name="id_adopcion" value="{{adoption.id_adopcion}}" readonly aria-readonly="true"
-                            class="form-control" required>
+                        <input type="text" name="id_adopcion" value="{{adoption.id_adopcion}}" readonly
+                            aria-readonly="true" class="form-control" required>
                     </div>
                     <div class="col-md-12 mb-3 justify-content-center">
                         <label>Animal adoptar:</label>
                         <div class="img-wrap">
-                            <img src="{{animal.ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'" class="animal-img">
+                            <img src="{{animal.ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'"
+                                class="animal-img">
                         </div>
                     </div>
 
@@ -33,13 +34,13 @@
 
                     <div class="col-md-6 mb-3">
                         <label>Fecha de estudio:</label>
-                        <input class="form-control" type="date" name="fecha_estudio" value="{{adoption.fecha_estudio}}"
-                            id="example-date-input" required readonly>
+                        <input class="form-control" type="date" name="fecha_estudio" id="fecha_estudio" value="{{adoption.fecha_estudio}}"
+                             required readonly>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha de entrega:</label>
                         <input class="form-control" type="date" id="fecha_entrega" name="fecha_entrega" readonly
-                            value="{{adoption.fecha_entrega}}" required id="example-date-input">
+                            value="{{adoption.fecha_entrega}}" required >
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Cédula del encargado del proceso:</label>
@@ -90,6 +91,19 @@
 </div>
 
 <script>
+
+    $(document).ready(function () {
+        $('#fecha_estudio').change(function () {
+
+            var fecha_estudio = document.getElementById('fecha_estudio').value;
+            document.getElementById('fecha_entrega').setAttribute("min", fecha_estudio);
+            document.getElementById('fecha_entrega').value = null;
+
+        }
+        )
+    });
+
+
     $(`#estado option[value= "{{adoption.estado}}"`).attr('selected', true);
 
     function edit() {
@@ -101,7 +115,7 @@
         $('button[type=button]').prop("hidden", true);
         $('#submit').removeAttr("hidden");
         $('#date').focus();
-        
+
 
     }
 </script>

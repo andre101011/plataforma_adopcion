@@ -3,7 +3,7 @@
 
     <div class="form-container">
         <div class="form-content">
-            <form action="/adoptions/add" method="POST" class="signup-form">
+            <form action="/adoptions/add" method="POST" class="signup-form needs-validation" novalidate>
                 <h2 class="form-title"> <i class="fas fa-cat"></i>Nueva Adopción<i class="fas fa-dog"></i></h2>
 
                 <div class="form-row">
@@ -64,10 +64,10 @@
                         <textarea class="form-control" rows="3" name="observaciones" rows="3"></textarea>
                     </div>
                     <div class="col-md-12 mb-3">
-                         {{>message}}
+                        {{>message}}
                     </div>
 
-                   
+
                 </div>
 
 
@@ -87,4 +87,60 @@
 
 <script>
 
+    $(document).ready(function () {
+        $('#fecha_estudio').change(function (){
+           
+            var fecha_estudio = document.getElementById('fecha_estudio').value;
+            document.getElementById('fecha_entrega').setAttribute("min", fecha_estudio);
+            document.getElementById('fecha_entrega').value=null;
+            
+        }
+    )});
+
+
+
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+
+                form.addEventListener('submit', function (event) {
+                    
+                    if (form.checkValidity() === false) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+    function formatDate(mysqlDate) {
+        if (mysqlDate != null) {
+            var date = new Date(mysqlDate);
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (parseInt(day) < 10) {
+                day = "0" + day;
+            }
+            if (parseInt(month) < 10) {
+                month = "0" + month;
+            }
+
+            return year + "-" + month + "-" + day;
+        } else {
+            return "no establecida"
+        }
+    };
 </script>

@@ -53,6 +53,7 @@ router.get("/add/:id", async (req, res) => {
     res.render("adopters/form_add_1");
 });
 
+
 router.post("/form_part1", async (req, res) => {
     
     const {nombre,
@@ -237,7 +238,6 @@ router.post("/update", isLoggedIn, async (req, res) => {
 
     const {nombre,
         apellido,
-        tipo_documento,
         documento_identidad,
         tel_casa,
         celular,
@@ -249,7 +249,6 @@ router.post("/update", isLoggedIn, async (req, res) => {
     adoptante={
         nombre,
         apellido,
-        tipo_documento,
         documento_identidad,
         tel_casa,
         celular,
@@ -582,5 +581,26 @@ function animalsPart(data,init,end){
   console.log("Message sent: %s", info.messageId);
   
 }
+
+router.get("/references/:id", async (req, res) => {
+    
+  const {id}=req.params
+  var references = await pool.query('SELECT referencias FROM Adoptante WHERE documento_identidad=?',[id]); 
+  console.log(references[0].referencias);
+  JSON.parse(references[0].referencias.replace(/&quot;/g,'"'))
+  
+  res.render("adopters/references",{references:references[0].referencias});
+});
+
+router.get("/questionary/:id", async (req, res) => {
+    
+  
+  
+  res.render("adopters/questionary");
+});
+
+
+
+
   
 module.exports = router;

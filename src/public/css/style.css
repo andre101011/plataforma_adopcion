@@ -485,7 +485,7 @@ button.bg-orange:hover {
 
 .login-wrapper {
   padding: 150px 0;
-  min-height: min-content;
+  min-height: 90vh;
   background: linear-gradient(45deg, #a17059, #131b30);
 }
 

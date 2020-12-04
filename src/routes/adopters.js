@@ -138,6 +138,7 @@ router.post("/form_part3", async (req, res) => {
         q2cuales,
         pregunta3,
         q3cuales,
+        q3historia,
         pregunta4,
         pregunta5,
         edades,
@@ -166,6 +167,7 @@ router.post("/form_part3", async (req, res) => {
         q2cuales,
         pregunta3,
         q3cuales,
+        q3historia,
         pregunta4,
         pregunta5,
         edades,
@@ -585,18 +587,70 @@ function animalsPart(data,init,end){
 router.get("/references/:id", async (req, res) => {
     
   const {id}=req.params
-  var references = await pool.query('SELECT referencias FROM Adoptante WHERE documento_identidad=?',[id]); 
-  console.log(references[0].referencias);
-  JSON.parse(references[0].referencias.replace(/&quot;/g,'"'))
+  var adopter = await pool.query('SELECT * FROM Adoptante WHERE documento_identidad=?',[id]); 
+
+  var references=JSON.parse(adopter[0].referencias);
+
+  console.log(references)
+  res.render("adopters/references",{references:references, adopter_id:adopter[0].documento_identidad});
+});
+
+router.post("/update_references", async (req, res) => {
+    
   
-  res.render("adopters/references",{references:references[0].referencias});
+    
+  const {
+    id_adopter,
+    nombreApellido,
+    parentesco,
+    direccion,
+    ciudad,
+    tel_casa,
+    celular,
+    nombreApellido1,
+    parentesco1,
+    direccion1,
+    ciudad1,
+    tel_casa1,
+    celular1}=req.body;
+
+ var references={
+    nombreApellido,
+    parentesco,
+    direccion,
+    ciudad,
+    tel_casa,
+    celular,
+    nombreApellido1,
+    parentesco1,
+    direccion1,
+    ciudad1,
+    tel_casa1,
+    celular1
+};
+
+
+var references = JSON.stringify(references);
+console.log(references);
+
+ await pool.query(`UPDATE Adoptante SET referencias=? WHERE documento_identidad="${id_adopter}"`,[references]); 
+
+  
+  res.redirect(`/adopters/references/${id_adopter}`);
 });
 
 router.get("/questionary/:id", async (req, res) => {
     
+  const {id}=req.params
+  var questionary = await pool.query('SELECT cuestionario FROM Adoptante WHERE documento_identidad=?',[id]); 
+
+  var questionary=JSON.parse(questionary[0].cuestionario);
+  
+ 
+  console.log(questionary);
   
   
-  res.render("adopters/questionary");
+  res.render("adopters/questionary",{questionary:questionary});
 });
 
 

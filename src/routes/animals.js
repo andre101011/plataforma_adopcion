@@ -26,7 +26,7 @@ cloudinary.config({
 const fs = require("fs-extra");
 const helpers = require("../lib/helpers");
 var actualAnimals;
-var maxNumAnimals=3;
+var maxNumAnimals=9;
 
 /**Método que renderiza la página con la lista de animales
  *

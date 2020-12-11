@@ -2,7 +2,7 @@
     <img src="/img/silueta_logo.svg" alt="" class="silhouette">
     <div class="form-container" style="width: 30rem;">
         <div class="form-content">
-            <form action="/adoptions/add_tracing" method="POST" class="needs-validation" >
+            <form action="/adoptions/add_tracing" method="POST" class="needs-validation">
                 <h2 class="form-title">Registro De Seguimientos</h2>
 
                 <div class="form-row">
@@ -25,7 +25,7 @@
                             required>
 
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-6 mb-3 ">
                         <label>Fecha:</label>
                         <input class="form-control" type="date" name="fecha_hora" id="example-date-input" required>
                     </div>
@@ -35,7 +35,7 @@
                         <textarea class="form-control" rows="3" name="anotaciones" rows="3" required></textarea>
 
                     </div>
-                    <div class="wrap-login-form-btn">
+                    <div class="wrap-login-form-btn ">
                         <div class="login-form-bgbtn"></div>
                         <button type="submit" class="login-form-btn" id="submit">
                             Registrar Nuevo
@@ -46,10 +46,10 @@
             </form>
         </div>
     </div>
-
+    <br></br>
     <div class="form-container" style="width: 80rem; ">
 
-        <div class="form-content" >
+        <div class="form-content">
 
             <h2 class="form-title page-content"> <i class="fas fa-cat"></i>
                 Seguimientos al proceso de adopcion {{adoption.id_adopcion}} <i class="fas fa-dog"></i></h2>
@@ -70,15 +70,17 @@
                         <tr>
                             <td>{{id_seguimiento}}</td>
                             <td>{{fecha_hora}}</td>
-                            <td>{{anotaciones}}</td>
                             <td>
-                                <div class="form-row">
-                                   
-                                    <div class="col-md-6 mb-3">
-                                        <a class="btn btn-danger" href="/adoptions/delete_tracing/{{id_seguimiento}}&{{id_adopcion}}"><i
-                                                class="far fa-trash-alt"></i> </a>
-                                    </div>
-                                </div>
+
+                                <textarea class="form-control" rows="2" readonly style="width: 20rem;border: none;">{{anotaciones}}</textarea>
+
+                            </td>
+                            <td>
+
+                                <a class="btn btn-danger"
+                                    href="/adoptions/delete_tracing/{{id_seguimiento}}&{{id_adopcion}}"><i
+                                        class="far fa-trash-alt"></i> </a>
+
                             </td>
                         </tr>
 

@@ -23,7 +23,7 @@ const e = require("express");
 var req1_add;
 var req2_add;
 var actualAnimals;
-var maxNumAnimals=3;
+var maxNumAnimals=9;
 var intersadoEn=-1;
 var animalToAdopt;
 

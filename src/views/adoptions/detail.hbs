@@ -26,21 +26,18 @@
                         <input type="text" name="id_animal" value="{{animal.id_animal}}" readonly aria-readonly="true"
                             class="form-control" required>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Detalles del animal:</label>
-                        <a class="btn btn-info" href="/animals/detail/{{animal.id_animal}}">Ver</a>
-                    </div>
+
 
 
                     <div class="col-md-6 mb-3">
                         <label>Fecha de estudio:</label>
-                        <input class="form-control" type="date" name="fecha_estudio" id="fecha_estudio" value="{{adoption.fecha_estudio}}"
-                             required readonly>
+                        <input class="form-control" type="date" name="fecha_estudio" id="fecha_estudio"
+                            value="{{adoption.fecha_estudio}}" required readonly>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Fecha de entrega:</label>
                         <input class="form-control" type="date" id="fecha_entrega" name="fecha_entrega" readonly
-                            value="{{adoption.fecha_entrega}}" required >
+                            value="{{adoption.fecha_entrega}}" required>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Cédula del encargado del proceso:</label>
@@ -69,7 +66,10 @@
                         <label>Detalles del adoptante:</label>
                         <a class="btn btn-info" href="/adopters/get_adopter/{{adoption.id_adoptante}}">Ver</a>
                     </div>
-
+                    <div class="col-md-6 mb-3">
+                        <label>Detalles del animal:</label>
+                        <a class="btn btn-info"  href="/animals/detail/{{animal.id_animal}}">Ver</a>
+                    </div>
                     <div class="col-md-12 mb-3">
                         <label>Observaciones:</label>
                         <textarea class="form-control" rows="3" id="observaciones" name="observaciones" rows="3"

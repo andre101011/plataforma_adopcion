@@ -46,11 +46,11 @@ select {
 i {
   padding-right: 3px;
 }
-button{
-  font-family: 'Acme', sans-serif;
+button {
+  font-family: "Acme", sans-serif;
 }
-a{
-  font-family: 'Acme', sans-serif;
+a {
+  font-family: "Acme", sans-serif;
 }
 th {
   font-family: "Acme", sans-serif;
@@ -235,11 +235,8 @@ button.bg-orange:hover {
   margin-top: 47px;
   background-color: black;
 }
-.state-sin-adoptar{
-
+.state-sin-adoptar {
   text-align: center;
- 
-
 }
 .public.animal-list-container .verlos-todos-wrapper {
   background-color: var(--palette-white);
@@ -371,9 +368,11 @@ button.bg-orange:hover {
   padding: 0.5rem;
   border-radius: 5px;
   grid-column: 1/-1;
-
-  overflow-y: hidden;
+  resize: none;
   text-overflow: ellipsis;
+  border: none;
+
+  
 }
 
 /*-------------------------------form---------------------------------*/
@@ -586,7 +585,6 @@ button.bg-orange:hover {
   -webkit-box-shadow: 0 0 0 30px white inset;
 }
 
-
 /*Extra small devices (portrait phones, less than 576px)*/
 /*max-width: 575.98px*/
 @media (max-width: 767.98px) {
@@ -603,15 +601,13 @@ button.bg-orange:hover {
     width: 100%;
   }
 }
-  /* Medium devices (tablets, less than 992px)*/
+/* Medium devices (tablets, less than 992px)*/
 @media (min-width: 768px) and (max-width: 991.98px) {
-
   .login-wrapper .login-container {
     width: calc(100% - 30px);
     max-width: 100%;
   }
 }
-
 
 /**--------------------------------------------------------Employees list-------------------------------------*/
 

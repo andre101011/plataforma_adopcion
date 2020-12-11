@@ -8,7 +8,7 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label>Nombre:</label>
-                        <input type="text" name="nombre" value="{{adopter.nombre}}" class="form-control" readonly
+                        <input type="text" name="nombre" id="nombre" value="{{adopter.nombre}}" class="form-control" readonly
                             required>
                     </div>
 
@@ -20,7 +20,7 @@
 
                     <div class="col-md-6 mb-3">
                         <label>N° documento:</label>
-                        <input type="text" maxlength="10" name="documento_identidad"
+                        <input type="text" maxlength="10" id="doc" name="documento_identidad"
                             value="{{adopter.documento_identidad}}" class="form-control" readonly required>
                     </div>
 
@@ -103,6 +103,8 @@
         $('select').removeAttr("disabled");
         $('#submit').removeAttr("hidden");
         $('button[type=button]').prop("hidden", true);
+        $('#doc').prop("readonly", true);
+        $('#nombre').focus();
 
     }
 

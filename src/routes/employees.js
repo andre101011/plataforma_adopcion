@@ -68,7 +68,7 @@ router.post("/add", isLoggedIn, isAdmin, async (req, res) => {
     req.flash("success", "Registro de colaborador exitoso");
 
     res.redirect("/employees");
-  }else{
+  } else {
     req.flash("error", "Este colaborador ya existe");
 
     res.redirect("/employees/add");
@@ -100,6 +100,7 @@ router.post("/update", isLoggedIn, async (req, res) => {
     nombre,
     fundacion,
   };
+  
 
   await pool.query(`UPDATE Empleado SET ? WHERE cedula=${cedula}`, [employee]);
 

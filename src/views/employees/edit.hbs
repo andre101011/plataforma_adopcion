@@ -1,40 +1,62 @@
 <div class="form-main-wrapper">
     <img src="/img/silueta_logo.svg" alt="" class="silhouette">
-    <div class="form-container" style="width: 40rem;">
+    <div class="form-container" style="width: 30rem;">
         <div class="form-content">
-            <form action="/employees/update" method="POST">
+            <form action="/employees/update" method="POST" class="needs-validation" novalidate>
                 <h2 class="form-title">Actualizar Datos</h2>
 
-                <div class="form-group" >
+                <div class="form-group">
                     <label>Identificación:</label>
-                    <input type="text" name="cedula" readonly  value="{{employee.cedula}}" class="form-control">
+                    <input type="text" name="cedula" readonly value="{{employee.cedula}}" class="form-control">
+                    <div class="invalid-feedback">
+                        Debe llenar este campo
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Nombre Completo</label>
                     <input type="text" name="nombre" required value="{{employee.nombre}}" class="form-control">
+                    <div class="invalid-feedback">
+                        Debe llenar este campo
+                    </div>
                 </div>
                 <div class="form-group" aria-hidden="true">
                     <label>Correo Electronico:</label>
                     <input type="email" class="form-control" required name="email" aria-describedby="emailHelp"
-                        value="{{employee.email}}" placeholder="Enter email">
+                        value="{{employee.email}}" placeholder="ingrese el email">
+                    <div class="invalid-feedback">
+                        Debe llenar este campo
+                    </div>
                 </div>
 
-                <div class="form-group" >
-                    <label>Fundación:</label>
-                    <input type="text" class="form-control" required name="fundacion" aria-describedby="emailHelp"
-                        value="{{employee.fundacion}}">
-                </div>
-                <div class="form-group" >
-                    <label>Rol:</label>
-                    <input type="text" class="form-control" readonly name="rol" aria-describedby="emailHelp"
-                        value="{{employee.rol}}">
-                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label>Fundación:</label>
+                        <input type="text" class="form-control" required name="fundacion" aria-describedby="emailHelp"
+                            value="{{employee.fundacion}}">
+                        <div class="invalid-feedback">
+                            Debe llenar este campo
+                        </div>
+                    </div>
 
-                <div class="form-group">
-                    <label>Contraseña:</label>
-                    <input type="text" name="password" required placeholder="nueva contraseña" class="form-control"
-                        placeholder="Password">
+                    <div class="col-md-6 mb-3">
+                        <label>Rol:</label>
+                        <input type="text" class="form-control" readonly name="rol" aria-describedby="emailHelp"
+                            value="{{employee.rol}}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label>Contraseña:</label>
+                        <input type="password" name="password" id="password" required class="form-control">
+                        <div id="strengthMessage"></div>
 
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Confirmar Contraseña:</label>
+                        <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control"
+                            required>
+                        <div id="passwordConfirmMessage"></div>
+                    </div>
                 </div>
                 <div class="form-inline justify-content-end">
 
@@ -42,7 +64,7 @@
                         Atras
                     </a>
 
-                    <button type="submit" class="btn btn-success form-control mr-sm-2">
+                    <button type="submit" class="btn btn-success form-control mr-sm-2" id="submit">
                         Guardar Cambios
                     </button>
                 </div>
@@ -51,3 +73,86 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Valida que se llenen los campos
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+
+                form.addEventListener('submit', function (event) {
+                    var pass = document.getElementById('password').value;
+                    var password2 = document.getElementById('passwordConfirm').value;
+                    var isInvalidPassword = $('#strengthMessage').hasClass("weak");
+                   
+                    if (form.checkValidity() === false || (pass !== password2) || isInvalidPassword) {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+
+    //sugiere una contraseña segura
+    $(document).ready(function () {
+        $('#password').keyup(function () {
+            $('#strengthMessage').html(checkStrength($('#password').val()))
+        })
+        function checkStrength(password) {
+            var strength = 0;
+            if (password.length > 7) strength += 1
+            // If password contains both lower and uppercase characters, increase strength value.
+            if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+            // If it has numbers and characters, increase strength value.
+            if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+            // If it has one special character, increase strength value.
+            if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+            // If it has two special characters, increase strength value.
+            if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+            // Calculated strength value, we can return messages
+            
+            if (strength < 2) {
+                $('#strengthMessage').removeClass()
+                $('#strengthMessage').addClass('weak')
+                return 'Debil';
+            } else if (strength == 2) {
+                $('#strengthMessage').removeClass()
+                $('#strengthMessage').addClass('good')
+                return 'Buena';
+            } else {
+                $('#strengthMessage').removeClass()
+                $('#strengthMessage').addClass('strong')
+                return 'Fuerte';
+            }
+        }
+    });
+
+    //valida que la contraseña y su confirmacion sean iguales
+
+    $(document).ready(function () {
+        $('#passwordConfirm').keyup(function () {
+            $('#passwordConfirmMessage').html(checkEquals($('#passwordConfirm').val()))
+        })
+        function checkEquals(password2) {
+            var pass = $('#password').val();
+            if (password2 != pass) {
+
+                $('#passwordConfirmMessage').removeClass()
+                $('#passwordConfirmMessage').addClass('error-equals')
+                return 'Las contraseñas no coinciden';
+            } else {
+                return '';
+            }
+        }
+    });
+
+</script>

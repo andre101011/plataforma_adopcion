@@ -337,6 +337,9 @@ router.post("/search", isLoggedIn, async (req, res) => {
 
   }
 
+  if(query_filter.endsWith("and ")){
+    query_filter= query_filter.substring(0,query_filter.length-5);
+  }
   //console.log(query_filter);
   var query="SELECT * FROM Animal";
   var empty=true;

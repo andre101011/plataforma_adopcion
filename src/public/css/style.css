@@ -887,15 +887,19 @@ button.bg-orange:hover {
   font-size: 16px;
   background-color: var(--palette-red);
   justify-content: center;
+  border: none ;
+ 
 }
 
 .dropdown {
   padding-right: 2rem;
+  
 }
 
 .dropdown-item {
   color: var(--palette-white);
   text-align: center;
+
 }
 .dropdown-item:hover {
   color: var(--palette-white);

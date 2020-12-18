@@ -373,7 +373,9 @@ function animalsPart(data,init,end){
       query_filter+="("+query_part4.substring(0,query_part4.length-4)+")";
   
     }
-  
+    if(query_filter.endsWith("and ")){
+      query_filter= query_filter.substring(0,query_filter.length-5);
+    }
     //console.log(query_filter);
     var query="SELECT * FROM Animal";
     var empty=true;

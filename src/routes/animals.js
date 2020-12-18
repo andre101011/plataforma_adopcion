@@ -49,7 +49,7 @@ function animalsPart(data,init,end){
   for (var i=init;i<end && i<data.length;i++){
     res.push(data[i]);
   }
-  console.log(res);
+  
   return res;
  
 
@@ -289,32 +289,55 @@ router.post("/search", isLoggedIn, async (req, res) => {
   };
   
   var query_filter="and";
+  var query_part1="";
+  var query_part2="";
+  var query_part3="";
+  var query_part4="";
   //filter=JSON.stringify(filter);
   for (var i in filter) {
     if (filter.hasOwnProperty(i)) {
       if (filter[i] != undefined) {
         if((i+"").startsWith("s")){
-          query_filter+=" sexo="+ `'${filter[i]}'` ;
+          query_part1+=" sexo="+ `'${filter[i]}'` ;
+          query_part1+=` or `;
 
         }else if((i+"").startsWith("t")){
-          query_filter+=" tamanio="+  `'${filter[i]}'` ;
+          query_part2+=" tamanio="+  `'${filter[i]}'` ;
+          query_part2+=` or `;
 
         }
         else if((i+"").startsWith("p")){
 
-          query_filter+=" especie="+  `'${filter[i]}'` ;
+          query_part3+=" especie="+  `'${filter[i]}'` ;
+          query_part3+=` or `;
 
         }else if((i+"").startsWith("e")){
-          query_filter+=" estado="+  `'${filter[i]}'`;
+          query_part4+=" estado="+  `'${filter[i]}'`;
+          query_part4+=` or `;
         }
-        query_filter+=` and `;
+        
       }
-      
-      
     }
   }
-  query_filter=query_filter.substring(0,query_filter.length-5);
-  console.log(query_filter);
+
+  if(query_part1.length>0){
+    query_filter+="("+query_part1.substring(0,query_part1.length-4)+") and ";
+  }
+  if(query_part2.length>0){
+
+    query_filter+="("+query_part2.substring(0,query_part2.length-4)+") and ";
+  }
+
+  if(query_part3.length>0){
+    query_filter+="("+query_part3.substring(0,query_part3.length-4)+") and ";
+  }
+
+  if(query_part4.length>0){
+    query_filter+="("+query_part4.substring(0,query_part4.length-4)+")";
+
+  }
+
+  //console.log(query_filter);
   var query="SELECT * FROM Animal";
   var empty=true;
   if(search !== ""){
@@ -323,8 +346,7 @@ router.post("/search", isLoggedIn, async (req, res) => {
   }
 
   if (query_filter.length>3) {
-    console.log("entra" + query_filter)
-
+    
     if(empty){
       query_filter= query_filter.substring(3,query_filter.length);
       query+=" WHERE "+query_filter;
@@ -332,11 +354,10 @@ router.post("/search", isLoggedIn, async (req, res) => {
       query+=" "+query_filter;
     }
   }
-  //console.log(query);
+  console.log(query);
   
   animals = await pool.query(query);
-  //console.log(filter)
-
+ 
   actualAnimals=animals;
 
 

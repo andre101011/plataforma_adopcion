@@ -53,13 +53,16 @@
         {{#each animals}}
 
         <div class="card">
-            <img src="{{ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'"  class="card-img-top">
+            <img src="{{ruta_imagen}}" onerror="this.src='/img/sin_imagen.png'" alt="{{nombre}}" class="card-img-top">
             <div class="card-body">
                 <h5>Nombre: <br> {{nombre}}</h5>
                 <h5>Edad:<br> {{edad}}</h5>
                 <h5>Sexo:<br> {{sexo}}</h5>
 
-                <div class="caracteristics">{{caracteristicas}}</div>
+                <textarea class="caracteristics" readonly disabled>
+                     {{caracteristicas}}
+                </textarea>
+
                 <a href="/adopters/add/{{id_animal}}" class="btn btn-warning btn-iniciar">Quiero Adoptarlo</a>
             </div>
         </div>

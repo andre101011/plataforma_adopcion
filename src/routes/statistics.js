@@ -23,7 +23,9 @@ router.get('/',(req,res)=>{
 router.get("/stat1", async (req, res) => {
  
   
- 
+  await pool.query(
+    "SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'"
+  );
   const result = await pool.query(
     "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from Adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
   );
@@ -42,7 +44,9 @@ router.get("/stat1", async (req, res) => {
 
 router.post("/stat1", async (req, res) => {
   
- 
+  await pool.query(
+    "SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'"
+  );
   const result = await pool.query(
     "select date_format(fecha_entrega,'%Y-%b') as fecha, count(id_animal) as entregados from Adopcion where year(fecha_entrega)=2020 group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
   );
@@ -54,6 +58,9 @@ router.post("/stat1", async (req, res) => {
 });
 router.get("/stat2", async (req, res) => {
  
+  await pool.query(
+    "SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'"
+  );
   var result = await pool.query(
     "SELECT  date_format(fecha_entrega,'%Y-%b') as mes  , SUM(CASE WHEN sexo = 'macho' THEN 1 ELSE 0 END) AS machos  , SUM(CASE WHEN sexo = 'hembra' THEN 1 ELSE 0 END) AS hembras FROM  Animal INNER JOIN Adopcion ON Animal.id_animal = Adopcion.id_animal group by year(fecha_entrega),month(fecha_entrega)  order by year(fecha_entrega),month(fecha_entrega);"
   );
@@ -79,7 +86,9 @@ router.post("/stat2", async (req, res) => {
   var barraano = barraano;
 
   
-
+  await pool.query(
+    "SET sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'"
+  );
   var result = await pool.query(
     `SELECT  date_format(fecha_entrega,'%Y-%b') as mes ,
     SUM(CASE WHEN sexo = 'macho' THEN 1 ELSE 0 END) AS machos  ,
